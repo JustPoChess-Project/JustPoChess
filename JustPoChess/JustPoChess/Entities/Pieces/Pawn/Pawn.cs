@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace JustPoChess.Entities.Pieces.Pawn
 {
-    public class Pawn : Piece
+    public abstract class Pawn : Piece
     {
+        private readonly PieceType type = PieceType.Pawn;
+
+        public PieceType Type
+        {
+            get
+            {
+                return this.type;
+            }
+        }
     }
 }

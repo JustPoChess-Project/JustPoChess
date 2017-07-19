@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace JustPoChess.Entities.Pieces.Bishop
 {
-    public class Bishop : Piece
+    public abstract class Bishop : Piece
     {
+        private readonly PieceType type = PieceType.Bishop;
+
+        public PieceType Type
+        {
+            get
+            {
+                return this.type;
+            }
+        }
     }
 }

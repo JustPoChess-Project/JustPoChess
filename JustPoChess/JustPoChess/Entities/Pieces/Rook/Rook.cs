@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace JustPoChess.Entities.Pieces.Rook
 {
-    public class Rook : Piece
+    public abstract class Rook : Piece
     {
+        private readonly PieceType type = PieceType.Rook;
+
+        public PieceType Type
+        {
+            get
+            {
+                return this.type;
+            }
+        }
     }
 }

@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Engine\Engine.cs" />
+    <Compile Include="Entities\Board\Board.cs" />
+    <Compile Include="Entities\Messages\ErrorMessages.cs" />
     <Compile Include="Entities\Pieces\Bishop\Bishop.cs" />
     <Compile Include="Entities\Pieces\Bishop\BlackBishop.cs" />
     <Compile Include="Entities\Pieces\Bishop\WhiteBishop.cs" />
@@ -69,8 +72,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Core\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

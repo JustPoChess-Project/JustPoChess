@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8502CE09-5513-404C-BF62-12EE965E4E86}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>JustPoChess</RootNamespace>
+    <AssemblyName>JustPoChess</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\Pieces\Bishop\Bishop.cs" />
+    <Compile Include="Entities\Pieces\Bishop\BlackBishop.cs" />
+    <Compile Include="Entities\Pieces\Bishop\WhiteBishop.cs" />
+    <Compile Include="Entities\Pieces\King\BlackKing.cs" />
+    <Compile Include="Entities\Pieces\King\King.cs" />
+    <Compile Include="Entities\Pieces\King\WhiteKing.cs" />
+    <Compile Include="Entities\Pieces\Knight\BlackKnight.cs" />
+    <Compile Include="Entities\Pieces\Knight\Knight.cs" />
+    <Compile Include="Entities\Pieces\Knight\WhiteKnight.cs" />
+    <Compile Include="Entities\Pieces\Pawn\BlackPawn.cs" />
+    <Compile Include="Entities\Pieces\Pawn\Pawn.cs" />
+    <Compile Include="Entities\Pieces\Pawn\WhitePawn.cs" />
+    <Compile Include="Entities\Pieces\Piece.cs" />
+    <Compile Include="Entities\Pieces\Queen\BlackQueen.cs" />
+    <Compile Include="Entities\Pieces\Queen\Queen.cs" />
+    <Compile Include="Entities\Pieces\Queen\WhiteQueen.cs" />
+    <Compile Include="Entities\Pieces\Rook\BlackRook.cs" />
+    <Compile Include="Entities\Pieces\Rook\Rook.cs" />
+    <Compile Include="Entities\Pieces\Rook\WhiteRook.cs" />
+    <Compile Include="Interfaces\IDrawable.cs" />
+    <Compile Include="Interfaces\IMovable.cs" />
+    <Compile Include="StartUp.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Core\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

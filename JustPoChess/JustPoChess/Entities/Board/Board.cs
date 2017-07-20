@@ -65,13 +65,20 @@ namespace JustPoChess.Entities.Board
 
         public void Test()
         {
-            foreach (var figure in boardState)
+            for (int x = 0; x < 8; x++)
             {
-                if (figure != null && figure.Color != PieceColor.White)
+                for (int y = 0; y < 8; y++)
                 {
-                    Console.WriteLine(figure.Color.ToString());
-                    Console.WriteLine(figure.Type.ToString());
+                    if (boardState[x, y] == null)
+                    {
+                        Console.Write("null ");
+                    }
+                    else
+                    {
+                        Console.Write($"{boardState[x, y].Color} {boardState[x, y].Type} ");
+                    }
                 }
+                Console.WriteLine();
             }
         }
     }

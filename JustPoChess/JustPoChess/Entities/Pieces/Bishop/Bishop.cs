@@ -6,7 +6,7 @@ namespace JustPoChess.Entities.Pieces.Bishop
     {
         protected Bishop()
         {
-            base.Type = PieceType.Rook;
+            base.Type = PieceType.Bishop;
         }
     }
 }

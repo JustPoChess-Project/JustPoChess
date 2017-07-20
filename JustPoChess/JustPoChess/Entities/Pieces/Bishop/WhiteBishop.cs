@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JustPoChess.Entities.Pieces.Knight;
 
 namespace JustPoChess.Entities.Pieces.Bishop
 {
@@ -26,6 +27,6 @@ namespace JustPoChess.Entities.Pieces.Bishop
         public override void Move()
         {
             throw new NotImplementedException();
-        }
+        }           
     }
 }

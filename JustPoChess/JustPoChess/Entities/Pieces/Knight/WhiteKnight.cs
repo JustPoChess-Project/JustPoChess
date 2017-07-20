@@ -28,10 +28,5 @@ namespace JustPoChess.Entities.Pieces.Knight
         {
             throw new NotImplementedException();
         }
-
-        public WhiteKnight(int x, int y)
-        {
-            this.Position = new Position.Position(x, y);
-        }
     }
 }

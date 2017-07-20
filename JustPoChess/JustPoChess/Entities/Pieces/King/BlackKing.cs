@@ -28,11 +28,5 @@ namespace JustPoChess.Entities.Pieces.King
         {
             throw new NotImplementedException();
         }
-
-
-        public BlackKing(int x, int y)
-        {
-            this.Position = new Position.Position(x, y);
-        }
     }
 }

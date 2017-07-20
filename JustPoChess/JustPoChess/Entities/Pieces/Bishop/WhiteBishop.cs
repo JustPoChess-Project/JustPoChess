@@ -29,10 +29,5 @@ namespace JustPoChess.Entities.Pieces.Bishop
         {
             throw new NotImplementedException();
         }
-
-        public WhiteBishop(int x, int y)
-        {
-            this.Position = new Position.Position(x, y);
-        }
     }
 }

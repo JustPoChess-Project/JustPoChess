@@ -28,10 +28,5 @@ namespace JustPoChess.Entities.Pieces.Pawn
         {
             throw new NotImplementedException();
         }
-
-        public WhitePawn(int x, int y)
-        {
-            this.Position = new Position.Position(x, y);
-        }
     }
 }

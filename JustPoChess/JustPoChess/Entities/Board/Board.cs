@@ -31,35 +31,35 @@ namespace JustPoChess.Entities.Board
             //initializes Pawns
             for (int y = 0; y < 8; y++)
             {
-                boardState[1, y] = new BlackPawn(1, y);
-                boardState[6, y] = new WhitePawn(6, y);
+                boardState[1, y] = new BlackPawn();
+                boardState[6, y] = new WhitePawn();
             }
 
             //initialize Rooks
-            boardState[0, 0] = new BlackRook(0, 0);
-            boardState[0, 7] = new BlackRook(0, 7);
-            boardState[7, 0] = new WhiteRook(7, 0);
-            boardState[7, 7] = new WhiteRook(7, 7);
+            boardState[0, 0] = new BlackRook();
+            boardState[0, 7] = new BlackRook();
+            boardState[7, 0] = new WhiteRook();
+            boardState[7, 7] = new WhiteRook();
 
             //initialize Knights
-            boardState[0, 1] = new BlackKnight(0, 1);
-            boardState[0, 6] = new BlackKnight(0, 6);
-            boardState[7, 1] = new WhiteKnight(7, 1);
-            boardState[7, 6] = new WhiteKnight(7, 6);
+            boardState[0, 1] = new BlackKnight();
+            boardState[0, 6] = new BlackKnight();
+            boardState[7, 1] = new WhiteKnight();
+            boardState[7, 6] = new WhiteKnight();
 
             //initialize Bishops
-            boardState[0, 2] = new BlackBishop(0, 2);
-            boardState[0, 5] = new BlackBishop(0, 5);
-            boardState[7, 2] = new WhiteBishop(7, 2);
-            boardState[7, 5] = new WhiteBishop(7, 5);
+            boardState[0, 2] = new BlackBishop();
+            boardState[0, 5] = new BlackBishop();
+            boardState[7, 2] = new WhiteBishop();
+            boardState[7, 5] = new WhiteBishop();
 
             //initialize Queens
-            boardState[0, 3] = new BlackQueen(0, 3);
-            boardState[7, 3] = new WhiteQueen(7, 3);
+            boardState[0, 3] = new BlackQueen();
+            boardState[7, 3] = new WhiteQueen();
 
             //initialize Kings
-            boardState[0, 4] = new BlackKing(0, 4);
-            boardState[7, 4] = new BlackKing(7, 4);
+            boardState[0, 4] = new BlackKing();
+            boardState[7, 4] = new BlackKing();
         }
     }
 }

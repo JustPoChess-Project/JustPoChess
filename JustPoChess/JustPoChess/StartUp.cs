@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JustPoChess.Core.Engine;
 using JustPoChess.Entities;
+using JustPoChess.Entities.Board;
 using JustPoChess.Entities.Pieces.Knight;
 
 namespace JustPoChess
@@ -17,7 +18,8 @@ namespace JustPoChess
 
             engine.Start();
 
-            WhiteKnight knight = new WhiteKnight();
-        }
+            var board = new Board();
+            board.Test();
+        }       
     }
 }

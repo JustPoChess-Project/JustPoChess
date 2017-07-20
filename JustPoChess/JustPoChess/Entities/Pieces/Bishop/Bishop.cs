@@ -4,14 +4,9 @@ namespace JustPoChess.Entities.Pieces.Bishop
 {
     public abstract class Bishop : Piece
     {
-        private readonly PieceType type = PieceType.Bishop;
-
-        public PieceType Type
+        protected Bishop()
         {
-            get
-            {
-                return this.type;
-            }
+            base.Type = PieceType.Rook;
         }
     }
 }

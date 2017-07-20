@@ -5,14 +5,9 @@ namespace JustPoChess.Entities.Pieces.Bishop
 {
     public class WhiteBishop : Bishop
     {
-        private readonly PieceColor color = PieceColor.White;
-
-        public PieceColor Color
+        public WhiteBishop()
         {
-            get
-            {
-                return this.color;
-            }
+            base.Color = PieceColor.White;
         }
 
         public override void Draw()

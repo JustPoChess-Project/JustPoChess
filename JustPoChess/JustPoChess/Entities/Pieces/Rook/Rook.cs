@@ -4,14 +4,9 @@ namespace JustPoChess.Entities.Pieces.Rook
 {
     public abstract class Rook : Piece
     {
-        private readonly PieceType type = PieceType.Rook;
-
-        public PieceType Type
+        protected Rook()
         {
-            get
-            {
-                return this.type;
-            }
+            base.Type = PieceType.Rook;
         }
     }
 }

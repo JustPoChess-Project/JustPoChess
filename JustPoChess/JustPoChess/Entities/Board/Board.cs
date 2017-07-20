@@ -7,6 +7,7 @@ using JustPoChess.Entities.Pieces.Bishop;
 using JustPoChess.Entities.Pieces.King;
 using JustPoChess.Entities.Pieces.Knight;
 using JustPoChess.Entities.Pieces.Pawn;
+using JustPoChess.Entities.Pieces.PiecesEnums;
 using JustPoChess.Entities.Pieces.Queen;
 using JustPoChess.Entities.Pieces.Rook;
 
@@ -59,7 +60,19 @@ namespace JustPoChess.Entities.Board
 
             //initialize Kings
             boardState[0, 4] = new BlackKing();
-            boardState[7, 4] = new BlackKing();
+            boardState[7, 4] = new WhiteKing();
+        }
+
+        public void Test()
+        {
+            foreach (var figure in boardState)
+            {
+                if (figure != null && figure.Color != PieceColor.White)
+                {
+                    Console.WriteLine(figure.Color.ToString());
+                    Console.WriteLine(figure.Type.ToString());
+                }
+            }
         }
     }
 }

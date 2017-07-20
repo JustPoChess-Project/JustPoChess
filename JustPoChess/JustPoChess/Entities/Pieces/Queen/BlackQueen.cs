@@ -5,14 +5,9 @@ namespace JustPoChess.Entities.Pieces.Queen
 {
     public class BlackQueen : Queen
     {
-        private readonly PieceColor color = PieceColor.Black;
-
-        public PieceColor Color
+        public BlackQueen()
         {
-            get
-            {
-                return this.color;
-            }
+            base.Color = PieceColor.Black;
         }
 
         public override void Draw()

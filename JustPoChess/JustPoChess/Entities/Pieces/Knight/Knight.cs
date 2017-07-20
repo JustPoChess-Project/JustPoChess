@@ -4,14 +4,9 @@ namespace JustPoChess.Entities.Pieces.Knight
 {
     public abstract class Knight : Piece
     {
-        private readonly PieceType type = PieceType.Knight;
-
-        public PieceType Type
+        protected Knight()
         {
-            get
-            {
-                return this.type;
-            }
+            base.Type = PieceType.Knight;
         }
     }
 }

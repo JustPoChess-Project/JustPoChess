@@ -4,11 +4,9 @@ namespace JustPoChess.Entities.Pieces.King
 {
     public abstract class King : Piece
     {
-        private readonly PieceType type = PieceType.King;
-
-        public PieceType Type
+        protected King()
         {
-            get { return this.type; }
+            base.Type = PieceType.King;
         }
     }
 }

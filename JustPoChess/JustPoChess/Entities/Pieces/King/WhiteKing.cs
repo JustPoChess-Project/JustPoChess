@@ -5,16 +5,11 @@ namespace JustPoChess.Entities.Pieces.King
 {
     public class WhiteKing : King
     {
-        private readonly PieceColor color = PieceColor.White;
-
-        public PieceColor Color
+        public WhiteKing()
         {
-            get
-            {
-                return this.color;
-            }
+            base.Color = PieceColor.White;
         }
-        
+
         public override void Move()
         {
             throw new NotImplementedException();

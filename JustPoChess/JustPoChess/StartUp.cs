@@ -16,6 +16,8 @@ namespace JustPoChess
             var engine = new Engine();
 
             engine.Start();
+
+            WhiteKnight knight = new WhiteKnight();
         }
     }
 }

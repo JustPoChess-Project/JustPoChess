@@ -32,19 +32,25 @@ namespace JustPoChess.Entities
 
             public int X
             {
-                get { return this.x; }
+                get
+                {
+                    return this.x;
+                }
             }
 
             public int Y
             {
-                get { return this.y; }
+                get
+                {
+                    return this.y;                  
+                }
             }
-
-            public Position(int x, int y)
-            {
-                this.x = x;
-                this.y = y;
-            }
+			
+			public Position(int x, int y)
+			{
+				this.x = x;
+				this.y = y;
+			}
         }
 
         public abstract void Draw();

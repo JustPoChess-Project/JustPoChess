@@ -19,6 +19,7 @@ namespace JustPoChess
             engine.Start();
 
             var board = new Board();
+            board.InitBoard();
             board.Test();
         }       
     }

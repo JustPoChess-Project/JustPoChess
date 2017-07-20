@@ -17,13 +17,12 @@ namespace JustPoChess.Entities.Pieces.King
                 return this.color;
             }
         }
-
-        public override void Draw()
+        
+        public override void Move()
         {
             throw new NotImplementedException();
         }
-
-        public override void Move()
+        public override void Draw()
         {
             throw new NotImplementedException();
         }

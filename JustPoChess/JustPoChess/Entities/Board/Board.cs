@@ -32,7 +32,7 @@ namespace JustPoChess.Entities.Board
             for (int y = 0; y < 8; y++)
             {
                 boardState[1, y] = new BlackPawn(1, y);
-                boardState[6, y] = new WhitePawn(1, y);
+                boardState[6, y] = new WhitePawn(6, y);
             }
 
             //initialize Rooks

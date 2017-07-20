@@ -9,48 +9,18 @@ namespace JustPoChess.Entities
 {
     public abstract class Piece : IMovable, IDrawable
     {
-        public enum PieceType
-        {
-            King = 1,
-            Queen = 2,
-            Rook = 3,
-            Knight = 4,
-            Bishop = 5,
-            Pawn = 6              
-        }
+        private Position.Position position;
 
-        public enum PieceColor
+        public Position.Position Position
         {
-            White = 0,
-            Black = 1
-        }
-
-        public struct Position
-        {
-            private int x;
-            private int y;
-
-            public int X
+            get
             {
-                get
-                {
-                    return this.x;
-                }
+                return this.position;
             }
-
-            public int Y
+            set
             {
-                get
-                {
-                    return this.y;                  
-                }
+                this.position = value;
             }
-			
-			public Position(int x, int y)
-			{
-				this.x = x;
-				this.y = y;
-			}
         }
 
         public abstract void Draw();

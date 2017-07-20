@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JustPoChess.Entities.Pieces.Knight;
+using JustPoChess.Entities.Pieces.PiecesEnums;
 
 namespace JustPoChess.Entities.Pieces.Bishop
 {
@@ -27,6 +28,11 @@ namespace JustPoChess.Entities.Pieces.Bishop
         public override void Move()
         {
             throw new NotImplementedException();
-        }           
+        }
+
+        public WhiteBishop(int x, int y)
+        {
+            this.Position = new Position.Position(x, y);
+        }
     }
 }

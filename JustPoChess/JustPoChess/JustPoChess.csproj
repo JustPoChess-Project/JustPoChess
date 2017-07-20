@@ -58,12 +58,15 @@
     <Compile Include="Entities\Pieces\Pawn\Pawn.cs" />
     <Compile Include="Entities\Pieces\Pawn\WhitePawn.cs" />
     <Compile Include="Entities\Pieces\Piece.cs" />
+    <Compile Include="Entities\Pieces\PiecesEnums\PieceColor.cs" />
+    <Compile Include="Entities\Pieces\PiecesEnums\PieceType.cs" />
     <Compile Include="Entities\Pieces\Queen\BlackQueen.cs" />
     <Compile Include="Entities\Pieces\Queen\Queen.cs" />
     <Compile Include="Entities\Pieces\Queen\WhiteQueen.cs" />
     <Compile Include="Entities\Pieces\Rook\BlackRook.cs" />
     <Compile Include="Entities\Pieces\Rook\Rook.cs" />
     <Compile Include="Entities\Pieces\Rook\WhiteRook.cs" />
+    <Compile Include="Entities\Position\Position.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IMovable.cs" />
     <Compile Include="StartUp.cs" />

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using JustPoChess.Core.Engine;
 using JustPoChess.Entities;
 using JustPoChess.Entities.Board;
+using JustPoChess.Entities.Menu;
 using JustPoChess.Entities.Pieces.Knight;
 
 namespace JustPoChess
@@ -14,13 +15,8 @@ namespace JustPoChess
     {
         public static void Main(string[] args)
         {
-            var engine = new Engine();
 
-            engine.Start();
-
-            var board = new Board();
-            board.InitBoard();
-            board.Test();
+            Menu.PrintLogo();
         }       
     }
 }

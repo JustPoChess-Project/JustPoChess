@@ -11,11 +11,14 @@ using JustPoChess.Entities.Pieces.PiecesEnums;
 using JustPoChess.Entities.Pieces.Queen;
 using JustPoChess.Entities.Pieces.Rook;
 
-namespace JustPoChess.Entities.Board {
-    public class Board {
+namespace JustPoChess.Entities.Board
+{
+    public class Board
+    {
         private Piece[,] boardState;
 
-        public Piece[,] BoardState {
+        public Piece[,] BoardState
+        {
             get {
                 return this.boardState;
             }
@@ -24,8 +27,10 @@ namespace JustPoChess.Entities.Board {
             }
         }
 
-        public void InitBoard() {
-            BoardState = new Piece[,] {
+        public void InitBoard()
+        {
+            BoardState = new Piece[,] 
+            {
                 {new BlackRook(), new BlackKnight(),new BlackBishop(),new BlackQueen(),new BlackKing(),new BlackBishop(),new BlackKnight(),new BlackRook() }, //Row 8
                 {new BlackPawn(), new BlackPawn(),new BlackPawn(),new BlackPawn(),new BlackPawn(),new BlackPawn(),new BlackPawn(),new BlackPawn() },
                 {null, null,null,null, null, null,null,null},
@@ -33,7 +38,7 @@ namespace JustPoChess.Entities.Board {
                 {null, null,null,null, null, null,null,null},
                 {null, null,null,null, null, null,null,null},
                 {new WhitePawn(), new WhitePawn(),new WhitePawn(),new WhitePawn(),new WhitePawn(),new WhitePawn(),new WhitePawn(),new WhitePawn() },
-                {new WhiteRook(), new WhiteKnight(),new WhiteKnight(),new WhiteKnight(),new WhiteKnight(),new WhiteKnight(),new WhiteKnight(),new WhiteKnight() },  //Row 1
+                {new WhiteRook(), new WhiteKnight(),new WhiteBishop(),new WhiteQueen(),new WhiteKing(),new WhiteBishop(),new WhiteKnight(),new WhiteRook() },  //Row 1
             };
         }
 

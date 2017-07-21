@@ -1,4 +1,4 @@
-﻿namespace JustPoChess.Entities.Messages
+﻿namespace JustPoChess.View.Messages
 {
     public static class ErrorMessages
     {

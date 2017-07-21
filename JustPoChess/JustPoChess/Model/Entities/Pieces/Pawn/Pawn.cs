@@ -1,9 +1,9 @@
 ﻿using System;
-using JustPoChess.Contracts;
-using JustPoChess.Entities.PiecePosition;
-using JustPoChess.Entities.Pieces.PiecesEnums;
+using JustPoChess.Model.Contracts;
+using JustPoChess.Model.Entities.Pieces.PiecePosition;
+using JustPoChess.Model.Entities.Pieces.PiecesEnums;
 
-namespace JustPoChess.Entities.Pieces.Pawn
+namespace JustPoChess.Model.Entities.Pieces.Pawn
 {
     public class Pawn : IPiece, IMovable, IDrawable
     {

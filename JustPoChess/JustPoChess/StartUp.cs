@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using JustPoChess.Core.Engine;
-using JustPoChess.Entities;
-using JustPoChess.Entities.Board;
-using JustPoChess.Entities.Menu;
-using JustPoChess.Entities.Pieces.Knight;
+using JustPoChess.Controller.Engine;
+using JustPoChess.Model.Entities;
+using JustPoChess.Model.Entities.Board;
+using JustPoChess.View.Menu;
+using JustPoChess.Model.Entities.Pieces.Knight;
 
 namespace JustPoChess
 {

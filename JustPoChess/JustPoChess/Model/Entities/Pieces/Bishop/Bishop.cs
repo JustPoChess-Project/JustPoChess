@@ -1,9 +1,9 @@
 ﻿using System;
-using JustPoChess.Contracts;
-using JustPoChess.Entities.PiecePosition;
-using JustPoChess.Entities.Pieces.PiecesEnums;
+using JustPoChess.Model.Contracts;
+using JustPoChess.Model.Entities.Pieces.PiecePosition;
+using JustPoChess.Model.Entities.Pieces.PiecesEnums;
 
-namespace JustPoChess.Entities.Pieces.Bishop
+namespace JustPoChess.Model.Entities.Pieces.Bishop
 {
     public class Bishop : IPiece, IMovable, IDrawable
     {

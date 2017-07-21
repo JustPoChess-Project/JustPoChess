@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections;
-using JustPoChess.Contracts;
-using JustPoChess.Entities.PiecePosition;
-using JustPoChess.Entities.Pieces.Bishop;
-using JustPoChess.Entities.Pieces.King;
-using JustPoChess.Entities.Pieces.Knight;
-using JustPoChess.Entities.Pieces.Pawn;
-using JustPoChess.Entities.Pieces.PiecesEnums;
-using JustPoChess.Entities.Pieces.Queen;
-using JustPoChess.Entities.Pieces.Rook;
+using JustPoChess.Model.Contracts;
+using JustPoChess.Model.Entities.Pieces.PiecePosition;
+using JustPoChess.Model.Entities.Pieces.Bishop;
+using JustPoChess.Model.Entities.Pieces.King;
+using JustPoChess.Model.Entities.Pieces.Knight;
+using JustPoChess.Model.Entities.Pieces.Pawn;
+using JustPoChess.Model.Entities.Pieces.PiecesEnums;
+using JustPoChess.Model.Entities.Pieces.Queen;
+using JustPoChess.Model.Entities.Pieces.Rook;
 
-namespace JustPoChess.Entities.Board
+namespace JustPoChess.Model.Entities.Board
 {
     public class Board
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace JustPoChess.Core.Engine
+namespace JustPoChess.Controller.Engine
 {
     public class Engine
     {

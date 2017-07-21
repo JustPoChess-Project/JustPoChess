@@ -1,4 +1,4 @@
-﻿namespace JustPoChess.Entities.PiecePosition
+﻿namespace JustPoChess.Model.Entities.Pieces.PiecePosition
 {
     public class Position
     {

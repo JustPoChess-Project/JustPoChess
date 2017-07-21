@@ -1,7 +1,7 @@
-﻿using JustPoChess.Entities.PiecePosition;
-using JustPoChess.Entities.Pieces.PiecesEnums;
+﻿using JustPoChess.Model.Entities.Pieces.PiecePosition;
+using JustPoChess.Model.Entities.Pieces.PiecesEnums;
 
-namespace JustPoChess.Contracts
+namespace JustPoChess.Model.Contracts
 {
     public interface IPiece
     {

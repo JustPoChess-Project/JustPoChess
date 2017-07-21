@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JustPoChess.Contracts
+namespace JustPoChess.Model.Contracts
 {
     public interface IDrawable
     {

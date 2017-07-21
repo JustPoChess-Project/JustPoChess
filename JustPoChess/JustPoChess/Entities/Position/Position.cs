@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JustPoChess.Entities.Position
 {
-    public struct Position
+    public class Position
     {
         private int row;
         private int col;

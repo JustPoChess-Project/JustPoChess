@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using JustPoChess.Entities.Pieces.Bishop;
 using JustPoChess.Entities.Pieces.King;
 using JustPoChess.Entities.Pieces.Knight;
 using JustPoChess.Entities.Pieces.Pawn;
-using JustPoChess.Entities.Pieces.PiecesEnums;
 using JustPoChess.Entities.Pieces.Queen;
 using JustPoChess.Entities.Pieces.Rook;
 

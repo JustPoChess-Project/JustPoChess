@@ -67,6 +67,7 @@
     <Compile Include="Entities\Pieces\Rook\BlackRook.cs" />
     <Compile Include="Entities\Pieces\Rook\Rook.cs" />
     <Compile Include="Entities\Pieces\Rook\WhiteRook.cs" />
+    <Compile Include="Entities\Position\Position.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IMovable.cs" />
     <Compile Include="StartUp.cs" />

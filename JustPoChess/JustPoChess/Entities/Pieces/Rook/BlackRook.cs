@@ -5,9 +5,10 @@ namespace JustPoChess.Entities.Pieces.Rook
 {
     public class BlackRook : Rook
     {
-        public BlackRook()
+        public BlackRook(Position.Position position)
         {
             base.Color = PieceColor.Black;
+            base.Position = position;
         }
 
         public override void Draw()

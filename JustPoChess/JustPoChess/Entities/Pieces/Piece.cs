@@ -7,6 +7,8 @@ namespace JustPoChess.Entities
     {
         private PieceType type;
         private PieceColor color;
+        private Position.Position position;
+
 
         public PieceType Type
         {
@@ -31,6 +33,19 @@ namespace JustPoChess.Entities
             protected set
             {
                 this.color = value;              
+            }
+        }
+
+        public Position.Position Position
+        {
+            get
+            {
+                return this.position;                
+            }
+
+            protected set
+            {
+                this.position = value;              
             }
         }
 

@@ -5,9 +5,10 @@ namespace JustPoChess.Entities.Pieces.Pawn
 {
     public class WhitePawn : Pawn
     {
-        public WhitePawn()
+        public WhitePawn(Position.Position position)
         {
             base.Color = PieceColor.White;
+            base.Position = position;
         }
 
         public override void Draw()

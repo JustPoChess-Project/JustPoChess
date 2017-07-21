@@ -15,7 +15,6 @@ namespace JustPoChess
     {
         public static void Main(string[] args)
         {
-
             Menu.PrintLogo();
         }       
     }

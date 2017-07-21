@@ -5,9 +5,10 @@ namespace JustPoChess.Entities.Pieces.Knight
 {
     public class WhiteKnight : Knight
     {
-        public WhiteKnight()
+        public WhiteKnight(Position.Position position)
         {
             base.Color = PieceColor.White;
+            base.Position = position;
         }
 
         public override void Draw()

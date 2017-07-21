@@ -5,9 +5,10 @@ namespace JustPoChess.Entities.Pieces.Bishop
 {
     public class BlackBishop : Bishop
     {
-        public BlackBishop()
+        public BlackBishop(Position.Position position)
         {
             base.Color = PieceColor.Black;
+            base.Position = position;
         }
 
         public override void Draw()

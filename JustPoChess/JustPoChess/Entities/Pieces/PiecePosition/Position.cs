@@ -1,6 +1,6 @@
 ﻿namespace JustPoChess.Entities.PiecePosition
 {
-    public struct Position
+    public class Position
     {
         private int row;
         private int col;

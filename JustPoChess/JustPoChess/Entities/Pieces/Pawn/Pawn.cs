@@ -1,10 +1,11 @@
 ﻿using System;
+using JustPoChess.Contracts;
 using JustPoChess.Entities.PiecePosition;
 using JustPoChess.Entities.Pieces.PiecesEnums;
 
 namespace JustPoChess.Entities.Pieces.Pawn
 {
-    public class Pawn
+    public class Pawn : IPiece, IMovable, IDrawable
     {
         private readonly PieceType pieceType = PieceType.Pawn;
         private PieceColor pieceColor;

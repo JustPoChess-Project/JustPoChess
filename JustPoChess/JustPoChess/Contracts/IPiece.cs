@@ -3,7 +3,7 @@ using JustPoChess.Entities.Pieces.PiecesEnums;
 
 namespace JustPoChess.Contracts
 {
-    public interface IFigure
+    public interface IPiece
     {
         Position PiecePosition { get; set; }
         PieceColor PieceColor { get; }

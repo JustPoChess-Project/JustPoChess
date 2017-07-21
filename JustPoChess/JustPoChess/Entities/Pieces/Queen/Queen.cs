@@ -5,7 +5,7 @@ using JustPoChess.Entities.Pieces.PiecesEnums;
 
 namespace JustPoChess.Entities.Pieces.Queen
 {
-    public class Queen : IFigure, IMovable, IDrawable
+    public class Queen : IPiece, IMovable, IDrawable
     {
         private readonly PieceType pieceType = PieceType.Queen;
         private PieceColor pieceColor;

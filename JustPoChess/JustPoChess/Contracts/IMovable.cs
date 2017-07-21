@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JustPoChess.Interfaces
+namespace JustPoChess.Contracts
 {
     public interface IMovable
     {

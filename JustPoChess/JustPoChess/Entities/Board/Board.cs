@@ -1,4 +1,5 @@
 ﻿using System;
+using JustPoChess.Contracts;
 using JustPoChess.Entities.Pieces.Bishop;
 using JustPoChess.Entities.Pieces.King;
 using JustPoChess.Entities.Pieces.Knight;
@@ -26,7 +27,7 @@ namespace JustPoChess.Entities.Board
 
         public void InitBoard()
         {
-            BoardState = new Piece[,]
+            BoardState = new IFigure[,]
             {
                 { new BlackRook(), new BlackKnight(), new BlackBishop(), new BlackQueen(), new BlackKing(), new BlackBishop(), new BlackKnight(), new BlackRook() }, //Row 8
                 { new BlackPawn(), new BlackPawn(), new BlackPawn(), new BlackPawn(), new BlackPawn(), new BlackPawn(), new BlackPawn(), new BlackPawn() },

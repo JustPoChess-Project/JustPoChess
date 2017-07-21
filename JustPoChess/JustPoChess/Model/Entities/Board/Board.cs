@@ -9,15 +9,14 @@ using JustPoChess.Entities.Pieces.Pawn;
 using JustPoChess.Entities.Pieces.PiecesEnums;
 using JustPoChess.Entities.Pieces.Queen;
 using JustPoChess.Entities.Pieces.Rook;
-using JustPoChess.Entities.Position;
 
 namespace JustPoChess.Entities.Board
 {
     public class Board
     {
-        private IFigure[,] boardState;
+        private IPiece[,] boardState;
 
-        public IFigure[,] BoardState
+        public IPiece[,] BoardState
         {
             get
             {
@@ -31,7 +30,7 @@ namespace JustPoChess.Entities.Board
 
         public void InitBoard()
         {
-            BoardState = new IFigure[,]
+            BoardState = new IPiece[,]
             {
                 { new Rook(PieceColor.Black, new Position(0, 0)), new Knight(PieceColor.Black, new Position(0, 1)), new Bishop(PieceColor.Black, new Position(0, 2)), new Queen(PieceColor.Black, new Position(0, 3)), new King(PieceColor.Black, new Position(0, 4)), new Bishop(PieceColor.Black, new Position(0, 5)), new Knight(PieceColor.Black, new Position(0, 6)), new Rook(PieceColor.Black, new Position(0, 7)) }, //row 8
                 { new Pawn(PieceColor.Black, new Position(1, 0)), new Pawn(PieceColor.Black, new Position(1, 1)), new Pawn(PieceColor.Black, new Position(1, 2)), new Pawn(PieceColor.Black, new Position(1, 3)), new Pawn(PieceColor.Black, new Position(1, 4)), new Pawn(PieceColor.Black, new Position(1, 5)), new Pawn(PieceColor.Black, new Position(1, 6)), new Pawn(PieceColor.Black, new Position(1, 7)) },

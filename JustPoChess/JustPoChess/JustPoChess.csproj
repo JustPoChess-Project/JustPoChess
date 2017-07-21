@@ -42,22 +42,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IPiece.cs" />
-    <Compile Include="Core\Engine\Engine.cs" />
-    <Compile Include="Entities\Board\Board.cs" />
-    <Compile Include="Entities\Menu\Menu.cs" />
-    <Compile Include="Entities\Messages\ErrorMessages.cs" />
-    <Compile Include="Entities\Pieces\Bishop\Bishop.cs" />
-    <Compile Include="Entities\Pieces\King\King.cs" />
-    <Compile Include="Entities\Pieces\Knight\Knight.cs" />
-    <Compile Include="Entities\Pieces\Pawn\Pawn.cs" />
-    <Compile Include="Entities\Pieces\PiecesEnums\PieceColor.cs" />
-    <Compile Include="Entities\Pieces\PiecesEnums\PieceType.cs" />
-    <Compile Include="Entities\Pieces\PiecePosition\Position.cs" />
-    <Compile Include="Contracts\IDrawable.cs" />
-    <Compile Include="Contracts\IMovable.cs" />
-    <Compile Include="Entities\Pieces\Queen\Queen.cs" />
-    <Compile Include="Entities\Pieces\Rook\Rook.cs" />
+    <Compile Include="Model\Contracts\IPiece.cs" />
+    <Compile Include="Controller\Core\Engine\Engine.cs" />
+    <Compile Include="Model\Entities\Board\Board.cs" />
+    <Compile Include="View\Menu\Menu.cs" />
+    <Compile Include="View\Messages\ErrorMessages.cs" />
+    <Compile Include="Model\Entities\Pieces\Bishop\Bishop.cs" />
+    <Compile Include="Model\Entities\Pieces\King\King.cs" />
+    <Compile Include="Model\Entities\Pieces\Knight\Knight.cs" />
+    <Compile Include="Model\Entities\Pieces\Pawn\Pawn.cs" />
+    <Compile Include="Model\Entities\Pieces\PiecesEnums\PieceColor.cs" />
+    <Compile Include="Model\Entities\Pieces\PiecesEnums\PieceType.cs" />
+    <Compile Include="Model\Entities\Pieces\PiecePosition\Position.cs" />
+    <Compile Include="Model\Contracts\IDrawable.cs" />
+    <Compile Include="Model\Contracts\IMovable.cs" />
+    <Compile Include="Model\Entities\Pieces\Queen\Queen.cs" />
+    <Compile Include="Model\Entities\Pieces\Rook\Rook.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

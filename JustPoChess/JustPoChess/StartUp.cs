@@ -1,8 +1,7 @@
 ﻿using System;
 using JustPoChess.Client.View.Menu;
-using JustPoChess.Client.MVC;
 
-namespace JustPoChess
+namespace JustPoChess.Client.MVC
 {
     public class StartUp
     {

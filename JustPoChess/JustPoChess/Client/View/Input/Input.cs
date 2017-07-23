@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using JustPoChess.Client.Model.Entities.Board;
 
-namespace JustPoChess.Client.Controller
+namespace JustPoChess.View.Input
 {
     public class Input
     {

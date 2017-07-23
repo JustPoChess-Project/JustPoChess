@@ -5,9 +5,8 @@ using JustPoChess.Client.Model.Entities.Pieces.PiecesEnums;
 
 namespace JustPoChess.Client.Model.Entities.Pieces
 {
-    public class Knight : IPiece, IDrawable
+    public class Knight : IPiece
     {
-
         private readonly PieceType pieceType = PieceType.King;
         private PieceColor pieceColor;
         private Position piecePosition;

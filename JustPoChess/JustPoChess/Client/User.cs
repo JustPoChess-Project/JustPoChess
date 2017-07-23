@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
-using JustPoChess.Client.MVC;
 using NetworkCommsDotNet;
 
-namespace JustPoChess
+namespace JustPoChess.Client.MVC
 {
     public class User
     {

@@ -8,5 +8,8 @@ namespace JustPoChess.Client.Model.Interfaces
         Position PiecePosition { get; set; }
         PieceColor PieceColor { get; }
         PieceType PieceType { get; }
+
+        void Draw();
+        void Move();
     }
 }

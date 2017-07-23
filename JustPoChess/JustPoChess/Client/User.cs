@@ -12,7 +12,7 @@ namespace JustPoChess
             //Request server IP and port number
             Console.WriteLine("Please enter the server IP and port in the format 192.168.0.1:10000 and press return:");
             //string serverInfo = Console.ReadLine();
-            string serverInfo = "95.42.0.47:50111";
+            string serverInfo = "127.0.0.1:50111";
 
             //Parse the necessary information out of the provided string
             string serverIP = serverInfo.Split(':').First();

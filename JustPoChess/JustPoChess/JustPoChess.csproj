@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -13,7 +13,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>anycpu</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -40,29 +40,46 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="NetworkCommsDotNet">
+      <HintPath>..\packages\NetworkCommsDotNet.3.0.3\lib\NetworkCommsDotNet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\Engine\Engine.cs" />
-    <Compile Include="Model\Contracts\IPiece.cs" />
-    <Compile Include="Model\Entities\Board\Board.cs" />
-    <Compile Include="View\Menu\Menu.cs" />
-    <Compile Include="View\Messages\ErrorMessages.cs" />
-    <Compile Include="Model\Entities\Pieces\Bishop\Bishop.cs" />
-    <Compile Include="Model\Entities\Pieces\King\King.cs" />
-    <Compile Include="Model\Entities\Pieces\Knight\Knight.cs" />
-    <Compile Include="Model\Entities\Pieces\Pawn\Pawn.cs" />
-    <Compile Include="Model\Entities\Pieces\PiecesEnums\PieceColor.cs" />
-    <Compile Include="Model\Entities\Pieces\PiecesEnums\PieceType.cs" />
-    <Compile Include="Model\Entities\Pieces\PiecePosition\Position.cs" />
-    <Compile Include="Model\Contracts\IDrawable.cs" />
-    <Compile Include="Model\Contracts\IMovable.cs" />
-    <Compile Include="Model\Entities\Pieces\Queen\Queen.cs" />
-    <Compile Include="Model\Entities\Pieces\Rook\Rook.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Client\Model\Interfaces\IDrawable.cs" />
+    <Compile Include="Client\Model\Interfaces\IPiece.cs" />
+    <Compile Include="Client\Model\Entities\Board\Board.cs" />
+    <Compile Include="Client\Model\Entities\Pieces\PiecePosition\Position.cs" />
+    <Compile Include="Client\Model\Entities\Pieces\PiecesEnums\PieceColor.cs" />
+    <Compile Include="Client\Model\Entities\Pieces\PiecesEnums\PieceType.cs" />
+    <Compile Include="Client\View\Menu\Menu.cs" />
+    <Compile Include="Client\View\Messages\ErrorMessages.cs" />
+    <Compile Include="Client\Controller\Controller.cs" />
+    <Compile Include="Client\Model\Entities\Pieces\Rook.cs" />
+    <Compile Include="Client\Model\Entities\Pieces\Queen.cs" />
+    <Compile Include="Client\Model\Entities\Pieces\Pawn.cs" />
+    <Compile Include="Client\Model\Entities\Pieces\Knight.cs" />
+    <Compile Include="Client\Model\Entities\Pieces\Bishop.cs" />
+    <Compile Include="Client\Model\Entities\Pieces\King.cs" />
+    <Compile Include="Client\Model\Model.cs" />
+    <Compile Include="Client\View\View.cs" />
+    <Compile Include="Client\Model\Entities\Player\Player.cs" />
+    <Compile Include="Client\Model\Entities\Board\GameState.cs" />
+    <Compile Include="Server\Server.cs" />
+    <Compile Include="Client\Client.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Client\" />
+    <Folder Include="Client\Controller\" />
+    <Folder Include="Client\Model\" />
+    <Folder Include="Client\View\" />
+    <Folder Include="Client\Model\Entities\Player\" />
+    <Folder Include="Server\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

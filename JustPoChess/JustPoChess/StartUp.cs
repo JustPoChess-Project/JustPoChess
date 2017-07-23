@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using JustPoChess.Controller.Engine;
-using JustPoChess.Model.Entities;
-using JustPoChess.Model.Entities.Board;
-using JustPoChess.View.Menu;
-using JustPoChess.Model.Entities.Pieces.Knight;
+﻿using JustPoChess.Client.View.Menu;
+using JustPoChess.Client.MVC;
 
 namespace JustPoChess
 {
     public class StartUp
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
+            Model model = new Model();
+            View viewPlayer1 = new View(model);
+            View viewPlayer2 = new View(model);
+            Controller controller = new Controller(model, viewPlayer1);
+            PlayerMVC player1 = new PlayerMVC(viewPlayer1);
+            PlayerMVC player2 = new PlayerMVC(viewPlayer2);
+
+            Server server = new Server();
             Menu.PrintLogo();
         }       
     }

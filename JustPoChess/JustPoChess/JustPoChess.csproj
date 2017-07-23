@@ -68,6 +68,8 @@
     <Compile Include="Client\Model\Entities\Board\GameState.cs" />
     <Compile Include="Server\Server.cs" />
     <Compile Include="Client\Client.cs" />
+    <Compile Include="Client\Controller\Input.cs" />
+    <Compile Include="Client\Model\Entities\Board\Move.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

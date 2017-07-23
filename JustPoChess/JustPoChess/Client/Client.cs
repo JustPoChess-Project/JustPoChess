@@ -6,6 +6,7 @@ namespace JustPoChess
     {
         public PlayerMVC(View view)
         {
+            //ToDo:
         }
     }
 }

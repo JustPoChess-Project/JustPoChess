@@ -67,7 +67,7 @@
     <Compile Include="Client\Model\Entities\Player\Player.cs" />
     <Compile Include="Client\Model\Entities\Board\GameState.cs" />
     <Compile Include="Server\Server.cs" />
-    <Compile Include="Client\Client.cs" />
+    <Compile Include="Client\User.cs" />
     <Compile Include="Client\Controller\Input.cs" />
     <Compile Include="Client\Model\Entities\Board\Move.cs" />
   </ItemGroup>

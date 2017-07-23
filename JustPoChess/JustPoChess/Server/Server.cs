@@ -12,7 +12,7 @@ namespace JustPoChess
             //We expect the incoming object to be a string which we state explicitly by using <string>
             NetworkComms.AppendGlobalIncomingPacketHandler<string>("Message", PrintIncomingMessage);
             //Start listening for incoming connections
-            Connection.StartListening(ConnectionType.TCP, new System.Net.IPEndPoint(System.Net.IPAddress.Any, 0));
+            Connection.StartListening(ConnectionType.TCP, new System.Net.IPEndPoint(System.Net.IPAddress.Any, 50111));
 
             //Print out the IPs and ports we are now listening on
             Console.WriteLine("Server listening for TCP connection on:");

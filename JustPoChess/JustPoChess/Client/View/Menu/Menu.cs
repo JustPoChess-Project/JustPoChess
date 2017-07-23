@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Media;
 using System.Threading;
 
 namespace JustPoChess.Client.View.Menu
@@ -9,9 +7,7 @@ namespace JustPoChess.Client.View.Menu
     {
         public static void InitialScreen()
         {
-            SoundPlayer player = new SoundPlayer();
-            player.SoundLocation = @"..\..\Sounds\OST\InitialScreenOST.wav";
-            player.Play();
+            Sounds.PlayInitialScreenOST();
 
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine($@"                                                        
@@ -41,6 +37,7 @@ namespace JustPoChess.Client.View.Menu
  {new string(' ', Console.WindowWidth / 2 - 114 / 2)} | $$  | $$| $$  | $$ \____  $$  | $$ /$$      | $$     | $$  | $$| $$    $$| $$  | $$| $$_____/ \____  $$\____  $$
  {new string(' ', Console.WindowWidth / 2 - 114 / 2)} |  $$$$$$/|  $$$$$$/ /$$$$$$$/  |  $$$$/      | $$     |  $$$$$$/|  $$$$$$/| $$  | $$|  $$$$$$$ /$$$$$$$//$$$$$$$/
  {new string(' ', Console.WindowWidth / 2 - 114 / 2)}  \______/  \______/ |_______/    \___/        |__/      \______/  \______/ |__/  |__/ \_______/|_______/|_______/");
+
             bool visible = true;
             do
             {
@@ -54,8 +51,7 @@ namespace JustPoChess.Client.View.Menu
                 Console.Write(new string(' ', Console.WindowWidth));
             } while (!Console.KeyAvailable);
 
-            player.SoundLocation = @"..\..\Sounds\Sounds\selection.wav";
-            player.Play();
+            Sounds.PlaySelectionSound();
 
             for (int i = 0; i < 10; i++)
             {

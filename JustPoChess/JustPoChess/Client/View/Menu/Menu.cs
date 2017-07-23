@@ -45,7 +45,7 @@ namespace JustPoChess.Client.View.Menu
             do
             {
                 Console.ForegroundColor = ConsoleColor.Gray;
-                string alert = visible ? "Pres any key to continue..." : "";
+                string alert = visible ? "PRESS ANY KEY TO CONTINUE..." : "";
                 Console.SetCursorPosition(Console.WindowWidth / 2 - alert.Length / 2, 30);
                 visible = !visible;
                 Console.WriteLine(alert);
@@ -56,7 +56,21 @@ namespace JustPoChess.Client.View.Menu
 
             player.SoundLocation = @"..\..\Sounds\Sounds\selection.wav";
             player.Play();
+
+            for (int i = 0; i < 10; i++)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                string alert = visible ? "PRESS ANY KEY TO CONTINUE..." : "";
+                Console.SetCursorPosition(Console.WindowWidth / 2 - alert.Length / 2, 30);
+                visible = !visible;
+                Console.WriteLine(alert);
+                Thread.Sleep(100);
+                Console.SetCursorPosition(40, 30);
+                Console.Write(new string(' ', Console.WindowWidth));
+            }
+
             Console.Clear();
+            Console.ResetColor();
         }
     }
 }

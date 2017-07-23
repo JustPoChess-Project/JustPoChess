@@ -4,23 +4,23 @@ namespace JustPoChess.Client.View
 {
     public static class Sounds
     {
-        private static SoundPlayer player = new SoundPlayer();
+        private static readonly SoundPlayer Player = new SoundPlayer();
 
         public static void PlayInitialScreenOST()
         {
-            player.SoundLocation = @"..\..\Sounds\OST\InitialScreenOST.wav";
-            player.Play();
+            Player.SoundLocation = @"..\..\Sounds\OST\InitialScreenOST.wav";
+            Player.Play();
         }
 
         public static void PlaySelectionSound()
         {
-            player.SoundLocation = @"..\..\Sounds\Sounds\selection.wav";
-            player.Play();
+            Player.SoundLocation = @"..\..\Sounds\Sounds\selection.wav";
+            Player.Play();
         }
 
         public static void Stop()
         {
-            player.Stop();
+            Player.Stop();
         }
     }
 }

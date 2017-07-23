@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Threading;
 
 namespace JustPoChess.Client.View.Menu
@@ -8,7 +9,7 @@ namespace JustPoChess.Client.View.Menu
         public static void InitialScreen()
         {
             Sounds.PlayInitialScreenOST();
-
+            Thread.Sleep(300);
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine($@"                                                        
  {new string(' ', Console.WindowWidth / 2 - 79 / 2)}                         o   |\ ,'`. /||\ ,OO. /|    o     
@@ -26,7 +27,7 @@ namespace JustPoChess.Client.View.Menu
  {new string(' ', Console.WindowWidth / 2 - 79 / 2)}  |  |       |  |     |  |     |  |      |  |     |  |     |  |       |  |  
  {new string(' ', Console.WindowWidth / 2 - 79 / 2)} /    \     /    \   /    \   /    \    /    \   /    \   /    \     /    \ 
  {new string(' ', Console.WindowWidth / 2 - 79 / 2)}|______|   |______| |______| |______|  |______| |______| |______|   |______|");
-
+            Thread.Sleep(300);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($@"            
  {new string(' ', Console.WindowWidth / 2 - 114 / 2)}     /$$$$$                       /$$           /$$$$$$$            /$$$$$$  /$$                                   
@@ -38,10 +39,15 @@ namespace JustPoChess.Client.View.Menu
  {new string(' ', Console.WindowWidth / 2 - 114 / 2)} |  $$$$$$/|  $$$$$$/ /$$$$$$$/  |  $$$$/      | $$     |  $$$$$$/|  $$$$$$/| $$  | $$|  $$$$$$$ /$$$$$$$//$$$$$$$/
  {new string(' ', Console.WindowWidth / 2 - 114 / 2)}  \______/  \______/ |_______/    \___/        |__/      \______/  \______/ |__/  |__/ \_______/|_______/|_______/");
 
-            bool visible = true;
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 11, 35);
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.Write("(\u00a9) 2017 CodeBenders");
+
+            bool visible = false;
+
+            Console.ForegroundColor = ConsoleColor.Gray;
             do
             {
-                Console.ForegroundColor = ConsoleColor.Gray;
                 string alert = visible ? "PRESS ANY KEY TO CONTINUE..." : "";
                 Console.SetCursorPosition(Console.WindowWidth / 2 - alert.Length / 2, 30);
                 visible = !visible;
@@ -53,9 +59,9 @@ namespace JustPoChess.Client.View.Menu
 
             Sounds.PlaySelectionSound();
 
+            Console.ForegroundColor = ConsoleColor.Red;
             for (int i = 0; i < 10; i++)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
                 string alert = visible ? "PRESS ANY KEY TO CONTINUE..." : "";
                 Console.SetCursorPosition(Console.WindowWidth / 2 - alert.Length / 2, 30);
                 visible = !visible;

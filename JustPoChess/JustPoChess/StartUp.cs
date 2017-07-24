@@ -9,7 +9,7 @@ namespace JustPoChess.Client.MVC
         {
             if (IsLinux)
             {
-                //how does one even draw on linux?
+                Console.WriteLine("Why tho?");
                 return;
             }
             else

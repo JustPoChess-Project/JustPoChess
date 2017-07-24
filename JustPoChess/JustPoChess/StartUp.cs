@@ -7,24 +7,30 @@ namespace JustPoChess.Client.MVC
     {
         public static void Main()
         {
-            Console.WriteLine(IsLinux);
-            return;
-            Console.WindowHeight = 50;
-            Console.WindowWidth = 150;
-            Console.CursorVisible = false;
-
-            string input = Console.ReadLine();
-            if (input == "server")
+            if (IsLinux)
             {
-                Server server = new Server();
+                //how does one even draw on linux?
+                return;
             }
-            if (input == "client")
+            else
             {
-                Menu.InitialScreen();
-                Model model = new Model();
-                View view = new View(model);
-                User client = new User(view);
-                Controller controller = new Controller(model, view);
+                Console.WindowHeight = 50;
+                Console.WindowWidth = 150;
+                Console.CursorVisible = false;
+
+                string input = Console.ReadLine();
+                if (input == "server")
+                {
+                    Server server = new Server();
+                }
+                if (input == "client")
+                {
+                    Menu.InitialScreen();
+                    Model model = new Model();
+                    View view = new View(model);
+                    User client = new User(view);
+                    Controller controller = new Controller(model, view);
+                }
             }
         }
 

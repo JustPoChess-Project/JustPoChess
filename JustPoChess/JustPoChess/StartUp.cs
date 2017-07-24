@@ -7,38 +7,47 @@ namespace JustPoChess.Client.MVC
     {
         public static void Main()
         {
-            if (IsLinux)
+            
+            try
             {
-                Console.CursorVisible = false;
+                if (IsLinux)
+                {
+                    Console.CursorVisible = false;
 
-                string input = Console.ReadLine();
-                if (input == "server")
-                {
-                    Server server = new Server();
+                    string input = Console.ReadLine();
+                    if (input == "server")
+                    {
+                        Server server = new Server();
+                    }
+                    if (input == "client")
+                    {
+                        MenuUnix.InitialScreen();
+                        MenuUnix.InitializeMenu();
+                    }
                 }
-                if (input == "client")
+                else
                 {
-                    MenuUnix.InitialScreen();
-                    MenuUnix.InitializeMenu();
+                    Console.WindowHeight = 60;
+                    Console.WindowWidth = 150;
+                    Console.CursorVisible = false;
+
+                    string input = Console.ReadLine();
+                    if (input == "server")
+                    {
+                        Server server = new Server();
+                    }
+                    if (input == "client")
+                    {
+                        Menu.InitialScreen();
+                        Menu.InitializeMenu();
+                    }
                 }
             }
-            else
+            catch
             {
-                Console.WindowHeight = 60;
-                Console.WindowWidth = 150;
-                Console.CursorVisible = false;
-
-                string input = Console.ReadLine();
-                if (input == "server")
-                {
-                    Server server = new Server();
-                }
-                if (input == "client")
-                {
-                    Menu.InitialScreen();
-                    Menu.InitializeMenu();
-                }
+                throw new ArgumentOutOfRangeException("FOR WINDOWS: Change Font To Raster 8 x 9");
             }
+            
 
            // Model model = new Model();
            // View view = new View(model);

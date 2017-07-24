@@ -9,7 +9,6 @@ namespace JustPoChess.Client.MVC
         {
             if (IsLinux)
             {
-                //Console.WriteLine("I'm awesome");
                 Console.CursorVisible = false;
 
                 string input = Console.ReadLine();

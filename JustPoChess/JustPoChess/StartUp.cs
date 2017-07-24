@@ -7,7 +7,7 @@ namespace JustPoChess.Client.MVC
     {
         public static void Main()
         {
-            if (!IsLinux)
+            if (IsLinux)
             {
                 Console.CursorVisible = false;
 

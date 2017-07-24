@@ -7,6 +7,8 @@ namespace JustPoChess.Client.MVC
     {
         public static void Main()
         {
+            Console.WriteLine(IsLinux);
+            return;
             Console.WindowHeight = 50;
             Console.WindowWidth = 150;
             Console.CursorVisible = false;
@@ -23,6 +25,15 @@ namespace JustPoChess.Client.MVC
                 View view = new View(model);
                 User client = new User(view);
                 Controller controller = new Controller(model, view);
+            }
+        }
+
+        public static bool IsLinux
+        {
+            get
+            {
+                int p = (int)Environment.OSVersion.Platform;
+                return (p == 4) || (p == 6) || (p == 128);
             }
         }
     }

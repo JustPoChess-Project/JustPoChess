@@ -9,33 +9,42 @@ namespace JustPoChess.Client.MVC
         {
             if (IsLinux)
             {
-                Console.WriteLine("I'm awesome");
+                //Console.WriteLine("I'm awesome");
+                Console.CursorVisible = false;
+
+                string input = Console.ReadLine();
+                if (input == "server")
+                {
+                    Server server = new Server();
+                }
+                if (input == "client")
+                {
+                    MenuUnix.InitialScreen();
+                    Model model = new Model();
+                    View view = new View(model);
+                    User client = new User(view);
+                    Controller controller = new Controller(model, view);
+                }
             }
             else
             {
-                Console.WriteLine(@"
-________________$$$$
-______________$$____$$
-______________$$____$$
-______________$$____$$
-______________$$____$$
-______________$$____$$
-__________$$$$$$____$$$$$$
-________$$____$$____$$____$$$$
-________$$____$$____$$____$$__$$
-$$$$$$__$$____$$____$$____$$____$$
-$$____$$$$________________$$____$$
-$$______$$______________________$$
-__$$____$$______________________$$
-___$$$__$$______________________$$
-____$$__________________________$$
-_____$$$________________________$$
-______$$______________________$$$
-_______$$$____________________$$
-________$$____________________$$
-_________$$$________________$$$
-__________$$________________$$
-__________$$$$$$$$$$$$$$$$$$$$");
+                Console.WindowHeight = 50;
+                Console.WindowWidth = 150;
+                Console.CursorVisible = false;
+
+                string input = Console.ReadLine();
+                if (input == "server")
+                {
+                    Server server = new Server();
+                }
+                if (input == "client")
+                {
+                    Menu.InitialScreen();
+                    Model model = new Model();
+                    View view = new View(model);
+                    User client = new User(view);
+                    Controller controller = new Controller(model, view);
+                }
             }
         }
 

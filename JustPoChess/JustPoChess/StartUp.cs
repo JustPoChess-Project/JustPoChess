@@ -7,7 +7,7 @@ namespace JustPoChess.Client.MVC
     {
         public static void Main()
         {
-            if (IsLinux)
+            if (!IsLinux)
             {
                 Console.CursorVisible = false;
 
@@ -19,15 +19,12 @@ namespace JustPoChess.Client.MVC
                 if (input == "client")
                 {
                     MenuUnix.InitialScreen();
-                    Model model = new Model();
-                    View view = new View(model);
-                    User client = new User(view);
-                    Controller controller = new Controller(model, view);
+                    MenuUnix.InitializeMenu();
                 }
             }
             else
             {
-                Console.WindowHeight = 50;
+                Console.WindowHeight = 60;
                 Console.WindowWidth = 150;
                 Console.CursorVisible = false;
 
@@ -39,12 +36,14 @@ namespace JustPoChess.Client.MVC
                 if (input == "client")
                 {
                     Menu.InitialScreen();
-                    Model model = new Model();
-                    View view = new View(model);
-                    User client = new User(view);
-                    Controller controller = new Controller(model, view);
+                    Menu.InitializeMenu();
                 }
             }
+
+           // Model model = new Model();
+           // View view = new View(model);
+           // User client = new User(view);
+           // Controller controller = new Controller(model, view);
         }
 
         public static bool IsLinux

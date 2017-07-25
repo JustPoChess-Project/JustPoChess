@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="JustPoChess.Client.MVC.Controller" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Client\Controller\Controller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JustPoChess.Client.MVC.Model" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAgAAAAAAA=</HashCode>
+      <FileName>Client\Model\Model.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JustPoChess.Client.MVC.User" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Client\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JustPoChess.Client.MVC.View" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Client\View\View.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JustPoChess.Client.MVC.StartUp" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>StartUp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JustPoChess.Client.Model.Entities.Board.Board" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAIAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Client\Model\Entities\Board\Board.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JustPoChess.Client.Model.Entities.Board.Move" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Client\Model\Entities\Board\Move.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JustPoChess.Client.Model.Entities.Pieces.Bishop" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAgAAAAAAAAAAAAAEABAQBAAQEAAAAAA=</HashCode>
+      <FileName>Client\Model\Entities\Pieces\Bishop.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="JustPoChess.Client.Model.Entities.Pieces.King" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAgAAAAAAAAAAAAAEABAQBAAQEAAAAAA=</HashCode>
+      <FileName>Client\Model\Entities\Pieces\King.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="JustPoChess.Client.Model.Entities.Pieces.Knight" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAgAAAAAAAAAAAAAEABAQBAAQEAAAAAA=</HashCode>
+      <FileName>Client\Model\Entities\Pieces\Knight.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="JustPoChess.Client.Model.Entities.Pieces.Pawn" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAgAAAAAAAAAAAAAEABAQBAAQEAAAAAA=</HashCode>
+      <FileName>Client\Model\Entities\Pieces\Pawn.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="JustPoChess.Client.Model.Entities.Pieces.Queen" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAgAAAAAAAAAAAAAEABAQBAAQEAAAAAA=</HashCode>
+      <FileName>Client\Model\Entities\Pieces\Queen.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="JustPoChess.Client.Model.Entities.Pieces.Rook" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAgAAAAAAAAAAAAAEABAQBAAQEAAAAAA=</HashCode>
+      <FileName>Client\Model\Entities\Pieces\Rook.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="JustPoChess.Client.Model.Entities.Pieces.PiecePosition.Position" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQACAAEAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Client\Model\Entities\Pieces\PiecePosition\Position.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JustPoChess.Client.Model.Entities.Player.Player" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAACAAAAAAAAAABA=</HashCode>
+      <FileName>Client\Model\Entities\Player\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JustPoChess.View.Input.Input" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ASAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEQAAA=</HashCode>
+      <FileName>Client\View\Input\Input.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JustPoChess.Client.View.Menu.Menu" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Client\View\Menu\Menu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JustPoChess.Client.View.Messages.ErrorMessages" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Client\View\Messages\ErrorMessages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JustPoChess.Client.View.Sounds" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAACAAAAAAAAAAAAAAAAAAEIAAAAQAAAAA=</HashCode>
+      <FileName>Client\View\Sounds\Sounds.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JustPoChess.Server" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Server\Server.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="JustPoChess.Client.Model.Interfaces.IPiece" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAgAAAAAAAAAAAAAAABAABAAAEAAAAAA=</HashCode>
+      <FileName>Client\Model\Interfaces\IPiece.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="JustPoChess.Client.Model.Entities.Board.GameState" Collapsed="true">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAgAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Client\Model\Entities\Board\GameState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JustPoChess.Client.Model.Entities.Pieces.PiecesEnums.PieceColor" Collapsed="true">
+    <Position X="2.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Client\Model\Entities\Pieces\PiecesEnums\PieceColor.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JustPoChess.Client.Model.Entities.Pieces.PiecesEnums.PieceType" Collapsed="true">
+    <Position X="4" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAEggAAAAEAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Client\Model\Entities\Pieces\PiecesEnums\PieceType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

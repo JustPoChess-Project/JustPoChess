@@ -89,7 +89,26 @@ namespace JustPoChess.Client.View.Menu
                             break;
 
                         case ConsoleKey.Enter:
-                            //do stuff
+                            switch (menuOptions)
+                            {
+                                case 1:                                    
+                                    break;
+
+                                case 2:
+                                    break;
+
+                                case 3:
+                                    break;
+
+                                case 4:
+                                
+                                    break;
+
+                                case 5:
+                                    //it will close if you are actually using the .exe
+                                    Environment.Exit(0);
+                                    break;
+                            }
                             break;
                     }
 
@@ -108,7 +127,7 @@ namespace JustPoChess.Client.View.Menu
 
                         case 2:
                             Console.WriteLine(MenuArt.HotSeatText);
-                            Console.ForegroundColor = ConsoleColor.Yellow; 
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine(MenuArt.OnlineText);
                             Console.ResetColor();
                             Console.WriteLine(MenuArt.VersusAiText);
@@ -119,7 +138,7 @@ namespace JustPoChess.Client.View.Menu
                         case 3:
                             Console.WriteLine(MenuArt.HotSeatText);
                             Console.WriteLine(MenuArt.OnlineText);
-                            Console.ForegroundColor = ConsoleColor.Yellow; 
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine(MenuArt.VersusAiText);
                             Console.ResetColor();
                             Console.WriteLine(MenuArt.AiVersusAiText);
@@ -129,7 +148,7 @@ namespace JustPoChess.Client.View.Menu
                             Console.WriteLine(MenuArt.HotSeatText);
                             Console.WriteLine(MenuArt.OnlineText);
                             Console.WriteLine(MenuArt.VersusAiText);
-                            Console.ForegroundColor = ConsoleColor.Yellow; 
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine(MenuArt.AiVersusAiText);
                             Console.ResetColor();
                             Console.WriteLine(MenuArt.ExitText);
@@ -140,7 +159,7 @@ namespace JustPoChess.Client.View.Menu
                             Console.WriteLine(MenuArt.OnlineText);
                             Console.WriteLine(MenuArt.VersusAiText);
                             Console.WriteLine(MenuArt.AiVersusAiText);
-                            Console.ForegroundColor = ConsoleColor.Yellow; 
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine(MenuArt.ExitText);
                             Console.ResetColor();
                             break;

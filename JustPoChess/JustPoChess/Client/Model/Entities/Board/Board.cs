@@ -8,14 +8,12 @@ namespace JustPoChess.Client.Model.Entities.Board
     
     public static class Board
     {
-        public const int boardSize = 8;
-        private static IPiece[,] boardState;
-        // TODO: FIX
-
+        public const int BoardSize = 8;
+        public static IPiece[,] BoardState;
 
         public static void InitBoard()
         {
-            boardState = new IPiece[,]
+            BoardState = new IPiece[,]
             {
                 { new Rook(PieceColor.Black, new Position(0, 0)), new Knight(PieceColor.Black, new Position(0, 1)), new Bishop(PieceColor.Black, new Position(0, 2)), new Queen(PieceColor.Black, new Position(0, 3)), new King(PieceColor.Black, new Position(0, 4)), new Bishop(PieceColor.Black, new Position(0, 5)), new Knight(PieceColor.Black, new Position(0, 6)), new Rook(PieceColor.Black, new Position(0, 7)) }, //row 8
                 { new Pawn(PieceColor.Black, new Position(1, 0)), new Pawn(PieceColor.Black, new Position(1, 1)), new Pawn(PieceColor.Black, new Position(1, 2)), new Pawn(PieceColor.Black, new Position(1, 3)), new Pawn(PieceColor.Black, new Position(1, 4)), new Pawn(PieceColor.Black, new Position(1, 5)), new Pawn(PieceColor.Black, new Position(1, 6)), new Pawn(PieceColor.Black, new Position(1, 7)) },

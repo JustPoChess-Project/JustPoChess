@@ -5,7 +5,7 @@ namespace JustPoChess.Client.MVC
 {
     public class Model
     {
-        private Board board;
+        //private Board board;
         private Player player1;
         private Player player2;
         private GameState gameState;

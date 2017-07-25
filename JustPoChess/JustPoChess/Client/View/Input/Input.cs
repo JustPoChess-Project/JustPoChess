@@ -55,11 +55,11 @@ namespace JustPoChess.View.Input
         {
             ValidateUserInput(inputString);
             int currentRow = inputString[0] - 'A';
-            int currentCol = Board.boardSize - inputString[1] + '0';
+            int currentCol = Board.BoardSize - inputString[1] + '0';
             Position currentPosition = new Position(currentRow, currentCol);
 
             int nextRow = inputString[3] - 'A';
-            int nextCol = Board.boardSize - inputString[4] + '0';
+            int nextCol = Board.BoardSize - inputString[4] + '0';
             Position nextPosition = new Position(nextRow, nextCol);
 
             Move move = new Move(currentPosition, nextPosition);

@@ -49,7 +49,7 @@ namespace JustPoChess.View.Input
                 Console.WriteLine("Invalid input. Input is in format <first position> - <second position>");
             }         
         }
-        public Move MoveFigure(string inputString)
+        public Move MovePiece(string inputString)
         {
             ValidateUserInput(inputString);
             int currentRow = inputString[0] - 'A';

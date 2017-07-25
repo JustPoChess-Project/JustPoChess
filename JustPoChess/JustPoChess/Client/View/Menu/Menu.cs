@@ -91,7 +91,7 @@ namespace JustPoChess.Client.View.Menu
                         case ConsoleKey.Enter:
                             switch (menuOptions)
                             {
-                                case 1:                                    
+                                case 1:
                                     break;
 
                                 case 2:
@@ -105,13 +105,11 @@ namespace JustPoChess.Client.View.Menu
                                     break;
 
                                 case 5:
-                                    //it will close if you are actually using the .exe
                                     Environment.Exit(0);
                                     break;
                             }
                             break;
                     }
-
                     Console.Clear();
                     switch (menuOptions)
                     {

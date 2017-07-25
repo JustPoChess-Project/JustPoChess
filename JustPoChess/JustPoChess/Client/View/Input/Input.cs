@@ -18,11 +18,14 @@ namespace JustPoChess.View.Input
         {
 
             string inputPattern = @"[A-H|a-h][1-8][^A-H|a-h|1-8][A-H|a-h][1-8]";
-
+            //For manual testing
+            //string matchedPattern = Regex.Match(inputString, inputPattern).ToString();
+            //Console.WriteLine(matchedPattern);
             if (!Regex.IsMatch(inputString, inputPattern))
             {
                 Console.WriteLine("Invalid input. Input is in format <first position> - <second position>, draw or resign");
             }
+            
             switch (inputString.ToLower())
             {
                 case "draw": /*TODO: Send Server request*/;  break;
@@ -30,7 +33,6 @@ namespace JustPoChess.View.Input
             }
 
 
-            string matchedPattern = Regex.Match(inputString, inputPattern).ToString();
             
             /*
             Don't forget exceptions
@@ -47,7 +49,7 @@ namespace JustPoChess.View.Input
             if (!Regex.IsMatch(inputString, inputPattern))
             {
                 Console.WriteLine("Invalid input. Input is in format <first position> - <second position>");
-            }         
+            }
         }
         public Move MovePiece(string inputString)
         {

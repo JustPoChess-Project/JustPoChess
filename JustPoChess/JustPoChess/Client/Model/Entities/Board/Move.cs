@@ -5,11 +5,14 @@ namespace JustPoChess.Client.Model.Entities.Board
 {
     public class Move
     {
-        Position start;
-        Position destination;
+        Position currentPosition;
+        Position nextPosititon;
 
-        public Move()
+        public Move(Position currentPosition, Position nextPosititon)
         {
+            this.currentPosition = currentPosition;
+            this.nextPosititon = nextPosititon;
         }
+
     }
 }

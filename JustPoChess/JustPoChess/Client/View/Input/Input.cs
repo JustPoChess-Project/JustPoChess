@@ -18,7 +18,8 @@ namespace JustPoChess.View.Input
 
         protected void ValidatexUserInput(string inputString)
         {            
-            switch (inputString)
+            
+            switch (inputString.ToLower())
             {
                 case "draw": /*TODO: Send other player yes/no request */;  break;
                 case "resign": /* TODO: Send other player resign screen */; break;
@@ -41,11 +42,11 @@ namespace JustPoChess.View.Input
         }
         public Move MovePiece(string inputString)
         {
-            int currentRow = inputString[0] - 'A';
+            int currentRow = inputString[0] - 'a';
             int currentCol = Board.BoardSize - inputString[1] + '0';
             Position currentPosition = new Position(currentRow, currentCol);
 
-            int nextRow = inputString[3] - 'A';
+            int nextRow = inputString[3] - 'a';
             int nextCol = Board.BoardSize - inputString[4] + '0';
             Position nextPosition = new Position(nextRow, nextCol);
 

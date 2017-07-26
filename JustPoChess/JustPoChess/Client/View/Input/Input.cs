@@ -9,29 +9,28 @@ namespace JustPoChess.View.Input
     
     public class Input
     {
-        private const string validMovePattern = @"[A-H|a-h][1-8][^A-H|a-h|1-8][A-H|a-h][1-8]";
-        private const string validDrawPattern = @"^[dD][rR][aA][wW]$";
-        private const string validResignPattern = @"^[rR][eE][sS][iI][gG][nN]$";
-        private const string invalidInput = "Invalid input. Input must be in format <first position>-<second position>, draw or resign";
-
-
+        private const string validMovePattern = @"[a-h][1-8]-[a-h][1-8]";
+        private const string invalidInput = "Invalid input. Input is in format <first position>-<second position>, draw or resign";
         public Input()
         {
             
         }
 
         protected void ValidatexUserInput(string inputString)
+        {            
+            switch (inputString)
+            {
+                case "draw": /*TODO: Send other player yes/no request */;  break;
+                case "resign": /* TODO: Send other player resign screen */; break;
+                default: ValidateMove(inputString); break;
+            }            
+            
+        }
+        public void ValidateMove(string inputString)
         {
-
-            if (Regex.IsMatch(inputString, validDrawPattern))
-            {
-                // Send other player resign screen
-            }
-            else if (Regex.IsMatch(inputString, validResignPattern))
-            {
-                // Send other player yes/no requst
-            }
-            else if (Regex.IsMatch(inputString, validMovePattern))
+            Regex validateInput = new Regex(validMovePattern, RegexOptions.IgnoreCase);
+            Match match = validateInput.Match(inputString);
+            if (match.Success)
             {
                 MovePiece(inputString);
             }
@@ -40,7 +39,6 @@ namespace JustPoChess.View.Input
                 Console.WriteLine(invalidInput);
             }
         }
-       
         public Move MovePiece(string inputString)
         {
             int currentRow = inputString[0] - 'A';

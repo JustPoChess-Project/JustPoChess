@@ -1,13 +1,20 @@
-﻿using System.Collections.Generic;
-using JustPoChess.Client.Model.Entities.Board;
-using System;
-using System.Text.RegularExpressions;
+﻿using JustPoChess.Client.Model.Entities.Board;
 using JustPoChess.Client.Model.Entities.Pieces.PiecePosition;
+using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace JustPoChess.View.Input
 {
+    
     public class Input
     {
+        private const string validMovePattern = @"[A-H|a-h][1-8][^A-H|a-h|1-8][A-H|a-h][1-8]";
+        private const string validDrawPattern = @"^[dD][rR][aA][wW]$";
+        private const string validResignPattern = @"^[rR][eE][sS][iI][gG][nN]$";
+        private const string invalidInput = "Invalid input. Input must be in format <first position>-<second position>, draw or resign";
+
+
         public Input()
         {
             
@@ -16,43 +23,26 @@ namespace JustPoChess.View.Input
         protected void ValidatexUserInput(string inputString)
         {
 
-            string inputPattern = @"[A-H|a-h][1-8][^A-H|a-h|1-8][A-H|a-h][1-8]";
-            //For manual testing
-            //string matchedPattern = Regex.Match(inputString, inputPattern).ToString();
-            //Console.WriteLine(matchedPattern);
-            if (!Regex.IsMatch(inputString, inputPattern))
+            if (Regex.IsMatch(inputString, validDrawPattern))
             {
-                Console.WriteLine("Invalid input. Input is in format <first position> - <second position>, draw or resign");
+                // Send other player resign screen
             }
-            
-            switch (inputString.ToLower())
+            else if (Regex.IsMatch(inputString, validResignPattern))
             {
-                case "draw": /*TODO: Send Server request*/;  break;
-                case "resign": /* TODO: Send Server request */; break;
+                // Send other player yes/no requst
             }
-
-
-            
-            /*
-            Don't forget exceptions
-            Possible moves: 
-            -A2-A4
-            -resign
-            -draw (offering - other player has to accept - display drawOffer msg to the other player)
-            -new game - human/ai  
-            */
-        }
-        public void ValidateUserInput(string inputString)
-        {
-            string inputPattern = @"[A-H|a-h][1-8][^A-H|a-h|1-8][A-H|a-h][1-8]";
-            if (!Regex.IsMatch(inputString, inputPattern))
+            else if (Regex.IsMatch(inputString, validMovePattern))
             {
-                Console.WriteLine("Invalid input. Input is in format <first position> - <second position>");
+                MovePiece(inputString);
+            }
+            else
+            {
+                Console.WriteLine(invalidInput);
             }
         }
+       
         public Move MovePiece(string inputString)
         {
-            ValidateUserInput(inputString);
             int currentRow = inputString[0] - 'A';
             int currentCol = Board.BoardSize - inputString[1] + '0';
             Position currentPosition = new Position(currentRow, currentCol);

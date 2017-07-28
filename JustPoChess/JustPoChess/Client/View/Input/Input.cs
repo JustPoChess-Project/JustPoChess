@@ -3,6 +3,8 @@ using JustPoChess.Client.Model.Entities.Pieces.PiecePosition;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using JustPoChess.Client.Model.Entities.GameState;
+using JustPoChess.Client.Model.Entities.Move;
 
 namespace JustPoChess.View.Input
 {

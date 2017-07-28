@@ -1,7 +1,7 @@
 ﻿using System;
 using JustPoChess.Client.Model.Entities.Pieces.PiecePosition;
 
-namespace JustPoChess.Client.Model.Entities.Board
+namespace JustPoChess.Client.Model.Entities.Move
 {
     public class Move
     {

@@ -1,7 +1,7 @@
-﻿using JustPoChess.Client.Model.Entities.Board;
+﻿using JustPoChess.Client.Model.Entities.GameState;
 using JustPoChess.Client.Model.Entities.Player;
 
-namespace JustPoChess.Client.MVC
+namespace JustPoChess.Client.MVC.Model
 {
     public class Model
     {

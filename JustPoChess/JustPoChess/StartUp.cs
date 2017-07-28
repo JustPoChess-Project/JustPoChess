@@ -17,7 +17,7 @@ namespace JustPoChess.Client.MVC
                     string input = Console.ReadLine();
                     if (input == "server")
                     {
-                        Server server = new Server();
+                        Server.Server server = new Server.Server();
                     }
                     if (input == "client")
                     {
@@ -34,7 +34,7 @@ namespace JustPoChess.Client.MVC
                     string input = Console.ReadLine();
                     if (input == "server")
                     {
-                        Server server = new Server();
+                        Server.Server server = new Server.Server();
                     }
                     if (input == "client")
                     {

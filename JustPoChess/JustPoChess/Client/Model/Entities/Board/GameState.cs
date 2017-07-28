@@ -1,4 +1,4 @@
-﻿namespace JustPoChess.Client.Model.Entities.Board
+﻿namespace JustPoChess.Client.Model.Entities.GameState
 {
     public enum GameState
     {

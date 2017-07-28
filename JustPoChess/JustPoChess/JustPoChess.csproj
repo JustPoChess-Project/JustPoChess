@@ -50,7 +50,7 @@
     <Compile Include="Client\View\Sounds\Sounds.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Client\Model\Interfaces\IPiece.cs" />
+    <Compile Include="Client\Model\Contracts\IPiece.cs" />
     <Compile Include="Client\Model\Entities\Board\Board.cs" />
     <Compile Include="Client\Model\Entities\Pieces\PiecePosition\Position.cs" />
     <Compile Include="Client\Model\Entities\Pieces\PiecesEnums\PieceColor.cs" />

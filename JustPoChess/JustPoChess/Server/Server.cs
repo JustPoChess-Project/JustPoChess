@@ -2,7 +2,7 @@
 using NetworkCommsDotNet;
 using NetworkCommsDotNet.Connections;
 
-namespace JustPoChess
+namespace JustPoChess.Server
 {
     public class Server
     {

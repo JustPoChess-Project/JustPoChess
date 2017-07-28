@@ -1,8 +1,8 @@
-﻿namespace JustPoChess.Client.MVC
+﻿namespace JustPoChess.Client.MVC.Controller
 {
     public class Controller
     {
-        public Controller(Model model, View view)
+        public Controller(Model.Model model, View.View view)
         {
             //ToDo:
         }

@@ -1,5 +1,5 @@
 ﻿using System;
-using JustPoChess.Client.Model.Interfaces;
+using JustPoChess.Client.Model.Contracts;
 using JustPoChess.Client.Model.Entities.Pieces.PiecePosition;
 using JustPoChess.Client.Model.Entities.Pieces.PiecesEnums;
 

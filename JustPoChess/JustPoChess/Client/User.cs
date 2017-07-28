@@ -2,11 +2,11 @@
 using System.Linq;
 using NetworkCommsDotNet;
 
-namespace JustPoChess.Client.MVC
+namespace JustPoChess.Client.User
 {
     public class User
     {
-        public User(View view)
+        public User(MVC.View.View view)
         {
             //Request server IP and port number
             Console.WriteLine("Please enter the server IP and port in the format 192.168.0.1:10000 and press return:");

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using JustPoChess.Client.Model.Contracts;
 using JustPoChess.Client.Model.Entities.Pieces.PiecesEnums;
-using JustPoChess.Client.Model.Interfaces;
 
 namespace JustPoChess.Client.Model.Entities.Player
 {

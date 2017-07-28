@@ -2,11 +2,11 @@
 using JustPoChess.Client.Model.Entities.Board;
 using JustPoChess.Client.Model.Entities.Pieces.PiecesEnums;
 
-namespace JustPoChess.Client.MVC
+namespace JustPoChess.Client.MVC.View
 {
     public class View
     {
-       public View(Model model)
+       public View(Model.Model model)
        {
            //ToDo:
        }

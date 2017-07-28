@@ -1,5 +1,5 @@
 ﻿using System;
-using JustPoChess.Client.View.Menu;
+using JustPoChess.Client.MVC.View.Menu;
 
 namespace JustPoChess.Client.MVC
 {

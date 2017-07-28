@@ -2,7 +2,7 @@
 using System.Linq;
 using NetworkCommsDotNet;
 
-namespace JustPoChess.Client.User
+namespace JustPoChess.Client
 {
     public class User
     {

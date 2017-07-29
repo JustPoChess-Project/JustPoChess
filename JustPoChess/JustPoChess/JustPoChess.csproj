@@ -46,9 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client\MVC\Model\Entities\Pieces\Abstract\Piece.cs" />
+    <Compile Include="Client\MVC\OSChecker\CheckOS.cs" />
     <Compile Include="Client\MVC\View\Art\MenuArt.cs" />
     <Compile Include="Client\MVC\View\Menu\MenuUnix.cs" />
-    <Compile Include="Client\MVC\View\Sounds\Sounds.cs" />
+    <Compile Include="Client\MVC\View\Sounds\SoundEffects.cs" />
+    <Compile Include="Client\MVC\View\Sounds\OST.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Client\MVC\Model\Contracts\IPiece.cs" />

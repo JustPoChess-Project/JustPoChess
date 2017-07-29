@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using JustPoChess.Client.MVC.View.Art;
+using JustPoChess.Client.MVC.View.Sounds;
 
 namespace JustPoChess.Client.MVC.View.Menu
 {
@@ -8,7 +9,7 @@ namespace JustPoChess.Client.MVC.View.Menu
     {
         public static void InitialScreen()
         {
-            Sounds.Sounds.PlayInitialScreenOST();
+            OST.PlayInitialScreenOST();
             Thread.Sleep(300);
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine(MenuArt.JustPoChessLogo);
@@ -18,35 +19,34 @@ namespace JustPoChess.Client.MVC.View.Menu
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(MenuArt.JustPoChessText);
 
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 11, 35);
+            Console.SetCursorPosition(0, 35);
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
-            Console.Write("(C) 2017 CodeBenders");
+            Console.Write(MenuArt.CopyrightLogo);
 
             bool visible = false;
 
             Console.ForegroundColor = ConsoleColor.Gray;
             do
             {
-                string alert = visible ? "PRESS ANY KEY TO CONTINUE..." : "";
-                Console.SetCursorPosition(Console.WindowWidth / 2 - alert.Length / 2, 30);
+                string alert = visible ? $"{MenuArt.Continue}" : "";
                 visible = !visible;
                 Console.WriteLine(alert);
                 Thread.Sleep(1000);
-                Console.SetCursorPosition(40, 30);
+                Console.SetCursorPosition(7, 30);
                 Console.Write(new string(' ', Console.WindowWidth));
             } while (!Console.KeyAvailable);
 
-            Sounds.Sounds.PlaySelectionSound();
+            SoundEffects.PlaySelectionSound();
 
             Console.ForegroundColor = ConsoleColor.Red;
             for (int i = 0; i < 10; i++)
             {
-                string alert = visible ? "PRESS ANY KEY TO CONTINUE..." : "";
-                Console.SetCursorPosition(Console.WindowWidth / 2 - alert.Length / 2, 30);
+                string alert = visible ? $"{MenuArt.Continue}" : "";
+                Console.SetCursorPosition(0, 31);
                 visible = !visible;
                 Console.WriteLine(alert);
                 Thread.Sleep(100);
-                Console.SetCursorPosition(40, 30);
+                Console.SetCursorPosition(0, 31);
                 Console.Write(new string(' ', Console.WindowWidth));
             }
 
@@ -92,7 +92,6 @@ namespace JustPoChess.Client.MVC.View.Menu
                             switch (menuOptions)
                             {
                                 case 1:
-
                                     break;
 
                                 case 2:
@@ -101,8 +100,7 @@ namespace JustPoChess.Client.MVC.View.Menu
                                 case 3:
                                     break;
 
-                                case 4:
-                                
+                                case 4:                                
                                     break;
 
                                 case 5:

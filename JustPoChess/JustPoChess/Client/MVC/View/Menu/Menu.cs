@@ -29,11 +29,13 @@ namespace JustPoChess.Client.MVC.View.Menu
             do
             {
                 string alert = visible ? $"{MenuArt.Continue}" : "";
+                Console.SetCursorPosition(0, 31);
                 visible = !visible;
                 Console.WriteLine(alert);
                 Thread.Sleep(1000);
-                Console.SetCursorPosition(7, 30);
+                Console.SetCursorPosition(0, 31);
                 Console.Write(new string(' ', Console.WindowWidth));
+
             } while (!Console.KeyAvailable);
 
             SoundEffects.PlaySelectionSound();
@@ -57,16 +59,15 @@ namespace JustPoChess.Client.MVC.View.Menu
         public static void InitializeMenu()
         {
             var menuOptions = 1;
-
             while (true)
             {
                 if (Console.KeyAvailable)
                 {
                     var userInput = Console.ReadKey();
-
                     switch (userInput.Key)
                     {
                         case ConsoleKey.UpArrow:
+                            SoundEffects.PlayTraverseSound();
                             if (menuOptions == 1)
                             {
                                 menuOptions = 5;
@@ -78,6 +79,7 @@ namespace JustPoChess.Client.MVC.View.Menu
                             break;
 
                         case ConsoleKey.DownArrow:
+                            SoundEffects.PlayTraverseSound();
                             if (menuOptions == 5)
                             {
                                 menuOptions = 1;
@@ -109,6 +111,7 @@ namespace JustPoChess.Client.MVC.View.Menu
                             }
                             break;
                     }
+
                     Console.Clear();
                     switch (menuOptions)
                     {

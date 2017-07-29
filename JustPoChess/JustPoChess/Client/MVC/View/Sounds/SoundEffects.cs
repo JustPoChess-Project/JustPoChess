@@ -22,6 +22,20 @@ namespace JustPoChess.Client.MVC.View.Sounds
             }
         }
 
+        public static void PlayTraverseSound()
+        {
+            if (CheckOS.IsLinux)
+            {
+                Player.SoundLocation = "../../Sounds/Sounds/Traverse.wav";
+                Player.Play();
+            }
+            else
+            {
+                Player.SoundLocation = @"..\..\Sounds\Sounds\Traverse.wav";
+                Player.Play();
+            }
+        }
+
         public static void Stop()
         {
             Player.Stop();

@@ -41,7 +41,7 @@ namespace JustPoChess.Client.MVC.View.Menu
             SoundEffects.PlaySelectionSound();
 
             Console.ForegroundColor = ConsoleColor.Red;
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 18; i++)
             {
                 string alert = visible ? $"{MenuArt.Continue}" : "";
                 Console.SetCursorPosition(0, 31);
@@ -59,6 +59,7 @@ namespace JustPoChess.Client.MVC.View.Menu
         public static void InitializeMenu()
         {
             var menuOptions = 1;
+
             while (true)
             {
                 if (Console.KeyAvailable)

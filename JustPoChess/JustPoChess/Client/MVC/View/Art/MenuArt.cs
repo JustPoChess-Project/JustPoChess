@@ -5,9 +5,9 @@ namespace JustPoChess.Client.MVC.View.Art
     public static class MenuArt
     {
         public static readonly string Continue =
-            "                                                          PRESS ANY KEY TO CONTINUE...";
+            "                                                         PRESS ANY KEY TO CONTINUE...";
 
-        public static readonly string CopyrightLogo = "                                                             (c) 2017 CodeBenders";
+        public static readonly string CopyrightLogo = "                                                            (c) 2017 CodeBenders";
 
         public static readonly string JustPoChessLogo =
             $@"                                                                 

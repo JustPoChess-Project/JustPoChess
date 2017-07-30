@@ -1,97 +1,116 @@
 ﻿using System;
+using System.Linq;
+using JustPoChess.Client.MVC.Model.Contracts;
 using JustPoChess.Client.MVC.Model.Entities.Board;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecesEnums;
+using JustPoChess.Client.MVC.View.Art;
 
 namespace JustPoChess.Client.MVC.View
 {
     public class View
     {
-       public View(Model.Model model)
-       {
-           //ToDo:
-       }
-         
+       // public View(Model.Model model)
+       // {
+       //     //ToDo:
+       // }
+
         //Player specific
         public void PrintBoard()
         {
-            
             for (int x = 0; x < 8; x++)
             {
                 for (int y = 0; y < 8; y++)
                 {
+
                     if (Board.BoardState[x, y] == null)
                     {
-                        Console.Write(' ');
                     }
-                    else if (Board.BoardState[x, y].PieceType == PieceType.Bishop)
+                    else
                     {
-                        if (Board.BoardState[x, y].PieceColor == PieceColor.White)
-                        {
-                            Console.Write('B');
-                        }
-                        else
-                        {
-                            Console.Write('b');
-                        }
-                    }
-                    else if (Board.BoardState[x, y].PieceType == PieceType.King)
-                    {
-                        if (Board.BoardState[x, y].PieceColor == PieceColor.White)
-                        {
-                            Console.Write('K');
-                        }
-                        else
-                        {
-                            Console.Write('k');
-                        }
-                    }
-                    else if (Board.BoardState[x, y].PieceType == PieceType.Knight)
-                    {
-                        if (Board.BoardState[x, y].PieceColor == PieceColor.White)
-                        {
-                            Console.Write('H');
-                        }
-                        else
-                        {
-                            Console.Write('h');
-                        }
-                    }
-                    else if (Board.BoardState[x, y].PieceType == PieceType.Pawn)
-                    {
-                        if (Board.BoardState[x, y].PieceColor == PieceColor.White)
-                        {
-                            Console.Write('P');
-                        }
-                        else
-                        {
-                            Console.Write('p');
-                        }
-                    }
-                    else if (Board.BoardState[x, y].PieceType == PieceType.Queen)
-                    {
-                        if (Board.BoardState[x, y].PieceColor == PieceColor.White)
-                        {
-                            Console.Write('Q');
-                        }
-                        else
-                        {
-                            Console.Write('q');
-                        }
-                    }
-                    else if (Board.BoardState[x, y].PieceType == PieceType.Rook)
-                    {
-                        if (Board.BoardState[x, y].PieceColor == PieceColor.White)
-                        {
-                            Console.Write('R');
-                        }
-                        else
-                        {
-                            Console.Write('r');
-                        }
+                        
                     }
                 }
+
                 Console.WriteLine();
+                if (x == 7)
+                {
+                    Console.WriteLine("  A B C D E F G H");
+                }
             }
+        }
+
+        public string GetPieceString(IPiece[,] boardState, int x, int y)
+        {
+            switch (boardState[x, y].PieceType)
+            {
+                case PieceType.Bishop:
+                    switch (boardState[x, y].PieceColor)
+                    {
+                        case PieceColor.Black:
+                            return GameArt.BlackBishop;
+
+                        case PieceColor.White:
+                            return GameArt.WhiteBishop;
+                    }
+                    break;
+
+                case PieceType.King:
+                    switch (boardState[x, y].PieceColor)
+                    {
+                        case PieceColor.Black:
+                            return GameArt.BlackKing;
+
+                        case PieceColor.White:
+                            return GameArt.WhiteKing;
+                    }
+                    break;
+
+                case PieceType.Knight:
+                    switch (boardState[x, y].PieceColor)
+                    {
+                        case PieceColor.Black:
+                            return GameArt.BlackKnight;
+
+                        case PieceColor.White:
+                            return GameArt.WhiteKnight;
+                    }
+                    break;
+
+                case PieceType.Pawn:
+                    switch (boardState[x, y].PieceColor)
+                    {
+                        case PieceColor.Black:
+                            return GameArt.BlackPawn;
+
+                        case PieceColor.White:
+                            return GameArt.WhitePawn;
+                    }
+                    break;
+
+                case PieceType.Queen:
+                    switch (boardState[x, y].PieceColor)
+                    {
+                        case PieceColor.Black:
+                            return GameArt.BlackQueen;
+
+                        case PieceColor.White:
+                            return GameArt.WhiteQueen;
+                    }
+                    break;
+
+                case PieceType.Rook:
+                    switch (boardState[x, y].PieceColor)
+                    {
+                        case PieceColor.Black:
+                            return GameArt.BlackRook;
+
+                        case PieceColor.White:
+                            return GameArt.WhiteRook;
+                    }
+                    break;
+            }
+
+            return string.Empty;
         }
     }
 }

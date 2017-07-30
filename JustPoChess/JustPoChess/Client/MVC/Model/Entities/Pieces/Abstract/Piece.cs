@@ -13,7 +13,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Pieces.Abstract
         public Position PiecePosition
         {
             get { return this.piecePosition; }
-            set { this.PiecePosition = value; }
+            set { this.piecePosition = value; }
         }
 
         public PieceColor PieceColor

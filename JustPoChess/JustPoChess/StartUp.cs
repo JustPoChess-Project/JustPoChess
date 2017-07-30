@@ -1,4 +1,5 @@
 ﻿using System;
+using JustPoChess.Client.MVC.Model.Entities.Board;
 using JustPoChess.Client.MVC.View.Menu;
 
 namespace JustPoChess.Client.MVC
@@ -38,8 +39,13 @@ namespace JustPoChess.Client.MVC
                     }
                     if (input == "client")
                     {
-                        Menu.InitialScreen();
-                        Menu.InitializeMenu();
+                        Board.InitBoard();
+                        var view = new View.View();
+                        Console.WriteLine("Xd");
+                        view.PrintBoard();
+                        
+                       //Menu.InitialScreen();
+                       //Menu.InitializeMenu();
                     }
                 }
             }

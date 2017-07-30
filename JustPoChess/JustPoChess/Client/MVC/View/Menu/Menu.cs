@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
 using JustPoChess.Client.MVC.View.Art;
 using JustPoChess.Client.MVC.View.Sounds;
@@ -39,6 +40,7 @@ namespace JustPoChess.Client.MVC.View.Menu
             } while (!Console.KeyAvailable);
 
             SoundEffects.PlaySelectionSound();
+            OST.Stop();
 
             Console.ForegroundColor = ConsoleColor.Red;
             for (int i = 0; i < 18; i++)
@@ -58,12 +60,14 @@ namespace JustPoChess.Client.MVC.View.Menu
 
         public static void InitializeMenu()
         {
+            OST.PlayMenuOST();
+            
             var menuOptions = 1;
 
             while (true)
             {
                 if (Console.KeyAvailable)
-                {
+                {    
                     var userInput = Console.ReadKey();
                     switch (userInput.Key)
                     {
@@ -165,8 +169,6 @@ namespace JustPoChess.Client.MVC.View.Menu
                             Console.ResetColor();
                             break;
                     }
-
-
                 }
             }
         }

@@ -1,39 +1,22 @@
 ﻿using System;
-using System.Media;
-using JustPoChess.Client.MVC.OSChecker;
+using System.Windows.Media;
 
 namespace JustPoChess.Client.MVC.View.Sounds
 {
     public static class SoundEffects
     {
-        private static readonly SoundPlayer Player = new SoundPlayer();
+        private static readonly MediaPlayer Player = new MediaPlayer();
 
         public static void PlaySelectionSound()
         {
-            if (CheckOS.IsLinux)
-            {
-                Player.SoundLocation = "../../Sounds/Sounds/selection.wav";
-                Player.Play();
-            }
-            else
-            {
-                Player.SoundLocation = @"..\..\Sounds\Sounds\selection.wav";
-                Player.Play();
-            }
+            Player.Open(new Uri(@"..\..\Sounds\SoundEffects\selection.wav", UriKind.Relative));
+            Player.Play();
         }
 
         public static void PlayTraverseSound()
         {
-            if (CheckOS.IsLinux)
-            {
-                Player.SoundLocation = "../../Sounds/Sounds/traverse.wav";
-                Player.Play();
-            }
-            else
-            {
-                Player.SoundLocation = @"..\..\Sounds\Sounds\traverse.wav";
-                Player.Play();
-            }
+            Player.Open(new Uri(@"..\..\Sounds\SoundEffects\traverse.wav", UriKind.Relative));
+            Player.Play();
         }
 
         public static void Stop()

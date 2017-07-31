@@ -8,6 +8,7 @@ namespace JustPoChess.Client.MVC
     {
         public static void Main()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
 
             try
             {
@@ -23,7 +24,7 @@ namespace JustPoChess.Client.MVC
                     if (input == "client")
                     {
                         MenuUnix.InitialScreen();
-                        MenuUnix.InitializeMenu();
+                        //MenuUnix.InitializeMenu();
                     }
                 }
                 else
@@ -40,12 +41,12 @@ namespace JustPoChess.Client.MVC
                     if (input == "client")
                     {
                      
-                      Board.InitBoard();
-                      var view = new View.View();                    
-                      view.PrintBoard();
-                       //
-                       // Menu.InitialScreen();
-                       // Menu.InitializeMenu();
+                   // Board.InitBoard();
+                   // var view = new View.View();                    
+                   // view.PrintBoard();
+
+                        Menu.InitialScreen();
+                        //Menu.InitializeMenu();
                     }
                 }
             }

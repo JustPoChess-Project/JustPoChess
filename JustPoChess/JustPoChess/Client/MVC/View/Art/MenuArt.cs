@@ -4,40 +4,18 @@ namespace JustPoChess.Client.MVC.View.Art
 {
     public static class MenuArt
     {
-        public static readonly string Continue =
-            "                                                         PRESS ANY KEY TO CONTINUE...";
+        public static readonly string Continue = $"{new string(' ', Console.LargestWindowWidth / 2 - 14)}PRESS ANY KEY TO CONTINUE...";
 
-        public static readonly string CopyrightLogo = "                                                            (c) 2017 CodeBenders";
+        public static readonly string CopyrightLogo = $"{new string(' ', Console.LargestWindowWidth/ 2 - 11)}(c) 2017 CodeBenders";
 
-        public static readonly string JustPoChessLogo =
-            $@"                                                                 
-                                                          o   |\ ,'`. /||\ ,OO. /|    o     
-                                  _   _   _   |\__      /\^/\ | `'`'`' || `'`'`' |  /\^/\   |\__     _   _   _ 
-                                 | |_| |_| | /   o\__  |  /  ) \      /  \      /  |  /  ) /   o\__ | |_| |_| |
-                                  \       / |    ___=' | /  /   |    |    |    |   | /  / |    ___=' \       / 
-                                   |     |  |    \      Y  /    |    |    |    |    Y  /  |    \      |     |
-                                   |     |   \    \     |  |    |    |    |    |    |  |   \    \     |     |  
-                                   |     |    >    \    |  |    |    |    |    |    |  |    >    \    |     |  
-                                  /       \  /      \  /    \  /      \  /      \  /    \  /      \  /       \ 
-                                 |_________||________||______||________||________||______||________||_________|
-                                    __         __       __       __        __       __       __         __   
-                                   (  )       (  )     (  )     (  )      (  )     (  )     (  )       (  )  
-                                    ><         ><       ><       ><        ><       ><       ><         ><   
-                                   |  |       |  |     |  |     |  |      |  |     |  |     |  |       |  |  
-                                  /    \     /    \   /    \   /    \    /    \   /    \   /    \     /    \ 
-                                 |______|   |______| |______| |______|  |______| |______| |______|   |______|";                                            
+        public static readonly string JustPoChessLogoUpper = $@"
+{new string(' ', Console.LargestWindowWidth / 2 - 12)}♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖
+{new string(' ', Console.LargestWindowWidth / 2 - 12)}♙ ♙ ♙ ♙ ♙ ♙ ♙ ♙";
+          
+        public static readonly string JustPoChessLogoDown = $@"{new string(' ', Console.LargestWindowWidth / 2 - 12)}♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟
+{new string(' ', Console.LargestWindowWidth / 2 - 12)}♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜";
 
-
-        public static readonly string JustPoChessText = $@"            
-        
-                     /$$$$$                       /$$           /$$$$$$$            /$$$$$$  /$$                                   
-                    |__  $$                      | $$          | $$__  $$          /$$__  $$| $$                                   
-                       | $$ /$$   /$$  /$$$$$$$ /$$$$$$        | $$  \ $$ /$$$$$$ | $$  \__/| $$$$$$$   /$$$$$$   /$$$$$$$ /$$$$$$$
-                       | $$| $$  | $$ /$$_____/|_  $$_/        | $$$$$$$//$$__  $$| $$      | $$__  $$ /$$__  $$ /$$_____//$$_____/
-                  /$$  | $$| $$  | $$|  $$$$$$   | $$          | $$____/| $$  \ $$| $$      | $$  \ $$| $$$$$$$$|  $$$$$$|  $$$$$$ 
-                 | $$  | $$| $$  | $$ \____  $$  | $$ /$$      | $$     | $$  | $$| $$    $$| $$  | $$| $$_____/ \____  $$\____  $$
-                 |  $$$$$$/|  $$$$$$/ /$$$$$$$/  |  $$$$/      | $$     |  $$$$$$/|  $$$$$$/| $$  | $$|  $$$$$$$ /$$$$$$$//$$$$$$$/
-                  \______/  \______/ |_______/    \___/        |__/      \______/  \______/ |__/  |__/ \_______/|_______/|_______/";
+        public static readonly string JustPoChessText = $"{new string(' ', Console.LargestWindowWidth / 2 - 12)}------Just PoChess-----";
 
         public static readonly string HotSeatText =
             @"$$\   $$\  $$$$$$\ $$$$$$$$\        $$$$$$\  $$$$$$$$\  $$$$$$\ $$$$$$$$\                                    

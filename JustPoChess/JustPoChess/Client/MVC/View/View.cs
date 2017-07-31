@@ -4,6 +4,7 @@ using JustPoChess.Client.MVC.Model.Contracts;
 using JustPoChess.Client.MVC.Model.Entities.Board;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecesEnums;
 using JustPoChess.Client.MVC.View.Art;
+using JustPoChess.Client.MVC.View.Font;
 
 namespace JustPoChess.Client.MVC.View
 {
@@ -17,24 +18,36 @@ namespace JustPoChess.Client.MVC.View
         //Player specific
         public void PrintBoard()
         {
+            Fontinator.SetConsoleFont();
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+
             for (int x = 0; x < 8; x++)
             {
+                Console.Write($"{8 - x}  ");
                 for (int y = 0; y < 8; y++)
                 {
 
                     if (Board.BoardState[x, y] == null)
                     {
+                        if ((x + y) % 2 != 0)
+                        {
+                            Console.Write("■\u2009");
+                        }
+                        else
+                        {
+                            Console.Write("▢\u2009");
+                        }
                     }
                     else
                     {
-                        
+                        Console.Write($"{GetPieceString(Board.BoardState, x, y)} ");
                     }
                 }
-
                 Console.WriteLine();
                 if (x == 7)
                 {
-                    Console.WriteLine("  A B C D E F G H");
+                    Console.WriteLine();
+                    Console.WriteLine("   A \u2009B \u2009C \u2009D \u2009E \u2009F \u2009G \u2009H");
                 }
             }
         }

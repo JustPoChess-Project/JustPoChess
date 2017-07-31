@@ -30,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -51,6 +52,7 @@
     <Compile Include="Client\MVC\OSChecker\CheckOS.cs" />
     <Compile Include="Client\MVC\View\Art\GameArt.cs" />
     <Compile Include="Client\MVC\View\Art\MenuArt.cs" />
+    <Compile Include="Client\MVC\View\Font\Fontinator.cs" />
     <Compile Include="Client\MVC\View\Menu\MenuUnix.cs" />
     <Compile Include="Client\MVC\View\Sounds\SoundEffects.cs" />
     <Compile Include="Client\MVC\View\Sounds\OST.cs" />

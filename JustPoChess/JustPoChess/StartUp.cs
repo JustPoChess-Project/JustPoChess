@@ -8,7 +8,7 @@ namespace JustPoChess.Client.MVC
     {
         public static void Main()
         {
-            
+
             try
             {
                 if (IsLinux)
@@ -28,9 +28,9 @@ namespace JustPoChess.Client.MVC
                 }
                 else
                 {
-                    Console.WindowHeight = 60;
-                    Console.WindowWidth = 150;
                     Console.CursorVisible = false;
+                    Console.SetWindowPosition(0, 0);
+                    Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
 
                     string input = Console.ReadLine();
                     if (input == "server")
@@ -39,13 +39,13 @@ namespace JustPoChess.Client.MVC
                     }
                     if (input == "client")
                     {
-                        Board.InitBoard();
-                        var view = new View.View();
-                        Console.WriteLine("Xd");
-                        view.PrintBoard();
-                        
-                       //Menu.InitialScreen();
-                       //Menu.InitializeMenu();
+                     
+                      Board.InitBoard();
+                      var view = new View.View();                    
+                      view.PrintBoard();
+                       //
+                       // Menu.InitialScreen();
+                       // Menu.InitializeMenu();
                     }
                 }
             }
@@ -53,12 +53,12 @@ namespace JustPoChess.Client.MVC
             {
                 throw new ArgumentOutOfRangeException("FOR WINDOWS: Change Font To Raster 8 x 9");
             }
-            
 
-           // Model model = new Model();
-           // View view = new View(model);
-           // User client = new User(view);
-           // Controller controller = new Controller(model, view);
+
+            // Model model = new Model();
+            // View view = new View(model);
+            // User client = new User(view);
+            // Controller controller = new Controller(model, view);
         }
 
         public static bool IsLinux

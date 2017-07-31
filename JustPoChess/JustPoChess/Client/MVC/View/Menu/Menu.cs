@@ -1,8 +1,7 @@
 ﻿using System;
-using System.IO;
-using System.Text;
 using System.Threading;
 using JustPoChess.Client.MVC.View.Art;
+using JustPoChess.Client.MVC.View.Input;
 using JustPoChess.Client.MVC.View.Sounds;
 
 namespace JustPoChess.Client.MVC.View.Menu
@@ -63,6 +62,27 @@ namespace JustPoChess.Client.MVC.View.Menu
         public static void InitializeMenu()
         {
             OST.PlayMenuOST();
+            Console.Clear();
+            InputUtilities.ClearKeyBuffer();
+
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine(MenuArt.JustPoChessLogoUpper);
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(MenuArt.JustPoChessMenu);
+
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine(MenuArt.JustPoChessLogoDown);
+
+            Console.WriteLine();
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(MenuArt.HotSeatText);
+            Console.ResetColor();
+            Console.WriteLine(MenuArt.OnlineText);
+            Console.WriteLine(MenuArt.VersusAiText);
+            Console.WriteLine(MenuArt.AiVersusAiText);
+            Console.WriteLine(MenuArt.ExitText);
 
             var menuOptions = 1;
 
@@ -101,6 +121,7 @@ namespace JustPoChess.Client.MVC.View.Menu
                             switch (menuOptions)
                             {
                                 case 1:
+                                    Controller.Controller.StartHotSeat();
                                     break;
 
                                 case 2:
@@ -123,6 +144,17 @@ namespace JustPoChess.Client.MVC.View.Menu
                     switch (menuOptions)
                     {
                         case 1:
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.JustPoChessLogoUpper);
+
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine(MenuArt.JustPoChessMenu);
+
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.JustPoChessLogoDown);
+
+                            Console.WriteLine();
+
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine(MenuArt.HotSeatText);
                             Console.ResetColor();
@@ -133,6 +165,17 @@ namespace JustPoChess.Client.MVC.View.Menu
                             break;
 
                         case 2:
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.JustPoChessLogoUpper);
+
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine(MenuArt.JustPoChessMenu);
+
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.JustPoChessLogoDown);
+
+                            Console.WriteLine();
+
                             Console.WriteLine(MenuArt.HotSeatText);
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine(MenuArt.OnlineText);
@@ -143,6 +186,18 @@ namespace JustPoChess.Client.MVC.View.Menu
                             break;
 
                         case 3:
+
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.JustPoChessLogoUpper);
+
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine(MenuArt.JustPoChessMenu);
+
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.JustPoChessLogoDown);
+
+                            Console.WriteLine();
+
                             Console.WriteLine(MenuArt.HotSeatText);
                             Console.WriteLine(MenuArt.OnlineText);
                             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -152,6 +207,18 @@ namespace JustPoChess.Client.MVC.View.Menu
                             Console.WriteLine(MenuArt.ExitText);
                             break;
                         case 4:
+
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.JustPoChessLogoUpper);
+
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine(MenuArt.JustPoChessMenu);
+
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.JustPoChessLogoDown);
+
+                            Console.WriteLine();
+
                             Console.WriteLine(MenuArt.HotSeatText);
                             Console.WriteLine(MenuArt.OnlineText);
                             Console.WriteLine(MenuArt.VersusAiText);
@@ -162,6 +229,17 @@ namespace JustPoChess.Client.MVC.View.Menu
                             break;
 
                         case 5:
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.JustPoChessLogoUpper);
+
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine(MenuArt.JustPoChessMenu);
+
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.JustPoChessLogoDown);
+
+                            Console.WriteLine();
+
                             Console.WriteLine(MenuArt.HotSeatText);
                             Console.WriteLine(MenuArt.OnlineText);
                             Console.WriteLine(MenuArt.VersusAiText);
@@ -171,6 +249,9 @@ namespace JustPoChess.Client.MVC.View.Menu
                             Console.ResetColor();
                             break;
                     }
+
+                    Thread.Sleep(50);
+                    InputUtilities.ClearKeyBuffer();
                 }
             }
         }

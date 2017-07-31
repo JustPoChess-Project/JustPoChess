@@ -1,17 +1,19 @@
-﻿using JustPoChess.Client.MVC.Model.Entities.Board;
+﻿using JustPoChess.Client.MVC.Model.Contracts;
+using JustPoChess.Client.MVC.Model.Entities.Board;
 using JustPoChess.Client.MVC.Model.Entities.Player;
 
 namespace JustPoChess.Client.MVC.Model
 {
-    public class Model
+    public static  class Model
     {
-        //private Board board;
-        private Player player1;
-        private Player player2;
-        private GameState gameState;
-
-        public Model()
+        public static void InitBoard()
         {
+            Board.InitBoard();
+        }
+
+        public static IPiece[,] GetBoardState()
+        {
+            return Board.BoardState;
         }
     }
 }

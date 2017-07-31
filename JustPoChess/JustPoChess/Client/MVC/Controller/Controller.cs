@@ -1,15 +1,34 @@
-﻿namespace JustPoChess.Client.MVC.Controller
+﻿using System;
+using System.Threading;
+using JustPoChess.Client.MVC.View.Input;
+using JustPoChess.Client.MVC.View.Messages;
+
+namespace JustPoChess.Client.MVC.Controller
 {
-    public class Controller
+    public static class Controller
     {
-        public Controller(Model.Model model, View.View view)
+        public static void Start()
         {
-            //ToDo:
+            Console.WriteLine(Messages.FontWarrning);
+            Thread.Sleep(5000);
+            InputUtilities.ClearKeyBuffer();
+            
+            View.View.InitialScreen();
+            View.View.InitializeMenu();
         }
 
-        public void Start()
+        public static void StartHotSeat()
         {
-            throw new System.NotImplementedException();
+            Model.Model.InitBoard();
+            
+            Console.Clear();
+            View.View.StopMusic();
+            View.View.PrintBoard();
+
+            while (true)
+            {
+                
+            }
         }
     }
 }

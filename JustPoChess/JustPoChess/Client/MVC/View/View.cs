@@ -1,22 +1,29 @@
 ﻿using System;
-using System.Linq;
-using System.Threading;
 using JustPoChess.Client.MVC.Model.Contracts;
-using JustPoChess.Client.MVC.Model.Entities.Board;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecesEnums;
 using JustPoChess.Client.MVC.View.Art;
+using JustPoChess.Client.MVC.View.Menu;
 
 namespace JustPoChess.Client.MVC.View
 {
-    public class View
+    public static class View
     {
-        // public View(Model.Model model)
-        // {
-        //     //ToDo:
-        // }
+        public static void InitialScreen()
+        {
+            Menu.Menu.InitialScreen();
+        }
 
-        //Player specific
-        public void PrintBoard()
+        public static void InitializeMenu()
+        {
+            Menu.Menu.InitializeMenu();
+        }
+
+        public static void StopMusic()
+        {
+            Sounds.OST.Stop();
+        }
+
+        public static void PrintBoard()
         {
             for (int x = 0; x < 8; x++)
             {
@@ -24,7 +31,7 @@ namespace JustPoChess.Client.MVC.View
                 Console.Write($"{8 - x} ");
                 for (int y = 0; y < 8; y++)
                 {
-                    if (Board.BoardState[x, y] == null)
+                    if (Model.Model.GetBoardState()[x, y] == null)
                     {
                         if ((x + y) % 2 != 0)
                         {
@@ -40,7 +47,7 @@ namespace JustPoChess.Client.MVC.View
                     else
                     {
                         Console.ResetColor();
-                        Console.Write($"{GetPieceString(Board.BoardState, x, y)} ");
+                        Console.Write($"{GetPieceString(Model.Model.GetBoardState(), x, y)} ");
                     }
                 }
                 Console.WriteLine();
@@ -53,7 +60,7 @@ namespace JustPoChess.Client.MVC.View
             }
         }
 
-        public string GetPieceString(IPiece[,] boardState, int x, int y)
+        public static string GetPieceString(IPiece[,] boardState, int x, int y)
         {
             switch (boardState[x, y].PieceType)
             {

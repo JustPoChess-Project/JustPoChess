@@ -6,7 +6,7 @@ namespace JustPoChess.Client
 {
     public class User
     {
-        public User(MVC.View.View view)
+        public User()
         {
             //Request server IP and port number
             Console.WriteLine("Please enter the server IP and port in the format 192.168.0.1:10000 and press return:");

@@ -4,8 +4,7 @@ using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecePosition;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecesEnums;
 
 namespace JustPoChess.Client.MVC.Model.Entities.Board
-{
-    
+{  
     public static class Board
     {
         public const int BoardSize = 8;

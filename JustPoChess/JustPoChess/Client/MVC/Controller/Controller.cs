@@ -10,6 +10,7 @@ namespace JustPoChess.Client.MVC.Controller
         public static void Start()
         {
             Console.WriteLine(Messages.FontWarrning);
+            Console.WriteLine(Messages.FontColorWarrning);
             Thread.Sleep(5000);
             InputUtilities.ClearKeyBuffer();
             
@@ -20,9 +21,7 @@ namespace JustPoChess.Client.MVC.Controller
         public static void StartHotSeat()
         {
             Model.Model.InitBoard();
-            
             Console.Clear();
-            View.View.StopMusic();
             View.View.PrintBoard();
 
             while (true)

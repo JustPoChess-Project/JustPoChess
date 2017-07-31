@@ -118,6 +118,8 @@ namespace JustPoChess.Client.MVC.View.Menu
                             break;
 
                         case ConsoleKey.Enter:
+                            SoundEffects.PlaySelectionSound();
+                            OST.Stop();
                             switch (menuOptions)
                             {
                                 case 1:

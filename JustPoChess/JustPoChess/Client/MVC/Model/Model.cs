@@ -11,11 +11,6 @@ namespace JustPoChess.Client.MVC.Model
             Board.InitBoard();
         }
 
-        public static void MirrorBoard()
-        {
-            Board.MirrorBoard();
-        }
-
         public static IPiece[,] GetBoardState()
         {
             return Board.BoardState;

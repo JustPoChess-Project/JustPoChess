@@ -24,20 +24,5 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                 { new Rook(PieceColor.White, new Position(7, 0)), new Knight(PieceColor.White, new Position(7, 1)), new Bishop(PieceColor.White, new Position(7, 2)), new Queen(PieceColor.White, new Position(7, 3)), new King(PieceColor.White, new Position(7, 4)), new Bishop(PieceColor.White, new Position(7, 5)), new Knight(PieceColor.White, new Position(7, 6)), new Rook(PieceColor.White, new Position(7, 7)) }, //row 8
             };
         }
-
-        public static void MirrorBoard()
-        {
-            var mirroredBoard = new IPiece[8, 8];
-
-            for (int x = 0; x < 8; x++)
-            {
-                for (int y = 0; y < 8; y++)
-                {
-                    mirroredBoard[x, y] = BoardState[7 - x, 7 - y];
-                }
-            }
-
-            BoardState = mirroredBoard;
-        }
     }
 }

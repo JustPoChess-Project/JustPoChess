@@ -60,6 +60,53 @@ namespace JustPoChess.Client.MVC.View
             }
         }
 
+        public static void MirrorPrintBoard()
+        {
+            var mirroredBoard = new IPiece[8, 8];
+
+            for (int x = 0; x < 8; x++)
+            {
+                for (int y = 0; y < 8; y++)
+                {
+                    mirroredBoard[x, y] = Model.Model.GetBoardState()[7 - x, 7 - y];
+                }
+            }
+
+            for (int x = 0; x < 8; x++)
+            {
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write($"{x + 1} ");
+                for (int y = 0; y < 8; y++)
+                {
+                    if (mirroredBoard[x, y] == null)
+                    {
+                        if ((x + y) % 2 != 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.Write("■ ");
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.Write("■ ");
+                        }
+                    }
+                    else
+                    {
+                        Console.ResetColor();
+                        Console.Write($"{GetPieceString(mirroredBoard, x, y)} ");
+                    }
+                }
+                Console.WriteLine();
+                if (x == 7)
+                {
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("  h  g  f  e   d  c  b  a");
+                    Console.ResetColor();
+                }
+            }
+        }
+
         public static string GetPieceString(IPiece[,] boardState, int x, int y)
         {
             switch (boardState[x, y].PieceType)

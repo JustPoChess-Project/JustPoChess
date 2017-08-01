@@ -22,7 +22,7 @@ namespace JustPoChess.Client.MVC.Controller
         {
             Model.Model.InitBoard();
             Console.Clear();
-            View.View.PrintBoard();
+            View.View.MirrorPrintBoard();
 
             while (true)
             {

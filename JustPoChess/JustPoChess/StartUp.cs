@@ -1,11 +1,13 @@
 ﻿using System;
+using JustPoChess.Client.MVC.Model.Entities.Board;
+using JustPoChess.Client.MVC.View.Input;
 
 namespace JustPoChess.Client.MVC
 {
     public class StartUp
     {
         public static void Main()
-        {  
+		{
             //General Program settings
             //Mandatory fuck Unix users
             Console.CursorVisible = false;

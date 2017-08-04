@@ -20,7 +20,7 @@ namespace JustPoChess.Client.MVC.View
 
         public static void StopMusic()
         {
-            Sounds.OST.Stop();
+            //Sounds.OST.Stop();
         }
 
         public static void PrintBoard()

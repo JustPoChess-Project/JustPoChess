@@ -18,7 +18,7 @@ namespace JustPoChess.Client.MVC.Controller
             Console.WriteLine(Messages.FontColorWarrning);
             Thread.Sleep(5000);
             InputUtilities.ClearKeyBuffer();
-            
+
             View.View.InitialScreen();
             View.View.InitializeMenu();
         }
@@ -31,16 +31,16 @@ namespace JustPoChess.Client.MVC.Controller
 
             while (true)
             {
-                
+
             }
         }
 
-		public static bool PieceGivesCheck(Piece piece)
+        public static bool PieceGivesCheckToOpponentsKing(Piece piece)
 		{
 			throw new System.NotImplementedException();
 		}
 
-		public static List<Move> GeneratePossibleMovesForPiece(Piece piece)
+        public static List<Move> GeneratePossibleMovesForPieceWithoutConsideringDiscoringCheck(Piece piece)
 		{
 			throw new System.NotImplementedException();
 		}
@@ -49,7 +49,7 @@ namespace JustPoChess.Client.MVC.Controller
 		{
             PieceColor currentPlayerPieceColor = Model.Model.currentPlayerToMove.color;
             foreach (Piece piece in Board.boardState) {
-                if (piece.PieceColor != currentPlayerPieceColor && PieceGivesCheck(piece)) {
+                if (piece.PieceColor != currentPlayerPieceColor && PieceGivesCheckToOpponentsKing(piece)) {
                     return true;
                 }
             }
@@ -64,13 +64,13 @@ namespace JustPoChess.Client.MVC.Controller
             {
                 if (piece.PieceColor == currentPlayerPieceColor)
                 {
-                    possibleMoves.Concat(GeneratePossibleMovesForPiece(piece));
+                    possibleMoves.Concat(GeneratePossibleMovesForPieceWithoutConsideringDiscoringCheck(piece));
                 }
             }
             return possibleMoves;
 		}
 
-        public static bool CheckForStalemate()
+        public static bool CheckForDraw()
 		{
             if ((GeneratePossibleMovesForCurrentPlayer().Count == 0 && !IsCurrentPlayerInCheck()) || CheckIfKingVsKing()) {
                 return true;

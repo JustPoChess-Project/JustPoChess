@@ -6,9 +6,9 @@ namespace JustPoChess.Client.MVC.Model.Entities.Player
 {
     public class Player
     {
-        private string name;
-        private PieceColor color;
-        private List<IPiece> takenPieces;
+        public string name;
+        public PieceColor color;
+        public List<IPiece> takenPieces;
 
         public Player()
         {

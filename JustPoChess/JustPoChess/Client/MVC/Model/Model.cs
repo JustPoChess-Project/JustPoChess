@@ -4,16 +4,23 @@ using JustPoChess.Client.MVC.Model.Entities.Player;
 
 namespace JustPoChess.Client.MVC.Model
 {
-    public static  class Model
+    public static class Model
     {
-        public static void InitBoard()
+		//to-do: fix all namespaces once and for all
+
+        public readonly static Player player1;
+        public readonly static Player player2;
+        public static GameState gameState;
+        public static Player currentPlayerToMove;
+
+		public static void InitBoard()
         {
             Board.InitBoard();
         }
 
         public static IPiece[,] GetBoardState()
         {
-            return Board.BoardState;
+            return Board.boardState;
         }
     }
 }

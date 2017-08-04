@@ -82,6 +82,7 @@ namespace JustPoChess.Client.MVC.View.Menu
             Console.WriteLine(MenuArt.OnlineText);
             Console.WriteLine(MenuArt.VersusAiText);
             Console.WriteLine(MenuArt.AiVersusAiText);
+            Console.WriteLine(MenuArt.SpectateText);
             Console.WriteLine(MenuArt.ExitText);
 
             var menuOptions = 1;
@@ -97,7 +98,7 @@ namespace JustPoChess.Client.MVC.View.Menu
                             SoundEffects.PlayTraverseSound();
                             if (menuOptions == 1)
                             {
-                                menuOptions = 5;
+                                menuOptions = 6;
                             }
                             else
                             {
@@ -107,7 +108,7 @@ namespace JustPoChess.Client.MVC.View.Menu
 
                         case ConsoleKey.DownArrow:
                             SoundEffects.PlayTraverseSound();
-                            if (menuOptions == 5)
+                            if (menuOptions == 6)
                             {
                                 menuOptions = 1;
                             }
@@ -136,6 +137,9 @@ namespace JustPoChess.Client.MVC.View.Menu
                                     break;
 
                                 case 5:
+                                    break;
+
+                                case 6:
                                     Environment.Exit(0);
                                     break;
                             }
@@ -163,6 +167,7 @@ namespace JustPoChess.Client.MVC.View.Menu
                             Console.WriteLine(MenuArt.OnlineText);
                             Console.WriteLine(MenuArt.VersusAiText);
                             Console.WriteLine(MenuArt.AiVersusAiText);
+                            Console.WriteLine(MenuArt.SpectateText);
                             Console.WriteLine(MenuArt.ExitText);
                             break;
 
@@ -184,6 +189,7 @@ namespace JustPoChess.Client.MVC.View.Menu
                             Console.ResetColor();
                             Console.WriteLine(MenuArt.VersusAiText);
                             Console.WriteLine(MenuArt.AiVersusAiText);
+                            Console.WriteLine(MenuArt.SpectateText);
                             Console.WriteLine(MenuArt.ExitText);
                             break;
 
@@ -206,6 +212,7 @@ namespace JustPoChess.Client.MVC.View.Menu
                             Console.WriteLine(MenuArt.VersusAiText);
                             Console.ResetColor();
                             Console.WriteLine(MenuArt.AiVersusAiText);
+                            Console.WriteLine(MenuArt.SpectateText);
                             Console.WriteLine(MenuArt.ExitText);
                             break;
                         case 4:
@@ -227,10 +234,12 @@ namespace JustPoChess.Client.MVC.View.Menu
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine(MenuArt.AiVersusAiText);
                             Console.ResetColor();
+                            Console.WriteLine(MenuArt.SpectateText);
                             Console.WriteLine(MenuArt.ExitText);
                             break;
 
                         case 5:
+
                             Console.ForegroundColor = ConsoleColor.DarkGray;
                             Console.WriteLine(MenuArt.JustPoChessLogoUpper);
 
@@ -246,6 +255,29 @@ namespace JustPoChess.Client.MVC.View.Menu
                             Console.WriteLine(MenuArt.OnlineText);
                             Console.WriteLine(MenuArt.VersusAiText);
                             Console.WriteLine(MenuArt.AiVersusAiText);
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine(MenuArt.SpectateText);
+                            Console.ResetColor();
+                            Console.WriteLine(MenuArt.ExitText);
+                            break;
+
+                        case 6:
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.JustPoChessLogoUpper);
+
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine(MenuArt.JustPoChessMenu);
+
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.JustPoChessLogoDown);
+
+                            Console.WriteLine();
+
+                            Console.WriteLine(MenuArt.HotSeatText);
+                            Console.WriteLine(MenuArt.OnlineText);
+                            Console.WriteLine(MenuArt.VersusAiText);
+                            Console.WriteLine(MenuArt.AiVersusAiText);
+                            Console.WriteLine(MenuArt.SpectateText);
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine(MenuArt.ExitText);
                             Console.ResetColor();

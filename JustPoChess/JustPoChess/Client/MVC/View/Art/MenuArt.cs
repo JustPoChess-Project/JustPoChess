@@ -26,6 +26,8 @@ namespace JustPoChess.Client.MVC.View.Art
 
         public static readonly string AiVersusAiText = $"{new string(' ', Console.LargestWindowWidth / 2 - 12)}AI VERSUS AI";
 
+        public static readonly string SpectateText = $"{new string(' ', Console.LargestWindowWidth / 2 - 12)}SPECTATE";
+
         public static readonly string ExitText = $"{new string(' ', Console.LargestWindowWidth / 2 - 12)}EXIT";
     }
 }

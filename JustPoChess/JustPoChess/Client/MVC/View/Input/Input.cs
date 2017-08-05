@@ -37,8 +37,8 @@ namespace JustPoChess.Client.MVC.View.Input
 
         public static Move ParseMove(string inputString) {
 			string[] positionsStringArray = inputString.ToLower().Split('-');
-			Position currentPosition = new Position(positionsStringArray[0].ElementAt(0) - 'a', positionsStringArray[0].ElementAt(1) - 48);
-			Position nextPosititon = new Position(positionsStringArray[1].ElementAt(0) - 'a', positionsStringArray[1].ElementAt(1) - 48);
+            Position currentPosition = new Position(7 - (positionsStringArray[0].ElementAt(1) - 49), positionsStringArray[0].ElementAt(0) - 'a');
+            Position nextPosititon = new Position(7 - (positionsStringArray[1].ElementAt(1) - 49), positionsStringArray[1].ElementAt(0) - 'a');
             return new Move(currentPosition, nextPosititon);
         }
     }

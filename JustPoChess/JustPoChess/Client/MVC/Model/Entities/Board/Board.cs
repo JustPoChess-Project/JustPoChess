@@ -12,6 +12,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
 
         private const int BoardSize = dimensions;
         public static IPiece[,] boardState;
+        public static IPiece[,] testBoardState;
 
         public static void InitBoard()
         {

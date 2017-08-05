@@ -1,5 +1,6 @@
 ﻿using System;
 using JustPoChess.Client.MVC.Model.Entities.Board;
+using JustPoChess.Client.MVC.View;
 using JustPoChess.Client.MVC.View.Input;
 
 namespace JustPoChess.Client.MVC
@@ -8,6 +9,14 @@ namespace JustPoChess.Client.MVC
     {
         public static void Main()
 		{
+            Board.InitBoard();
+            string input = Input.GetUserInput();
+            Input.ValidateUserInput(input);
+            Move move = Input.ParseMove(input);
+			View.View.PrintBoard();
+			Board.PerformMove(move);
+			View.View.PrintBoard();
+            return;
             //General Program settings
             //Mandatory fuck Unix users
             Console.CursorVisible = false;

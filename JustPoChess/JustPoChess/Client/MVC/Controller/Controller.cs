@@ -778,45 +778,134 @@ namespace JustPoChess.Client.MVC.Controller
             switch (piece.PieceType)
             {
 				case PieceType.King:
+                    List<Position> allGuardedPositionsByOpponent = new List<Position>();
+                    foreach (Piece boardPiece in Board.boardState)
+                    {
+                        if (boardPiece.PieceColor != piece.PieceColor)
+                        {
+                            allGuardedPositionsByOpponent.Concat(GenerateGuardedPositionsForPiece(boardPiece));
+                        }
+                    }
+
 					Position positionOneKing = new Position(piece.PiecePosition.Row - 1, piece.PiecePosition.Col - 1);
-					if (ValidatePosition(positionOneKing) && Board.boardState[positionOneKing.Row, positionOneKing.Col] != null && Board.boardState[positionOneKing.Row, positionOneKing.Col].PieceColor == piece.PieceColor)
-					{
-						possibleMoves.Add(new Move(piece.PiecePosition, positionOneKing));
-					}
+                    if (ValidatePosition(positionOneKing) && !allGuardedPositionsByOpponent.Contains(positionOneKing))
+                    {
+                        if (Board.boardState[positionOneKing.Row, positionOneKing.Col] != null)
+                        {
+                            if (Board.boardState[positionOneKing.Row, positionOneKing.Col].PieceColor != piece.PieceColor)
+                            {
+                                possibleMoves.Add(new Move(piece.PiecePosition, positionOneKing));
+                            }
+                        }
+                        else
+						{
+							possibleMoves.Add(new Move(piece.PiecePosition, positionOneKing));
+                        }
+                    }
 					Position positionTwoKing = new Position(piece.PiecePosition.Row - 1, piece.PiecePosition.Col);
-					if (ValidatePosition(positionTwoKing) && Board.boardState[positionTwoKing.Row, positionTwoKing.Col] != null && Board.boardState[positionTwoKing.Row, positionTwoKing.Col].PieceColor == piece.PieceColor)
+					if (ValidatePosition(positionTwoKing) && !allGuardedPositionsByOpponent.Contains(positionTwoKing))
 					{
-						possibleMoves.Add(new Move(piece.PiecePosition, positionTwoKing));
+						if (Board.boardState[positionTwoKing.Row, positionTwoKing.Col] != null)
+						{
+							if (Board.boardState[positionTwoKing.Row, positionTwoKing.Col].PieceColor != piece.PieceColor)
+							{
+								possibleMoves.Add(new Move(piece.PiecePosition, positionTwoKing));
+							}
+						}
+						else
+						{
+							possibleMoves.Add(new Move(piece.PiecePosition, positionTwoKing));
+						}
 					}
 					Position positionThreeKing = new Position(piece.PiecePosition.Row - 1, piece.PiecePosition.Col + 1);
-					if (ValidatePosition(positionThreeKing) && Board.boardState[positionThreeKing.Row, positionThreeKing.Col] != null && Board.boardState[positionThreeKing.Row, positionThreeKing.Col].PieceColor == piece.PieceColor)
+					if (ValidatePosition(positionThreeKing) && !allGuardedPositionsByOpponent.Contains(positionThreeKing))
 					{
-						possibleMoves.Add(new Move(piece.PiecePosition, positionThreeKing));
+						if (Board.boardState[positionThreeKing.Row, positionThreeKing.Col] != null)
+						{
+							if (Board.boardState[positionThreeKing.Row, positionThreeKing.Col].PieceColor != piece.PieceColor)
+							{
+								possibleMoves.Add(new Move(piece.PiecePosition, positionThreeKing));
+							}
+						}
+						else
+						{
+							possibleMoves.Add(new Move(piece.PiecePosition, positionThreeKing));
+						}
 					}
 					Position positionFourKing = new Position(piece.PiecePosition.Row, piece.PiecePosition.Col - 1);
-					if (ValidatePosition(positionFourKing) && Board.boardState[positionFourKing.Row, positionFourKing.Col] != null && Board.boardState[positionFourKing.Row, positionFourKing.Col].PieceColor == piece.PieceColor)
+					if (ValidatePosition(positionFourKing) && !allGuardedPositionsByOpponent.Contains(positionFourKing))
 					{
-						possibleMoves.Add(new Move(piece.PiecePosition, positionFourKing));
+						if (Board.boardState[positionFourKing.Row, positionFourKing.Col] != null)
+						{
+							if (Board.boardState[positionFourKing.Row, positionFourKing.Col].PieceColor != piece.PieceColor)
+							{
+								possibleMoves.Add(new Move(piece.PiecePosition, positionFourKing));
+							}
+						}
+						else
+						{
+							possibleMoves.Add(new Move(piece.PiecePosition, positionFourKing));
+						}
 					}
 					Position positionFiveKing = new Position(piece.PiecePosition.Row, piece.PiecePosition.Col + 1);
-					if (ValidatePosition(positionFiveKing) && Board.boardState[positionFiveKing.Row, positionFiveKing.Col] != null && Board.boardState[positionFiveKing.Row, positionFiveKing.Col].PieceColor == piece.PieceColor)
+					if (ValidatePosition(positionFiveKing) && !allGuardedPositionsByOpponent.Contains(positionFiveKing))
 					{
-						possibleMoves.Add(new Move(piece.PiecePosition, positionFiveKing));
+						if (Board.boardState[positionFiveKing.Row, positionFiveKing.Col] != null)
+						{
+							if (Board.boardState[positionFiveKing.Row, positionFiveKing.Col].PieceColor != piece.PieceColor)
+							{
+								possibleMoves.Add(new Move(piece.PiecePosition, positionFiveKing));
+							}
+						}
+						else
+						{
+							possibleMoves.Add(new Move(piece.PiecePosition, positionFiveKing));
+						}
 					}
 					Position positionSixKing = new Position(piece.PiecePosition.Row + 1, piece.PiecePosition.Col - 1);
-					if (ValidatePosition(positionSixKing) && Board.boardState[positionSixKing.Row, positionSixKing.Col] != null && Board.boardState[positionSixKing.Row, positionSixKing.Col].PieceColor == piece.PieceColor)
+					if (ValidatePosition(positionSixKing) && !allGuardedPositionsByOpponent.Contains(positionSixKing))
 					{
-						possibleMoves.Add(new Move(piece.PiecePosition, positionSixKing));
+						if (Board.boardState[positionSixKing.Row, positionSixKing.Col] != null)
+						{
+							if (Board.boardState[positionSixKing.Row, positionSixKing.Col].PieceColor != piece.PieceColor)
+							{
+								possibleMoves.Add(new Move(piece.PiecePosition, positionSixKing));
+							}
+						}
+						else
+						{
+							possibleMoves.Add(new Move(piece.PiecePosition, positionSixKing));
+						}
 					}
 					Position positionSevenKing = new Position(piece.PiecePosition.Row + 1, piece.PiecePosition.Col);
-					if (ValidatePosition(positionSevenKing) && Board.boardState[positionSevenKing.Row, positionSevenKing.Col] != null && Board.boardState[positionSevenKing.Row, positionSevenKing.Col].PieceColor == piece.PieceColor)
+					if (ValidatePosition(positionSevenKing) && !allGuardedPositionsByOpponent.Contains(positionSevenKing))
 					{
-						possibleMoves.Add(new Move(piece.PiecePosition, positionSevenKing));
+						if (Board.boardState[positionSevenKing.Row, positionSevenKing.Col] != null)
+						{
+							if (Board.boardState[positionSevenKing.Row, positionSevenKing.Col].PieceColor != piece.PieceColor)
+							{
+								possibleMoves.Add(new Move(piece.PiecePosition, positionSevenKing));
+							}
+						}
+						else
+						{
+							possibleMoves.Add(new Move(piece.PiecePosition, positionSevenKing));
+						}
 					}
 					Position positionEightKing = new Position(piece.PiecePosition.Row + 1, piece.PiecePosition.Col + 1);
-					if (ValidatePosition(positionEightKing) && Board.boardState[positionEightKing.Row, positionEightKing.Col] != null && Board.boardState[positionEightKing.Row, positionEightKing.Col].PieceColor == piece.PieceColor)
+					if (ValidatePosition(positionEightKing) && !allGuardedPositionsByOpponent.Contains(positionEightKing))
 					{
-						possibleMoves.Add(new Move(piece.PiecePosition, positionEightKing));
+						if (Board.boardState[positionEightKing.Row, positionEightKing.Col] != null)
+						{
+							if (Board.boardState[positionEightKing.Row, positionEightKing.Col].PieceColor != piece.PieceColor)
+							{
+								possibleMoves.Add(new Move(piece.PiecePosition, positionEightKing));
+							}
+						}
+						else
+						{
+							possibleMoves.Add(new Move(piece.PiecePosition, positionEightKing));
+						}
 					}
                     break;
 				case PieceType.Queen:
@@ -1085,45 +1174,125 @@ namespace JustPoChess.Client.MVC.Controller
                     break;
                 case PieceType.Knight:
                     Position positionOneKnight = new Position(piece.PiecePosition.Row - 1, piece.PiecePosition.Col - 2);
-                    if (ValidatePosition(positionOneKnight) && Board.boardState[positionOneKnight.Row, positionOneKnight.Col] != null && Board.boardState[positionOneKnight.Row, positionOneKnight.Col].PieceColor != piece.PieceColor)
+                    if (ValidatePosition(positionOneKnight))
                     {
-                        possibleMoves.Add(new Move(piece.PiecePosition, positionOneKnight));
+                        if (Board.boardState[positionOneKnight.Row, positionOneKnight.Col] != null)
+                        {
+                            if (Board.boardState[positionOneKnight.Row, positionOneKnight.Col].PieceColor != piece.PieceColor)
+                            {
+                                possibleMoves.Add(new Move(piece.PiecePosition, positionOneKnight));
+                            }
+                        }
+                        else
+						{
+							possibleMoves.Add(new Move(piece.PiecePosition, positionOneKnight));
+                        }
                     }
-                    Position positionTwoKnight = new Position(piece.PiecePosition.Row - 2, piece.PiecePosition.Col - 1);
-                    if (ValidatePosition(positionTwoKnight) && Board.boardState[positionTwoKnight.Row, positionTwoKnight.Col] != null && Board.boardState[positionTwoKnight.Row, positionTwoKnight.Col].PieceColor != piece.PieceColor)
-                    {
-                        possibleMoves.Add(new Move(piece.PiecePosition, positionTwoKnight));
-                    }
-                    Position positionThreeKnight = new Position(piece.PiecePosition.Row - 2, piece.PiecePosition.Col + 1);
-                    if (ValidatePosition(positionThreeKnight) && Board.boardState[positionThreeKnight.Row, positionThreeKnight.Col] != null && Board.boardState[positionThreeKnight.Row, positionThreeKnight.Col].PieceColor != piece.PieceColor)
-                    {
-                        possibleMoves.Add(new Move(piece.PiecePosition, positionThreeKnight));
-                    }
-                    Position positionFourKnight = new Position(piece.PiecePosition.Row - 1, piece.PiecePosition.Col + 2);
-                    if (ValidatePosition(positionFourKnight) && Board.boardState[positionFourKnight.Row, positionFourKnight.Col] != null && Board.boardState[positionFourKnight.Row, positionFourKnight.Col].PieceColor != piece.PieceColor)
-                    {
-                        possibleMoves.Add(new Move(piece.PiecePosition, positionFourKnight));
-                    }
-                    Position positionFiveKnight = new Position(piece.PiecePosition.Row + 1, piece.PiecePosition.Col + 2);
-                    if (ValidatePosition(positionFiveKnight) && Board.boardState[positionFiveKnight.Row, positionFiveKnight.Col] != null && Board.boardState[positionFiveKnight.Row, positionFiveKnight.Col].PieceColor != piece.PieceColor)
-                    {
-                        possibleMoves.Add(new Move(piece.PiecePosition, positionFiveKnight));
-                    }
-                    Position positionSixKnight = new Position(piece.PiecePosition.Row + 2, piece.PiecePosition.Col + 1);
-                    if (ValidatePosition(positionSixKnight) && Board.boardState[positionSixKnight.Row, positionSixKnight.Col] != null && Board.boardState[positionSixKnight.Row, positionSixKnight.Col].PieceColor != piece.PieceColor)
-                    {
-                        possibleMoves.Add(new Move(piece.PiecePosition, positionSixKnight));
-                    }
-                    Position positionSevenKnight = new Position(piece.PiecePosition.Row + 2, piece.PiecePosition.Col - 1);
-                    if (ValidatePosition(positionSevenKnight) && Board.boardState[positionSevenKnight.Row, positionSevenKnight.Col] != null && Board.boardState[positionSevenKnight.Row, positionSevenKnight.Col].PieceColor != piece.PieceColor)
-                    {
-                        possibleMoves.Add(new Move(piece.PiecePosition, positionSevenKnight));
-                    }
-                    Position positionEightKnight = new Position(piece.PiecePosition.Row + 1, piece.PiecePosition.Col - 2);
-                    if (ValidatePosition(positionEightKnight) && Board.boardState[positionEightKnight.Row, positionEightKnight.Col] != null && Board.boardState[positionEightKnight.Row, positionEightKnight.Col].PieceColor != piece.PieceColor)
-                    {
-                        possibleMoves.Add(new Move(piece.PiecePosition, positionEightKnight));
-                    }
+					Position positionTwoKnight = new Position(piece.PiecePosition.Row - 2, piece.PiecePosition.Col - 1);
+					if (ValidatePosition(positionTwoKnight))
+					{
+						if (Board.boardState[positionTwoKnight.Row, positionTwoKnight.Col] != null)
+						{
+							if (Board.boardState[positionTwoKnight.Row, positionTwoKnight.Col].PieceColor != piece.PieceColor)
+							{
+								possibleMoves.Add(new Move(piece.PiecePosition, positionTwoKnight));
+							}
+						}
+						else
+						{
+							possibleMoves.Add(new Move(piece.PiecePosition, positionTwoKnight));
+						}
+					}
+					Position positionThreeKnight = new Position(piece.PiecePosition.Row - 2, piece.PiecePosition.Col + 1);
+					if (ValidatePosition(positionThreeKnight))
+					{
+						if (Board.boardState[positionThreeKnight.Row, positionThreeKnight.Col] != null)
+						{
+							if (Board.boardState[positionThreeKnight.Row, positionThreeKnight.Col].PieceColor != piece.PieceColor)
+							{
+								possibleMoves.Add(new Move(piece.PiecePosition, positionThreeKnight));
+							}
+						}
+						else
+						{
+							possibleMoves.Add(new Move(piece.PiecePosition, positionThreeKnight));
+						}
+					}
+					Position positionFourKnight = new Position(piece.PiecePosition.Row - 1, piece.PiecePosition.Col + 2);
+					if (ValidatePosition(positionFourKnight))
+					{
+						if (Board.boardState[positionFourKnight.Row, positionFourKnight.Col] != null)
+						{
+							if (Board.boardState[positionFourKnight.Row, positionFourKnight.Col].PieceColor != piece.PieceColor)
+							{
+								possibleMoves.Add(new Move(piece.PiecePosition, positionFourKnight));
+							}
+						}
+						else
+						{
+							possibleMoves.Add(new Move(piece.PiecePosition, positionFourKnight));
+						}
+					}
+					Position positionFiveKnight = new Position(piece.PiecePosition.Row + 1, piece.PiecePosition.Col + 2);
+					if (ValidatePosition(positionFiveKnight))
+					{
+						if (Board.boardState[positionFiveKnight.Row, positionFiveKnight.Col] != null)
+						{
+							if (Board.boardState[positionFiveKnight.Row, positionFiveKnight.Col].PieceColor != piece.PieceColor)
+							{
+								possibleMoves.Add(new Move(piece.PiecePosition, positionFiveKnight));
+							}
+						}
+						else
+						{
+							possibleMoves.Add(new Move(piece.PiecePosition, positionFiveKnight));
+						}
+					}
+					Position positionSixKnight = new Position(piece.PiecePosition.Row + 2, piece.PiecePosition.Col + 1);
+					if (ValidatePosition(positionSixKnight))
+					{
+						if (Board.boardState[positionSixKnight.Row, positionSixKnight.Col] != null)
+						{
+							if (Board.boardState[positionSixKnight.Row, positionSixKnight.Col].PieceColor != piece.PieceColor)
+							{
+								possibleMoves.Add(new Move(piece.PiecePosition, positionSixKnight));
+							}
+						}
+						else
+						{
+							possibleMoves.Add(new Move(piece.PiecePosition, positionSixKnight));
+						}
+					}
+					Position positionSevenKnight = new Position(piece.PiecePosition.Row + 2, piece.PiecePosition.Col - 1);
+					if (ValidatePosition(positionSevenKnight))
+					{
+						if (Board.boardState[positionSevenKnight.Row, positionSevenKnight.Col] != null)
+						{
+							if (Board.boardState[positionSevenKnight.Row, positionSevenKnight.Col].PieceColor != piece.PieceColor)
+							{
+								possibleMoves.Add(new Move(piece.PiecePosition, positionSevenKnight));
+							}
+						}
+						else
+						{
+							possibleMoves.Add(new Move(piece.PiecePosition, positionSevenKnight));
+						}
+					}
+					Position positionEightKnight = new Position(piece.PiecePosition.Row + 1, piece.PiecePosition.Col - 2);
+					if (ValidatePosition(positionEightKnight))
+					{
+						if (Board.boardState[positionEightKnight.Row, positionEightKnight.Col] != null)
+						{
+							if (Board.boardState[positionEightKnight.Row, positionEightKnight.Col].PieceColor != piece.PieceColor)
+							{
+								possibleMoves.Add(new Move(piece.PiecePosition, positionEightKnight));
+							}
+						}
+						else
+						{
+							possibleMoves.Add(new Move(piece.PiecePosition, positionEightKnight));
+						}
+					}
                     break;
 				case PieceType.Bishop:
 					int rowBishop = piece.PiecePosition.Row--;

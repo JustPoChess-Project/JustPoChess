@@ -49,6 +49,8 @@ namespace JustPoChess.Client.MVC.Controller
         public static List<Move> GeneratePossibleMovesForPieceWithoutConsideringDiscoveringCheck(Piece piece)
 		{
 			//kings can not be taken consideration!
+
+            //use move method in piece?
 			throw new System.NotImplementedException();
 		}
 

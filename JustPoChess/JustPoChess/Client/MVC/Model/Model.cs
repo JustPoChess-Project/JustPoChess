@@ -11,6 +11,7 @@ namespace JustPoChess.Client.MVC.Model
         public readonly static Player player2;
         public static GameState gameState;
         public static Player currentPlayerToMove;
+        public static Move lastMove;
 
 		public static void InitBoard()
         {

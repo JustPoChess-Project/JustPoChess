@@ -41,6 +41,8 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
             boardState[move.NextPosititon.Row, move.NextPosititon.Col] = piece;
             piece.PiecePosition = new Position(move.NextPosititon.Row, move.NextPosititon.Col);
 
+			//will need that for en passant pawn move
+			Model.lastMove = move;
 			//testing purposes
 			testBoardState = BoardDeepCopy();
 		}

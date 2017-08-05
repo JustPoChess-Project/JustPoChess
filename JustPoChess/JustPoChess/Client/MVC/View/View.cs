@@ -60,6 +60,44 @@ namespace JustPoChess.Client.MVC.View
             }
         }
 
+		//testing purposes
+		public static void PrintTestBoard()
+		{
+			for (int x = 0; x < 8; x++)
+			{
+				Console.ForegroundColor = ConsoleColor.White;
+				Console.Write($"{8 - x} ");
+				for (int y = 0; y < 8; y++)
+				{
+					if (Model.Model.GetTestBoardState()[x, y] == null)
+					{
+						if ((x + y) % 2 != 0)
+						{
+							Console.ForegroundColor = ConsoleColor.DarkGray;
+							Console.Write("■ ");
+						}
+						else
+						{
+							Console.ForegroundColor = ConsoleColor.White;
+							Console.Write("■ ");
+						}
+					}
+					else
+					{
+						Console.ResetColor();
+						Console.Write($"{GetPieceString(Model.Model.GetTestBoardState(), x, y)} ");
+					}
+				}
+				Console.WriteLine();
+				if (x == 7)
+				{
+					Console.ForegroundColor = ConsoleColor.White;
+					Console.WriteLine("  a  b  c  d   e  f  g  h");
+					Console.ResetColor();
+				}
+			}
+		}
+
         public static void MirrorPrintBoard()
         {
             var mirroredBoard = new IPiece[8, 8];

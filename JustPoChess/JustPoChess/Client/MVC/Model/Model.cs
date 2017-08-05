@@ -22,5 +22,11 @@ namespace JustPoChess.Client.MVC.Model
         {
             return Board.boardState;
         }
+
+		//testing purposes
+		public static IPiece[,] GetTestBoardState()
+		{
+			return Board.testBoardState;
+		}
     }
 }

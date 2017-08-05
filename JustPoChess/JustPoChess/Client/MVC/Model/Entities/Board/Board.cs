@@ -3,6 +3,7 @@ using JustPoChess.Client.MVC.Model.Entities.Pieces;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.Abstract;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecePosition;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecesEnums;
+using System.Linq;
 
 namespace JustPoChess.Client.MVC.Model.Entities.Board
 {  
@@ -12,7 +13,9 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
 
         private const int BoardSize = dimensions;
         public static IPiece[,] boardState;
-        public static IPiece[,] testBoardState;
+
+		//testing purposes
+		public static IPiece[,] testBoardState;
 
         public static void InitBoard()
         {
@@ -33,6 +36,36 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
             IPiece piece = boardState[move.CurrentPosition.Row, move.CurrentPosition.Col];
             boardState[move.CurrentPosition.Row, move.CurrentPosition.Col] = null;
             boardState[move.NextPosititon.Row, move.NextPosititon.Col] = piece;
+
+            //testing purposes
+            testBoardState = BoardDeepCopy();
         }
-    }
+
+        public static IPiece[,] BoardDeepCopy()
+        {
+            IPiece[,] boardCopy = new IPiece[8, 8];
+            for (int row = 0; row < 8; row++)
+            {
+                for (int col = 0; col < 8; col++)
+                {
+                    if (boardState[row, col] == null)
+                    {
+                        boardCopy[row, col] = null;
+                    } else {
+                        IPiece piece = boardState[row, col];
+                        boardCopy[row, col] = Piece.NewPiece(piece);
+                    }
+                }
+            }
+            return boardCopy;
+        }
+
+		//testing purposes
+		public static void PerformMoveOnTestBoard(Move move)
+		{
+			IPiece piece = testBoardState[move.CurrentPosition.Row, move.CurrentPosition.Col];
+			testBoardState[move.CurrentPosition.Row, move.CurrentPosition.Col] = null;
+			testBoardState[move.NextPosititon.Row, move.NextPosititon.Col] = piece;
+		}
+	}
 }

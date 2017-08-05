@@ -10,8 +10,10 @@ namespace JustPoChess.Client.MVC.Model
         public readonly static Player player1;
         public readonly static Player player2;
         public static GameState gameState;
-        public static Player currentPlayerToMove;
-        public static Move lastMove;
+		public static Player currentPlayerToMove;
+
+		//will need that for en passant pawn move
+		public static Move lastMove;
 
 		public static void InitBoard()
         {

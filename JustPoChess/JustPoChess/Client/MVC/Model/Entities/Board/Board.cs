@@ -30,18 +30,34 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                 { new Pawn(PieceColor.White, new Position(6, 0)), new Pawn(PieceColor.White, new Position(6, 1)), new Pawn(PieceColor.White, new Position(6, 2)), new Pawn(PieceColor.White, new Position(6, 3)), new Pawn(PieceColor.White, new Position(6, 4)), new Pawn(PieceColor.White, new Position(6, 5)), new Pawn(PieceColor.White, new Position(6, 6)), new Pawn(PieceColor.White, new Position(6, 7)) },
                 { new Rook(PieceColor.White, new Position(7, 0)), new Knight(PieceColor.White, new Position(7, 1)), new Bishop(PieceColor.White, new Position(7, 2)), new Queen(PieceColor.White, new Position(7, 3)), new King(PieceColor.White, new Position(7, 4)), new Bishop(PieceColor.White, new Position(7, 5)), new Knight(PieceColor.White, new Position(7, 6)), new Rook(PieceColor.White, new Position(7, 7)) }, //row 8
             };
+
+			//testing purposes
+			testBoardState = BoardDeepCopy();
         }
 
         public static void PerformMove(Move move) {
             IPiece piece = boardState[move.CurrentPosition.Row, move.CurrentPosition.Col];
             boardState[move.CurrentPosition.Row, move.CurrentPosition.Col] = null;
             boardState[move.NextPosititon.Row, move.NextPosititon.Col] = piece;
+            piece.PiecePosition = new Position(move.NextPosititon.Row, move.NextPosititon.Col);
 
-            //testing purposes
-            testBoardState = BoardDeepCopy();
-        }
+			//testing purposes
+			testBoardState = BoardDeepCopy();
+		}
 
-        public static IPiece[,] BoardDeepCopy()
+		//testing purposes
+		public static void PerformMoveOnTestBoard(Move move)
+		{
+			IPiece piece = testBoardState[move.CurrentPosition.Row, move.CurrentPosition.Col];
+            IPiece newPiece = Piece.NewPiece(piece);
+			testBoardState[move.CurrentPosition.Row, move.CurrentPosition.Col] = null;
+			testBoardState[move.NextPosititon.Row, move.NextPosititon.Col] = newPiece;
+			piece.PiecePosition = new Position(move.NextPosititon.Row, move.NextPosititon.Col);
+            newPiece.PiecePosition = new Position(move.NextPosititon.Row, move.NextPosititon.Col);
+		}
+
+		//testing purposes
+		public static IPiece[,] BoardDeepCopy()
         {
             IPiece[,] boardCopy = new IPiece[8, 8];
             for (int row = 0; row < 8; row++)
@@ -59,13 +75,5 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
             }
             return boardCopy;
         }
-
-		//testing purposes
-		public static void PerformMoveOnTestBoard(Move move)
-		{
-			IPiece piece = testBoardState[move.CurrentPosition.Row, move.CurrentPosition.Col];
-			testBoardState[move.CurrentPosition.Row, move.CurrentPosition.Col] = null;
-			testBoardState[move.NextPosititon.Row, move.NextPosititon.Col] = piece;
-		}
 	}
 }

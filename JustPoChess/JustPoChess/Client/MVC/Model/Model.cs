@@ -7,7 +7,6 @@ namespace JustPoChess.Client.MVC.Model
     public static class Model
     {
 		//to-do: fix all namespaces once and for all
-
         public readonly static Player player1;
         public readonly static Player player2;
         public static GameState gameState;

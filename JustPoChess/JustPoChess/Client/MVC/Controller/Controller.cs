@@ -7,6 +7,7 @@ using JustPoChess.Client.MVC.Model.Entities.Pieces.Abstract;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecesEnums;
 using JustPoChess.Client.MVC.View.Input;
 using JustPoChess.Client.MVC.View.Messages;
+using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecePosition;
 
 namespace JustPoChess.Client.MVC.Controller
 {
@@ -37,44 +38,68 @@ namespace JustPoChess.Client.MVC.Controller
 
 		public static bool MoveDiscoversCheckToOwnKing(Move move)
 		{
-            //think of a way of being able to perform certain moves on the board and then undo-ing them - possible solution - board not static?
-			throw new System.NotImplementedException();
-        }
-
-        public static bool PieceGivesCheckToOpponentsKing(Piece piece)
-		{
-			throw new System.NotImplementedException();
-		}
-
-        public static List<Move> GeneratePossibleMovesForPieceWithoutConsideringDiscoveringCheck(Piece piece)
-		{
-			//kings can not be taken consideration!
-
-            //use move method in piece?
-			throw new System.NotImplementedException();
-		}
-
-		public static bool IsCurrentPlayerInCheck()
-		{
-            PieceColor currentPlayerPieceColor = Model.Model.currentPlayerToMove.color;
-            foreach (Piece piece in Board.boardState) {
-                if (piece.PieceColor != currentPlayerPieceColor && PieceGivesCheckToOpponentsKing(piece)) {
+            PieceColor pieceColor = Board.boardState[move.CurrentPosition.Row, move.CurrentPosition.Col].PieceColor;
+            Board.PerformMoveOnTestBoard(move);
+            foreach (Piece boardPiece in Board.testBoardState) {
+                if (boardPiece.PieceColor != pieceColor && PieceGivesCheckToOpponentsKing(boardPiece)) {
                     return true;
                 }
             }
             return false;
         }
 
-		public static List<Move> GeneratePossibleMovesForCurrentPlayer()
+        public static bool PieceGivesCheckToOpponentsKing(Piece piece)
 		{
-			PieceColor currentPlayerPieceColor = Model.Model.currentPlayerToMove.color;
+            List<Move> possibleMoves = new List<Move>();
+            possibleMoves = GeneratePossibleMovesForPiece(piece);
+            foreach (Piece boardPiece in Board.boardState) {
+                if (boardPiece.PieceType == PieceType.King && boardPiece.PieceColor != piece.PieceColor) {
+                    foreach (Move move in possibleMoves) {
+                        if (move.NextPosititon == boardPiece.PiecePosition) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+		}
+
+        public static List<Move> GeneratePossibleMovesForPiece(Piece piece)
+		{
 			List<Move> possibleMoves = new List<Move>();
-            foreach (Piece piece in Board.boardState)
+            //kings can not be taken consideration!
+            throw new NotImplementedException();
+			//use move method in piece?
+            //castle
+            //an-pasan
+			foreach (Move move in possibleMoves)
+			{
+				if (MoveDiscoversCheckToOwnKing(move))
+				{
+					possibleMoves.Remove(move);
+				}
+			}
+            return possibleMoves;
+		}
+
+		public static bool IsPlayerInCheck(PieceColor pieceColor)
+		{
+            foreach (Piece boardPiece in Board.boardState) {
+                if (boardPiece.PieceColor != pieceColor && PieceGivesCheckToOpponentsKing(boardPiece)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+		public static List<Move> GeneratePossibleMovesForPlayer(PieceColor pieceColor)
+		{
+			List<Move> possibleMoves = new List<Move>();
+			foreach (Piece boardPiece in Board.boardState)
             {
-                if (piece.PieceColor == currentPlayerPieceColor)
+                if (boardPiece.PieceColor == pieceColor)
                 {
-                    possibleMoves.Concat(GeneratePossibleMovesForPieceWithoutConsideringDiscoveringCheck(piece));
-                    //consider discovering check
+                    possibleMoves.Concat(GeneratePossibleMovesForPiece(boardPiece));
                 }
             }
             return possibleMoves;
@@ -82,7 +107,7 @@ namespace JustPoChess.Client.MVC.Controller
 
         public static bool CheckForDraw()
 		{
-            if ((GeneratePossibleMovesForCurrentPlayer().Count == 0 && !IsCurrentPlayerInCheck()) || CheckIfKingVsKing()) {
+            if ((GeneratePossibleMovesForPlayer(Model.Model.currentPlayerToMove.color).Count == 0 && !IsPlayerInCheck(Model.Model.currentPlayerToMove.color)) || CheckIfKingVsKing()) {
                 return true;
             }
             return false;
@@ -90,7 +115,7 @@ namespace JustPoChess.Client.MVC.Controller
 
 		public static bool CheckForCheckmate()
 		{
-			if (GeneratePossibleMovesForCurrentPlayer().Count == 0 && IsCurrentPlayerInCheck())
+			if (GeneratePossibleMovesForPlayer(Model.Model.currentPlayerToMove.color).Count == 0 && IsPlayerInCheck(Model.Model.currentPlayerToMove.color))
 			{
 				return true;
 			}
@@ -98,8 +123,8 @@ namespace JustPoChess.Client.MVC.Controller
 		}
 
         public static bool CheckIfKingVsKing() {
-            foreach (Piece piece in Board.boardState) {
-                if (piece.PieceType != PieceType.King) {
+            foreach (Piece boardPiece in Board.boardState) {
+                if (boardPiece.PieceType != PieceType.King) {
                     return false;
                 }
             }

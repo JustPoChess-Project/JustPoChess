@@ -35,13 +35,20 @@ namespace JustPoChess.Client.MVC.Controller
             }
         }
 
+		public static bool MoveDiscoversCheckToOwnKing(Move move)
+		{
+            //think of a way of being able to perform certain moves on the board and then undo-ing them - possible solution - board not static?
+			throw new System.NotImplementedException();
+        }
+
         public static bool PieceGivesCheckToOpponentsKing(Piece piece)
 		{
 			throw new System.NotImplementedException();
 		}
 
-        public static List<Move> GeneratePossibleMovesForPieceWithoutConsideringDiscoringCheck(Piece piece)
+        public static List<Move> GeneratePossibleMovesForPieceWithoutConsideringDiscoveringCheck(Piece piece)
 		{
+			//kings can not be taken consideration!
 			throw new System.NotImplementedException();
 		}
 
@@ -64,7 +71,8 @@ namespace JustPoChess.Client.MVC.Controller
             {
                 if (piece.PieceColor == currentPlayerPieceColor)
                 {
-                    possibleMoves.Concat(GeneratePossibleMovesForPieceWithoutConsideringDiscoringCheck(piece));
+                    possibleMoves.Concat(GeneratePossibleMovesForPieceWithoutConsideringDiscoveringCheck(piece));
+                    //consider discovering check
                 }
             }
             return possibleMoves;

@@ -3,26 +3,31 @@ using System.Linq;
 using System.Collections.Generic;
 using JustPoChess.Client.MVC.Model.Entities.Board;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.Abstract;
-using JustPoChess.Client.MVC.View.Input;
+using JustPoChess.Client.MVC.OSChecker;
+
 
 namespace JustPoChess.Client.MVC
 {
     public class StartUp
     {
         public static void Main()
-		{
-		    Console.OutputEncoding = System.Text.Encoding.UTF8;
+        {
+            if (!OSChecker.CheckOS.IsLinux)
+            {
+                Console.OutputEncoding = System.Text.Encoding.UTF8;
+            }
             Board.InitBoard();
-			View.View.PrintBoard();
+            View.View.PrintBoard();
             Console.WriteLine(new string('*', 50));
             IEnumerable<Move> allPossibleMovesForCurrentPlayer = new List<Move>();
-            foreach (Piece boardPiece in Model.Model.GetBoardState()) {
+            foreach (Piece boardPiece in Model.Model.GetBoardState())
+            {
                 if (boardPiece != null && boardPiece.PieceColor == Model.Model.currentPlayerToMove)
                 {
                     allPossibleMovesForCurrentPlayer = allPossibleMovesForCurrentPlayer.Concat(Controller.Controller.GeneratePossibleMovesForPieceConsideringDiscoveringCheck(boardPiece));
                 }
             }
-            foreach (Move m in allPossibleMovesForCurrentPlayer) 
+            foreach (Move m in allPossibleMovesForCurrentPlayer)
             {
                 Console.WriteLine(m);
             }

@@ -7,19 +7,19 @@ namespace JustPoChess.Client.MVC.Model
 {
     public static class Model
     {
-		//to-do: fix all namespaces once and for all
+        //to-do: fix all namespaces once and for all
         public readonly static Player player1;
         public readonly static Player player2;
         public static GameState gameState;
 
-		public static PieceColor currentPlayerToMove;
-		public static PieceColor currentPlayerToMoveTestBoard;
+        public static PieceColor currentPlayerToMove;
+        public static PieceColor currentPlayerToMoveTestBoard;
 
-		//will need that for en passant pawn move
-		public static Move lastMove;
+        //will need that for en passant pawn move
+        public static Move lastMove;
         public static Move lastMoveTestBoard;
 
-		public static void InitBoard()
+        public static void InitBoard()
         {
             Board.InitBoard();
         }
@@ -29,10 +29,10 @@ namespace JustPoChess.Client.MVC.Model
             return Board.boardState;
         }
 
-		//testing purposes
-		public static IPiece[,] GetTestBoardState()
-		{
-			return Board.testBoardState;
-		}
+        //testing purposes
+        public static IPiece[,] GetTestBoardState()
+        {
+            return Board.testBoardState;
+        }
     }
 }

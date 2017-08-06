@@ -42,7 +42,8 @@ namespace JustPoChess.Client.MVC.Controller
             {
                 return false;
             }
-            if (Board.boardState[move.CurrentPosition.Row, move.CurrentPosition.Col] == null) {
+            if (Board.boardState[move.CurrentPosition.Row, move.CurrentPosition.Col] == null)
+            {
                 return false;
             }
             PieceColor pieceColor = Board.boardState[move.CurrentPosition.Row, move.CurrentPosition.Col].PieceColor;
@@ -59,11 +60,11 @@ namespace JustPoChess.Client.MVC.Controller
         }
 
         public static bool PieceGivesCheckToOpponentsKing(Piece piece)
-		{
-			if (piece == null)
-			{
+        {
+            if (piece == null)
+            {
                 return false;
-			}
+            }
             ICollection<Move> possibleMoves = new List<Move>();
             possibleMoves = GeneratePossibleMovesForPieceWithoutConsideringDiscoveringCheck(piece);
             foreach (Piece boardPiece in Board.boardState)
@@ -83,7 +84,7 @@ namespace JustPoChess.Client.MVC.Controller
         }
 
         public static bool IsPieceProtected(Piece piece)
-		{
+        {
             if (piece == null)
             {
                 return false;
@@ -110,10 +111,10 @@ namespace JustPoChess.Client.MVC.Controller
         public static ICollection<Position> GenerateGuardedPositionsForPiece(Piece piece)
         {
             ICollection<Position> guardedPiecesOnSquares = new List<Position>();
-			if (piece == null)
-			{
-				return guardedPiecesOnSquares;
-			}
+            if (piece == null)
+            {
+                return guardedPiecesOnSquares;
+            }
             switch (piece.PieceType)
             {
                 case PieceType.King:
@@ -792,38 +793,39 @@ namespace JustPoChess.Client.MVC.Controller
             return guardedPiecesOnSquares;
         }
 
-        public static ICollection<Move> GeneratePossibleMovesForPieceConsideringDiscoveringCheck(Piece piece) {
+        public static ICollection<Move> GeneratePossibleMovesForPieceConsideringDiscoveringCheck(Piece piece)
+        {
             ICollection<Move> possibleMoves = new List<Move>();
             possibleMoves = GeneratePossibleMovesForPieceWithoutConsideringDiscoveringCheck(piece);
-			foreach (Move move in possibleMoves)
-			{
-				if (MoveDiscoversCheckToOwnKing(move))
-				{
-					possibleMoves.Remove(move);
-				}
-			}
-			if (piece.PieceColor == PieceColor.White)
-			{
-				if (IsWhiteLeftCastlePossible())
-				{
-					possibleMoves.Add(new Move(piece.PiecePosition, new Position(7, 2)));
-				}
-				if (IsWhiteRightCastlePossible())
-				{
-					possibleMoves.Add(new Move(piece.PiecePosition, new Position(7, 6)));
-				}
-			}
-			else
-			{
-				if (IsBlackLeftCastlePossible())
-				{
-					possibleMoves.Add(new Move(piece.PiecePosition, new Position(0, 2)));
-				}
-				if (IsBlackRightCastlePossible())
-				{
-					possibleMoves.Add(new Move(piece.PiecePosition, new Position(0, 6)));
-				}
-			}
+            foreach (Move move in possibleMoves)
+            {
+                if (MoveDiscoversCheckToOwnKing(move))
+                {
+                    possibleMoves.Remove(move);
+                }
+            }
+            if (piece.PieceColor == PieceColor.White)
+            {
+                if (IsWhiteLeftCastlePossible())
+                {
+                    possibleMoves.Add(new Move(piece.PiecePosition, new Position(7, 2)));
+                }
+                if (IsWhiteRightCastlePossible())
+                {
+                    possibleMoves.Add(new Move(piece.PiecePosition, new Position(7, 6)));
+                }
+            }
+            else
+            {
+                if (IsBlackLeftCastlePossible())
+                {
+                    possibleMoves.Add(new Move(piece.PiecePosition, new Position(0, 2)));
+                }
+                if (IsBlackRightCastlePossible())
+                {
+                    possibleMoves.Add(new Move(piece.PiecePosition, new Position(0, 6)));
+                }
+            }
             return possibleMoves;
         }
 

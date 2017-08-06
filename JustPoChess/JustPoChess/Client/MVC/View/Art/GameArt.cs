@@ -25,5 +25,8 @@ namespace JustPoChess.Client.MVC.View.Art
 
         public static string BlackBishop = "♗";
         public static string WhiteBishop = "♝";
+
+        public static string BlackSquare = "☐";
+        public static string WhiteSquare = "■";
     }
 }

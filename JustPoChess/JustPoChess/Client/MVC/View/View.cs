@@ -20,15 +20,15 @@ namespace JustPoChess.Client.MVC.View
 
         public static void StopMusic()
         {
-            //Sounds.OST.Stop();
+            Sounds.OST.Stop();
         }
 
         public static void PrintBoard()
         {
             for (int x = 0; x < 8; x++)
             {
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.Write($"{8 - x} ");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write($"{8 - x}| ");
                 for (int y = 0; y < 8; y++)
                 {
                     Console.ForegroundColor = ConsoleColor.DarkGray;
@@ -48,11 +48,13 @@ namespace JustPoChess.Client.MVC.View
                         Console.Write($"{GetPieceString(Model.Model.GetBoardState(), x, y)}");
                     }
                 }
-                Console.WriteLine();
+                Console.Write(Environment.NewLine);
+
                 if (x == 7)
                 {
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("  a b c d  e f g h");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write($"   ________________{Environment.NewLine}");
+                    Console.Write($"   a b c d  e f g h{Environment.NewLine}");
                     Console.ForegroundColor = ConsoleColor.DarkGray;
                 }
             }
@@ -106,8 +108,8 @@ namespace JustPoChess.Client.MVC.View
 
             for (int x = 0; x < 8; x++)
             {
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.Write($"{x + 1} ");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write($"{x + 1}| ");
                 for (int y = 0; y < 8; y++)
                 {
                     Console.ForegroundColor = ConsoleColor.DarkGray;
@@ -127,11 +129,12 @@ namespace JustPoChess.Client.MVC.View
                         Console.Write($"{GetPieceString(mirroredBoard, x, y)}");
                     }
                 }
-                Console.WriteLine();
+                Console.Write(Environment.NewLine);
                 if (x == 7)
                 {
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("  h g f e  d c b a");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write($"   ________________{Environment.NewLine}");
+                    Console.Write($"   h g f e  d c b a{Environment.NewLine}");
                     Console.ForegroundColor = ConsoleColor.DarkGray;
                 }
             }

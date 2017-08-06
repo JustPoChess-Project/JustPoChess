@@ -17,7 +17,7 @@ namespace JustPoChess.Client.MVC
                 Console.OutputEncoding = System.Text.Encoding.UTF8;
             }
             Board.InitBoard();
-            View.View.PrintBoard();
+            View.View.MirrorPrintBoard();
             Console.WriteLine(new string('*', 50));
             IEnumerable<Move> allPossibleMovesForCurrentPlayer = new List<Move>();
             foreach (Piece boardPiece in Model.Model.GetBoardState())

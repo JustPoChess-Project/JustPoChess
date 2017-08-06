@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Linq;
 using System.Collections.Generic;
 using JustPoChess.Client.MVC.Model.Entities.Board;
@@ -12,7 +12,7 @@ namespace JustPoChess.Client.MVC
     {
         public static void Main()
         {
-            if (!OSChecker.CheckOS.IsLinux)
+            if (!CheckOS.IsLinux)
             {
                 Console.OutputEncoding = System.Text.Encoding.UTF8;
             }
@@ -37,7 +37,6 @@ namespace JustPoChess.Client.MVC
             Console.CursorVisible = false;
             Console.SetWindowPosition(0, 0);
             Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
 
             try
             {

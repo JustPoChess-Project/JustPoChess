@@ -11,6 +11,7 @@ namespace JustPoChess.Client.MVC
     {
         public static void Main()
 		{
+		    Console.OutputEncoding = System.Text.Encoding.UTF8;
             Board.InitBoard();
 			View.View.PrintBoard();
             Console.WriteLine(new string('*', 50));

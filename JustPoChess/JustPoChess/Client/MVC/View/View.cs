@@ -31,30 +31,28 @@ namespace JustPoChess.Client.MVC.View
                 Console.Write($"{8 - x} ");
                 for (int y = 0; y < 8; y++)
                 {
+                    Console.ResetColor();
                     if (Model.Model.GetBoardState()[x, y] == null)
                     {
                         if ((x + y) % 2 != 0)
                         {
-                            Console.ForegroundColor = ConsoleColor.DarkGray;
-                            Console.Write("■ ");
+                            Console.Write(GameArt.BlackSquare);
                         }
                         else
                         {
-                            Console.ForegroundColor = ConsoleColor.White;
-                            Console.Write("■ ");
+                            Console.Write(GameArt.WhiteSquare);
                         }
                     }
                     else
                     {
-                        Console.ResetColor();
-                        Console.Write($"{GetPieceString(Model.Model.GetBoardState(), x, y)} ");
+                        Console.Write($"{GetPieceString(Model.Model.GetBoardState(), x, y)}");
                     }
                 }
                 Console.WriteLine();
                 if (x == 7)
                 {
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("  a  b  c  d   e  f  g  h");
+                    Console.WriteLine("  a b c d  e f g h");
                     Console.ResetColor();
                 }
             }
@@ -65,7 +63,6 @@ namespace JustPoChess.Client.MVC.View
 		{
 			for (int x = 0; x < 8; x++)
 			{
-				Console.ForegroundColor = ConsoleColor.White;
 				Console.Write($"{8 - x} ");
 				for (int y = 0; y < 8; y++)
 				{
@@ -73,12 +70,10 @@ namespace JustPoChess.Client.MVC.View
 					{
 						if ((x + y) % 2 != 0)
 						{
-							Console.ForegroundColor = ConsoleColor.DarkGray;
 							Console.Write("■ ");
 						}
 						else
 						{
-							Console.ForegroundColor = ConsoleColor.White;
 							Console.Write("■ ");
 						}
 					}
@@ -91,7 +86,6 @@ namespace JustPoChess.Client.MVC.View
 				Console.WriteLine();
 				if (x == 7)
 				{
-					Console.ForegroundColor = ConsoleColor.White;
 					Console.WriteLine("  a  b  c  d   e  f  g  h");
 					Console.ResetColor();
 				}
@@ -112,40 +106,38 @@ namespace JustPoChess.Client.MVC.View
 
             for (int x = 0; x < 8; x++)
             {
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write($"{x + 1} ");
                 for (int y = 0; y < 8; y++)
                 {
+                    Console.ResetColor();
                     if (mirroredBoard[x, y] == null)
                     {
                         if ((x + y) % 2 != 0)
                         {
-                            Console.ForegroundColor = ConsoleColor.DarkGray;
-                            Console.Write("■ ");
+                            Console.Write(GameArt.BlackSquare);
                         }
                         else
                         {
-                            Console.ForegroundColor = ConsoleColor.White;
-                            Console.Write("■ ");
+                            Console.Write(GameArt.WhiteSquare);
                         }
                     }
                     else
                     {
-                        Console.ResetColor();
-                        Console.Write($"{GetPieceString(mirroredBoard, x, y)} ");
+                        Console.Write($"{GetPieceString(mirroredBoard, x, y)}");
                     }
                 }
                 Console.WriteLine();
                 if (x == 7)
                 {
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("  h  g  f  e   d  c  b  a");
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine("  h g f e  d c b a");
                     Console.ResetColor();
                 }
             }
         }
 
-        public static string GetPieceString(IPiece[,] boardState, int x, int y)
+        private static string GetPieceString(IPiece[,] boardState, int x, int y)
         {
             switch (boardState[x, y].PieceType)
             {
@@ -153,11 +145,9 @@ namespace JustPoChess.Client.MVC.View
                     switch (boardState[x, y].PieceColor)
                     {
                         case PieceColor.Black:
-                            Console.ForegroundColor = ConsoleColor.DarkGray;
                             return GameArt.BlackBishop;
 
                         case PieceColor.White:
-                            Console.ForegroundColor = ConsoleColor.DarkGray;
                             return GameArt.WhiteBishop;
                     }
                     break;
@@ -166,11 +156,9 @@ namespace JustPoChess.Client.MVC.View
                     switch (boardState[x, y].PieceColor)
                     {
                         case PieceColor.Black:
-                            Console.ForegroundColor = ConsoleColor.DarkGray;
                             return GameArt.BlackKing;
 
                         case PieceColor.White:
-                            Console.ForegroundColor = ConsoleColor.DarkGray;
                             return GameArt.WhiteKing;
                     }
                     break;
@@ -179,11 +167,9 @@ namespace JustPoChess.Client.MVC.View
                     switch (boardState[x, y].PieceColor)
                     {
                         case PieceColor.Black:
-                            Console.ForegroundColor = ConsoleColor.DarkGray;
                             return GameArt.BlackKnight;
 
                         case PieceColor.White:
-                            Console.ForegroundColor = ConsoleColor.DarkGray;
                             return GameArt.WhiteKnight;
                     }
                     break;
@@ -192,11 +178,9 @@ namespace JustPoChess.Client.MVC.View
                     switch (boardState[x, y].PieceColor)
                     {
                         case PieceColor.Black:
-                            Console.ForegroundColor = ConsoleColor.DarkGray;
                             return GameArt.BlackPawn;
 
                         case PieceColor.White:
-                            Console.ForegroundColor = ConsoleColor.DarkGray;
                             return GameArt.WhitePawn;
                     }
                     break;
@@ -205,11 +189,9 @@ namespace JustPoChess.Client.MVC.View
                     switch (boardState[x, y].PieceColor)
                     {
                         case PieceColor.Black:
-                            Console.ForegroundColor = ConsoleColor.DarkGray;
                             return GameArt.BlackQueen;
 
                         case PieceColor.White:
-                            Console.ForegroundColor = ConsoleColor.DarkGray;
                             return GameArt.WhiteQueen;
                     }
                     break;
@@ -218,11 +200,9 @@ namespace JustPoChess.Client.MVC.View
                     switch (boardState[x, y].PieceColor)
                     {
                         case PieceColor.Black:
-                            Console.ForegroundColor = ConsoleColor.DarkGray;
                             return GameArt.BlackRook;
 
                         case PieceColor.White:
-                            Console.ForegroundColor = ConsoleColor.DarkGray;
                             return GameArt.WhiteRook;
                     }
                     break;

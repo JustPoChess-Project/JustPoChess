@@ -907,6 +907,29 @@ namespace JustPoChess.Client.MVC.Controller
 							possibleMoves.Add(new Move(piece.PiecePosition, positionEightKing));
 						}
 					}
+
+                    if (piece.PieceColor == PieceColor.White)
+                    {
+                        if (IsWhiteLeftCastlePossible())
+                        {
+                            possibleMoves.Add(new Move(piece.PiecePosition, new Position(7, 2)));
+                        }
+                        if (IsWhiteRightCastlePossible())
+                        {
+                            possibleMoves.Add(new Move(piece.PiecePosition, new Position(7, 6)));
+                        }
+                    }
+                    else
+					{
+						if (IsBlackLeftCastlePossible())
+						{
+							possibleMoves.Add(new Move(piece.PiecePosition, new Position(0, 2)));
+						}
+						if (IsBlackRightCastlePossible())
+						{
+							possibleMoves.Add(new Move(piece.PiecePosition, new Position(0, 6)));
+						}
+                    }
                     break;
 				case PieceType.Queen:
                     int colQueen = piece.PiecePosition.Col--;
@@ -1477,6 +1500,136 @@ namespace JustPoChess.Client.MVC.Controller
             return false;
         }
 
+        public static bool IsCurrentPlayerLeftCastlePossible()
+        {
+            switch (Model.Model.currentPlayerToMove)
+            {
+                case PieceColor.White:
+                    return IsWhiteLeftCastlePossible();
+                case PieceColor.Black:
+                    return IsBlackLeftCastlePossible();
+                default:
+                    throw new ArgumentException("Invalid current player");
+            }
+        }
+
+		public static bool IsCurrentPlayerRightCastlePossible()
+		{
+			switch (Model.Model.currentPlayerToMove)
+			{
+				case PieceColor.White:
+					return IsWhiteRightCastlePossible();
+				case PieceColor.Black:
+					return IsBlackRightCastlePossible();
+				default:
+					throw new ArgumentException("Invalid current player");
+			}
+        }
+
+        public static bool IsWhiteLeftCastlePossible()
+        {
+            if (Board.whiteLeftCastlePossible) // has white moved the left rook / king
+			{
+                if (!IsPlayerInCheck(PieceColor.White)) // is white in check
+				{
+                    if (Board.boardState[7, 1] == null && Board.boardState[7, 2] == null && Board.boardState[7, 3] == null) // are there pieces between the left white rook and the white king
+					{
+                        List<Position> guardedPositionsForAllPieces = new List<Position>();
+                        foreach (Piece boardPiece in Board.boardState)
+                        {
+                            if (boardPiece.PieceColor == PieceColor.Black)
+                            {
+                                guardedPositionsForAllPieces.Concat(GenerateGuardedPositionsForPiece(boardPiece));
+                            }
+                        }
+                        if (!guardedPositionsForAllPieces.Contains(new Position(7, 2)) && !guardedPositionsForAllPieces.Contains(new Position(7, 3))) // are there squares that the white king has to go through that are attacked
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+		public static bool IsWhiteRightCastlePossible()
+		{
+			if (Board.whiteRightCastlePossible)
+			{
+				if (!IsPlayerInCheck(PieceColor.White))
+				{
+					if (Board.boardState[7, 5] == null && Board.boardState[7, 6] == null)
+					{
+						List<Position> guardedPositionsForAllPieces = new List<Position>();
+						foreach (Piece boardPiece in Board.boardState)
+						{
+							if (boardPiece.PieceColor == PieceColor.Black)
+							{
+								guardedPositionsForAllPieces.Concat(GenerateGuardedPositionsForPiece(boardPiece));
+							}
+						}
+						if (!guardedPositionsForAllPieces.Contains(new Position(7, 5)) && !guardedPositionsForAllPieces.Contains(new Position(7, 6)))
+						{
+							return true;
+						}
+					}
+				}
+			}
+			return false;
+		}
+
+		public static bool IsBlackLeftCastlePossible()
+		{
+            if (Board.blackLeftCastlePossible)
+			{
+				if (!IsPlayerInCheck(PieceColor.Black))
+				{
+					if (Board.boardState[0, 1] == null && Board.boardState[0, 2] == null && Board.boardState[0, 3] == null)
+					{
+						List<Position> guardedPositionsForAllPieces = new List<Position>();
+						foreach (Piece boardPiece in Board.boardState)
+						{
+                            if (boardPiece.PieceColor == PieceColor.White)
+							{
+								guardedPositionsForAllPieces.Concat(GenerateGuardedPositionsForPiece(boardPiece));
+							}
+						}
+						if (!guardedPositionsForAllPieces.Contains(new Position(0, 2)) && !guardedPositionsForAllPieces.Contains(new Position(0, 3)))
+						{
+							return true;
+						}
+					}
+				}
+			}
+			return false;
+		}
+
+		public static bool IsBlackRightCastlePossible()
+		{
+			if (Board.blackRightCastlePossible)
+			{
+				if (!IsPlayerInCheck(PieceColor.Black))
+				{
+					if (Board.boardState[0, 5] == null && Board.boardState[0, 6] == null)
+					{
+						List<Position> guardedPositionsForAllPieces = new List<Position>();
+						foreach (Piece boardPiece in Board.boardState)
+						{
+							if (boardPiece.PieceColor == PieceColor.White)
+							{
+								guardedPositionsForAllPieces.Concat(GenerateGuardedPositionsForPiece(boardPiece));
+							}
+						}
+						if (!guardedPositionsForAllPieces.Contains(new Position(0, 5)) && !guardedPositionsForAllPieces.Contains(new Position(0, 6)))
+						{
+							return true;
+						}
+					}
+				}
+			}
+			return false;
+		}
+
         public static List<Move> GeneratePossibleMovesForPlayer(PieceColor pieceColor)
         {
             List<Move> possibleMoves = new List<Move>();
@@ -1492,7 +1645,7 @@ namespace JustPoChess.Client.MVC.Controller
 
         public static bool CheckForDraw()
         {
-            if ((GeneratePossibleMovesForPlayer(Model.Model.currentPlayerToMove.color).Count == 0 && !IsPlayerInCheck(Model.Model.currentPlayerToMove.color)) || CheckIfKingVsKing())
+            if ((GeneratePossibleMovesForPlayer(Model.Model.currentPlayerToMove).Count == 0 && !IsPlayerInCheck(Model.Model.currentPlayerToMove)) || CheckIfKingVsKing())
             {
                 return true;
             }
@@ -1501,7 +1654,7 @@ namespace JustPoChess.Client.MVC.Controller
 
         public static bool CheckForCheckmate()
         {
-            if (GeneratePossibleMovesForPlayer(Model.Model.currentPlayerToMove.color).Count == 0 && IsPlayerInCheck(Model.Model.currentPlayerToMove.color))
+            if (GeneratePossibleMovesForPlayer(Model.Model.currentPlayerToMove).Count == 0 && IsPlayerInCheck(Model.Model.currentPlayerToMove))
             {
                 return true;
             }

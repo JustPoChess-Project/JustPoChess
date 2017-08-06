@@ -13,6 +13,15 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
 
         private const int BoardSize = dimensions;
         public static IPiece[,] boardState;
+		public static bool whiteLeftCastlePossible = true;
+		public static bool whiteRightCastlePossible = true;
+		public static bool blackLeftCastlePossible = true;
+		public static bool blackRightCastlePossible = true;
+
+		public static bool whiteLeftCastlePossibleTestBoard = true;
+		public static bool whiteRightCastlePossibleTestBoard = true;
+		public static bool blackLeftCastlePossibleTestBoard = true;
+		public static bool blackRightCastlePossibleTestBoard = true;
 
 		//testing purposes
 		public static IPiece[,] testBoardState;
@@ -29,23 +38,90 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                 { null, null, null, null, null, null, null, null },
                 { new Pawn(PieceColor.White, new Position(6, 0)), new Pawn(PieceColor.White, new Position(6, 1)), new Pawn(PieceColor.White, new Position(6, 2)), new Pawn(PieceColor.White, new Position(6, 3)), new Pawn(PieceColor.White, new Position(6, 4)), new Pawn(PieceColor.White, new Position(6, 5)), new Pawn(PieceColor.White, new Position(6, 6)), new Pawn(PieceColor.White, new Position(6, 7)) },
                 { new Rook(PieceColor.White, new Position(7, 0)), new Knight(PieceColor.White, new Position(7, 1)), new Bishop(PieceColor.White, new Position(7, 2)), new Queen(PieceColor.White, new Position(7, 3)), new King(PieceColor.White, new Position(7, 4)), new Bishop(PieceColor.White, new Position(7, 5)), new Knight(PieceColor.White, new Position(7, 6)), new Rook(PieceColor.White, new Position(7, 7)) },
-            };
+			};
+			Model.currentPlayerToMove = PieceColor.White;
+            Model.currentPlayerToMoveTestBoard = PieceColor.White;
 
 			//testing purposes
 			testBoardState = BoardDeepCopy();
         }
 
-        public static void PerformMove(Move move) {
+        public static void RevertTestBoardState()
+        {
+            testBoardState = BoardDeepCopy();
+            Model.currentPlayerToMoveTestBoard = Model.currentPlayerToMove;
+            Model.lastMoveTestBoard = Model.lastMove;
+            whiteLeftCastlePossibleTestBoard = whiteLeftCastlePossible;
+            whiteRightCastlePossibleTestBoard = whiteRightCastlePossible;
+            blackLeftCastlePossibleTestBoard = blackLeftCastlePossible;
+            blackRightCastlePossibleTestBoard = blackRightCastlePossible;
+        }
+
+        public static void PerformMove(Move move)
+        {
             IPiece piece = boardState[move.CurrentPosition.Row, move.CurrentPosition.Col];
             boardState[move.CurrentPosition.Row, move.CurrentPosition.Col] = null;
             boardState[move.NextPosititon.Row, move.NextPosititon.Col] = piece;
             piece.PiecePosition = new Position(move.NextPosititon.Row, move.NextPosititon.Col);
 
-			//will need that for en passant pawn move
-			Model.lastMove = move;
-			//testing purposes
-			testBoardState = BoardDeepCopy();
-		}
+
+            if (move.CurrentPosition.Row == 7)
+            {
+                if (move.CurrentPosition.Col == 0)
+                {
+                    whiteLeftCastlePossible = false;
+                    whiteLeftCastlePossibleTestBoard = false;
+                }
+                if (move.CurrentPosition.Col == 4)
+                {
+                    whiteLeftCastlePossible = false;
+                    whiteLeftCastlePossibleTestBoard = false;
+                    whiteRightCastlePossible = false;
+                    whiteRightCastlePossibleTestBoard = false;
+                }
+                if (move.CurrentPosition.Col == 7)
+                {
+                    whiteRightCastlePossible = false;
+                    whiteRightCastlePossibleTestBoard = false;
+                }
+            }
+            if (move.CurrentPosition.Row == 0)
+            {
+                if (move.CurrentPosition.Col == 0)
+                {
+                    blackLeftCastlePossible = false;
+                    blackLeftCastlePossibleTestBoard = false;
+                }
+                if (move.CurrentPosition.Col == 4)
+                {
+                    blackLeftCastlePossible = false;
+                    blackLeftCastlePossibleTestBoard = false;
+                    blackRightCastlePossible = false;
+                    blackRightCastlePossibleTestBoard = false;
+                }
+                if (move.CurrentPosition.Col == 7)
+                {
+                    blackRightCastlePossible = false;
+                    blackRightCastlePossibleTestBoard = false;
+                }
+            }
+            //will need that for en passant pawn move
+            Model.lastMove = move;
+            Model.lastMoveTestBoard = move;
+
+            if (Model.currentPlayerToMove == PieceColor.White)
+            {
+                Model.currentPlayerToMove = PieceColor.Black;
+                Model.currentPlayerToMoveTestBoard = PieceColor.Black;
+            }
+            if (Model.currentPlayerToMove == PieceColor.Black)
+            {
+                Model.currentPlayerToMove = PieceColor.White;
+                Model.currentPlayerToMoveTestBoard = PieceColor.White;
+            }
+            //testing purposes
+            testBoardState = BoardDeepCopy();
+        }
 
 		//testing purposes
 		public static void PerformMoveOnTestBoard(Move move)
@@ -56,6 +132,48 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
 			testBoardState[move.NextPosititon.Row, move.NextPosititon.Col] = newPiece;
 			piece.PiecePosition = new Position(move.NextPosititon.Row, move.NextPosititon.Col);
             newPiece.PiecePosition = new Position(move.NextPosititon.Row, move.NextPosititon.Col);
+
+			if (move.CurrentPosition.Row == 7)
+			{
+				if (move.CurrentPosition.Col == 0)
+				{
+					whiteLeftCastlePossibleTestBoard = false;
+				}
+				if (move.CurrentPosition.Col == 4)
+				{
+					whiteLeftCastlePossibleTestBoard = false;
+					whiteRightCastlePossibleTestBoard = false;
+				}
+				if (move.CurrentPosition.Col == 7)
+				{
+					whiteRightCastlePossibleTestBoard = false;
+				}
+			}
+			if (move.CurrentPosition.Row == 0)
+			{
+				if (move.CurrentPosition.Col == 0)
+				{
+					blackLeftCastlePossibleTestBoard = false;
+				}
+				if (move.CurrentPosition.Col == 4)
+				{
+					blackLeftCastlePossibleTestBoard = false;
+					blackRightCastlePossibleTestBoard = false;
+				}
+				if (move.CurrentPosition.Col == 7)
+				{
+					blackRightCastlePossibleTestBoard = false;
+				}
+			}
+			Model.lastMoveTestBoard = move;
+			if (Model.currentPlayerToMoveTestBoard == PieceColor.White)
+			{
+				Model.currentPlayerToMoveTestBoard = PieceColor.Black;
+			}
+			if (Model.currentPlayerToMoveTestBoard == PieceColor.Black)
+			{
+				Model.currentPlayerToMoveTestBoard = PieceColor.White;
+			}
 		}
 
 		//testing purposes

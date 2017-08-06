@@ -36,5 +36,11 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
 				this.nextPosititon = value;
 			}
 		}
+
+        //testing purposes
+        public override string ToString()
+        {
+            return string.Format("[Move: CurrentPosition={0}, NextPosititon={1}]", CurrentPosition, NextPosititon);
+        }
     }
 }

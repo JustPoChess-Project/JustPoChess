@@ -1,5 +1,6 @@
 ﻿using JustPoChess.Client.MVC.Model.Contracts;
 using JustPoChess.Client.MVC.Model.Entities.Board;
+using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecesEnums;
 using JustPoChess.Client.MVC.Model.Entities.Player;
 
 namespace JustPoChess.Client.MVC.Model
@@ -10,10 +11,13 @@ namespace JustPoChess.Client.MVC.Model
         public readonly static Player player1;
         public readonly static Player player2;
         public static GameState gameState;
-		public static Player currentPlayerToMove;
+
+		public static PieceColor currentPlayerToMove;
+		public static PieceColor currentPlayerToMoveTestBoard;
 
 		//will need that for en passant pawn move
 		public static Move lastMove;
+        public static Move lastMoveTestBoard;
 
 		public static void InitBoard()
         {

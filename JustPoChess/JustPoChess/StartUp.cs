@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 using JustPoChess.Client.MVC.Model.Entities.Board;
+using JustPoChess.Client.MVC.Model.Entities.Pieces.Abstract;
 using JustPoChess.Client.MVC.View.Input;
 
 namespace JustPoChess.Client.MVC
@@ -9,22 +12,16 @@ namespace JustPoChess.Client.MVC
         public static void Main()
 		{
             Board.InitBoard();
-            string input = Input.GetUserInput();
-            Input.ValidateUserInput(input);
-            Move move = Input.ParseMove(input);
 			View.View.PrintBoard();
-			Board.PerformMove(move);
-			View.View.PrintBoard();
-			View.View.PrintTestBoard();
             Console.WriteLine(new string('*', 50));
-
-            string input2 = Input.GetUserInput();
-			Input.ValidateUserInput(input2);
-			Move move2 = Input.ParseMove(input2);
-            View.View.PrintTestBoard();
-			Board.PerformMoveOnTestBoard(move2);
-			View.View.PrintBoard();
-			View.View.PrintTestBoard();
+            List<Move> allPossibleMoves = new List<Move>();
+            foreach (Piece boardPiece in Model.Model.GetBoardState()) {
+                allPossibleMoves.Concat(Controller.Controller.GeneratePossibleMovesForPiece(boardPiece));
+            }
+            foreach (Move m in allPossibleMoves) 
+            {
+                Console.WriteLine(m);
+            }
             return;
             //General Program settings
             //Mandatory fuck Unix users

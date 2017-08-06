@@ -34,6 +34,10 @@ namespace JustPoChess.Client.MVC.Model.Entities.Pieces.Abstract
 
         public static IPiece NewPiece(IPiece piece)
         {
+            if (piece == null) 
+            {
+                return null;
+            }
             switch (piece.PieceType)
             {
                 case PieceType.King:

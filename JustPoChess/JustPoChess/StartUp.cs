@@ -14,9 +14,9 @@ namespace JustPoChess.Client.MVC
             Board.InitBoard();
 			View.View.PrintBoard();
             Console.WriteLine(new string('*', 50));
-            List<Move> allPossibleMoves = new List<Move>();
+            IEnumerable<Move> allPossibleMoves = new List<Move>();
             foreach (Piece boardPiece in Model.Model.GetBoardState()) {
-                allPossibleMoves.Concat(Controller.Controller.GeneratePossibleMovesForPiece(boardPiece));
+                allPossibleMoves = allPossibleMoves.Concat(Controller.Controller.GeneratePossibleMovesForPiece(boardPiece));
             }
             foreach (Move m in allPossibleMoves) 
             {

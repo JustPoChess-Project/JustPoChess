@@ -34,5 +34,11 @@
             this.row = row;
             this.col = col;
         }
+
+		//testing purposes
+		public override string ToString()
+        {
+            return string.Format("[Position: Row={0}, Col={1}]", Row, Col);
+        }
     }
 }

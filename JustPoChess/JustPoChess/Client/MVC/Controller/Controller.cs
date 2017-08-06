@@ -36,22 +36,26 @@ namespace JustPoChess.Client.MVC.Controller
             }
         }
 
-        public static bool MoveDiscoversCheckToOwnKing(Move move)
-        {
-            PieceColor pieceColor = Board.boardState[move.CurrentPosition.Row, move.CurrentPosition.Col].PieceColor;
-            Board.PerformMoveOnTestBoard(move);
-            foreach (Piece boardPiece in Board.testBoardState)
-            {
-                if (boardPiece != null && boardPiece.PieceColor != pieceColor && PieceGivesCheckToOpponentsKing(boardPiece))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        //public static bool MoveDiscoversCheckToOwnKing(Move move)
+        //{
+        //    PieceColor pieceColor = Board.boardState[move.CurrentPosition.Row, move.CurrentPosition.Col].PieceColor;
+        //    Board.PerformMoveOnTestBoard(move);
+        //    foreach (Piece boardPiece in Board.testBoardState)
+        //    {
+        //        if (boardPiece != null && boardPiece.PieceColor != pieceColor && PieceGivesCheckToOpponentsKing(boardPiece))
+        //        {
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
 
         public static bool PieceGivesCheckToOpponentsKing(Piece piece)
-        {
+		{
+			if (piece == null)
+			{
+                return false;
+			}
             List<Move> possibleMoves = new List<Move>();
             possibleMoves = GeneratePossibleMovesForPiece(piece);
             foreach (Piece boardPiece in Board.boardState)
@@ -71,7 +75,11 @@ namespace JustPoChess.Client.MVC.Controller
         }
 
         public static bool IsPieceProtected(Piece piece)
-        {
+		{
+            if (piece == null)
+            {
+                return false;
+            }
             List<Position> guardedPositionsForAllPieces = new List<Position>();
             foreach (Piece boardPiece in Board.boardState)
             {
@@ -93,7 +101,11 @@ namespace JustPoChess.Client.MVC.Controller
 
         public static List<Position> GenerateGuardedPositionsForPiece(Piece piece)
         {
-            List<Position> guardedPiecesOnSquares = new List<Position>();
+			List<Position> guardedPiecesOnSquares = new List<Position>();
+			if (piece == null)
+			{
+				return guardedPiecesOnSquares;
+			}
             switch (piece.PieceType)
             {
                 case PieceType.King:
@@ -775,6 +787,10 @@ namespace JustPoChess.Client.MVC.Controller
         public static List<Move> GeneratePossibleMovesForPiece(Piece piece)
         {
             List<Move> possibleMoves = new List<Move>();
+            if (piece == null)
+            {
+                return possibleMoves;
+            }
             switch (piece.PieceType)
             {
                 case PieceType.King:
@@ -1470,10 +1486,10 @@ namespace JustPoChess.Client.MVC.Controller
             }
             foreach (Move move in possibleMoves)
             {
-                if (MoveDiscoversCheckToOwnKing(move))
-                {
-                    possibleMoves.Remove(move);
-                }
+                //if (MoveDiscoversCheckToOwnKing(move))
+                //{
+                //    possibleMoves.Remove(move);
+                //}
             }
             return possibleMoves;
         }

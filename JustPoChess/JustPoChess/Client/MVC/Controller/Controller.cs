@@ -36,28 +36,37 @@ namespace JustPoChess.Client.MVC.Controller
             }
         }
 
-        //public static bool MoveDiscoversCheckToOwnKing(Move move)
-        //{
-        //    PieceColor pieceColor = Board.boardState[move.CurrentPosition.Row, move.CurrentPosition.Col].PieceColor;
-        //    Board.PerformMoveOnTestBoard(move);
-        //    foreach (Piece boardPiece in Board.testBoardState)
-        //    {
-        //        if (boardPiece != null && boardPiece.PieceColor != pieceColor && PieceGivesCheckToOpponentsKing(boardPiece))
-        //        {
-        //            return true;
-        //        }
-        //    }
-        //    return false;
-        //}
+        public static bool MoveDiscoversCheckToOwnKing(Move move)
+        {
+            if (move == null)
+            {
+                return false;
+            }
+            if (Board.boardState[move.CurrentPosition.Row, move.CurrentPosition.Col] == null)
+            {
+                return false;
+            }
+            PieceColor pieceColor = Board.boardState[move.CurrentPosition.Row, move.CurrentPosition.Col].PieceColor;
+            Board.PerformMoveOnTestBoard(move);
+            foreach (Piece boardPiece in Board.testBoardState)
+            {
+                if (boardPiece != null && boardPiece.PieceColor != pieceColor && PieceGivesCheckToOpponentsKing(boardPiece))
+                {
+                    return true;
+                }
+            }
+            Board.RevertTestBoardState();
+            return false;
+        }
 
         public static bool PieceGivesCheckToOpponentsKing(Piece piece)
-		{
-			if (piece == null)
-			{
+        {
+            if (piece == null)
+            {
                 return false;
-			}
-            List<Move> possibleMoves = new List<Move>();
-            possibleMoves = GeneratePossibleMovesForPiece(piece);
+            }
+            ICollection<Move> possibleMoves = new List<Move>();
+            possibleMoves = GeneratePossibleMovesForPieceWithoutConsideringDiscoveringCheck(piece);
             foreach (Piece boardPiece in Board.boardState)
             {
                 if (boardPiece != null && boardPiece.PieceType == PieceType.King && boardPiece.PieceColor != piece.PieceColor)
@@ -75,12 +84,12 @@ namespace JustPoChess.Client.MVC.Controller
         }
 
         public static bool IsPieceProtected(Piece piece)
-		{
+        {
             if (piece == null)
             {
                 return false;
             }
-            List<Position> guardedPositionsForAllPieces = new List<Position>();
+            IEnumerable<Position> guardedPositionsForAllPieces = new List<Position>();
             foreach (Piece boardPiece in Board.boardState)
             {
                 if (boardPiece != null && boardPiece.PieceColor == piece.PieceColor)
@@ -99,13 +108,13 @@ namespace JustPoChess.Client.MVC.Controller
             return position.Row >= 0 && position.Row <= 7 && position.Col >= 0 && position.Col <= 7;
         }
 
-        public static List<Position> GenerateGuardedPositionsForPiece(Piece piece)
+        public static ICollection<Position> GenerateGuardedPositionsForPiece(Piece piece)
         {
-			List<Position> guardedPiecesOnSquares = new List<Position>();
-			if (piece == null)
-			{
-				return guardedPiecesOnSquares;
-			}
+            ICollection<Position> guardedPiecesOnSquares = new List<Position>();
+            if (piece == null)
+            {
+                return guardedPiecesOnSquares;
+            }
             switch (piece.PieceType)
             {
                 case PieceType.King:
@@ -784,9 +793,45 @@ namespace JustPoChess.Client.MVC.Controller
             return guardedPiecesOnSquares;
         }
 
-        public static List<Move> GeneratePossibleMovesForPiece(Piece piece)
+        public static ICollection<Move> GeneratePossibleMovesForPieceConsideringDiscoveringCheck(Piece piece)
         {
-            List<Move> possibleMoves = new List<Move>();
+            ICollection<Move> possibleMoves = new List<Move>();
+            possibleMoves = GeneratePossibleMovesForPieceWithoutConsideringDiscoveringCheck(piece);
+            foreach (Move move in possibleMoves)
+            {
+                if (MoveDiscoversCheckToOwnKing(move))
+                {
+                    possibleMoves.Remove(move);
+                }
+            }
+            if (piece.PieceColor == PieceColor.White)
+            {
+                if (IsWhiteLeftCastlePossible())
+                {
+                    possibleMoves.Add(new Move(piece.PiecePosition, new Position(7, 2)));
+                }
+                if (IsWhiteRightCastlePossible())
+                {
+                    possibleMoves.Add(new Move(piece.PiecePosition, new Position(7, 6)));
+                }
+            }
+            else
+            {
+                if (IsBlackLeftCastlePossible())
+                {
+                    possibleMoves.Add(new Move(piece.PiecePosition, new Position(0, 2)));
+                }
+                if (IsBlackRightCastlePossible())
+                {
+                    possibleMoves.Add(new Move(piece.PiecePosition, new Position(0, 6)));
+                }
+            }
+            return possibleMoves;
+        }
+
+        public static ICollection<Move> GeneratePossibleMovesForPieceWithoutConsideringDiscoveringCheck(Piece piece)
+        {
+            ICollection<Move> possibleMoves = new List<Move>();
             if (piece == null)
             {
                 return possibleMoves;
@@ -794,12 +839,12 @@ namespace JustPoChess.Client.MVC.Controller
             switch (piece.PieceType)
             {
                 case PieceType.King:
-                    List<Position> allGuardedPositionsByOpponent = new List<Position>();
+                    IEnumerable<Position> allGuardedPositionsByOpponent = new List<Position>();
                     foreach (Piece boardPiece in Board.boardState)
                     {
                         if (boardPiece != null && boardPiece.PieceColor != piece.PieceColor)
                         {
-                            allGuardedPositionsByOpponent.Concat(GenerateGuardedPositionsForPiece(boardPiece));
+                            allGuardedPositionsByOpponent = allGuardedPositionsByOpponent.Concat(GenerateGuardedPositionsForPiece(boardPiece));
                         }
                     }
 
@@ -921,29 +966,6 @@ namespace JustPoChess.Client.MVC.Controller
                         else
                         {
                             possibleMoves.Add(new Move(piece.PiecePosition, positionEightKing));
-                        }
-                    }
-
-                    if (piece.PieceColor == PieceColor.White)
-                    {
-                        if (IsWhiteLeftCastlePossible())
-                        {
-                            possibleMoves.Add(new Move(piece.PiecePosition, new Position(7, 2)));
-                        }
-                        if (IsWhiteRightCastlePossible())
-                        {
-                            possibleMoves.Add(new Move(piece.PiecePosition, new Position(7, 6)));
-                        }
-                    }
-                    else
-                    {
-                        if (IsBlackLeftCastlePossible())
-                        {
-                            possibleMoves.Add(new Move(piece.PiecePosition, new Position(0, 2)));
-                        }
-                        if (IsBlackRightCastlePossible())
-                        {
-                            possibleMoves.Add(new Move(piece.PiecePosition, new Position(0, 6)));
                         }
                     }
                     break;
@@ -1484,19 +1506,12 @@ namespace JustPoChess.Client.MVC.Controller
                 default:
                     throw new ArgumentException("Invalid piece");
             }
-            foreach (Move move in possibleMoves)
-            {
-                //if (MoveDiscoversCheckToOwnKing(move))
-                //{
-                //    possibleMoves.Remove(move);
-                //}
-            }
             return possibleMoves;
         }
 
         public static bool IsMovePossible(Move move)
         {
-            List<Move> possibleMoves = GeneratePossibleMovesForPlayer(Board.boardState[move.CurrentPosition.Row, move.CurrentPosition.Col].PieceColor);
+            ICollection<Move> possibleMoves = GeneratePossibleMovesForPlayer(Board.boardState[move.CurrentPosition.Row, move.CurrentPosition.Col].PieceColor);
             if (possibleMoves.Contains(move))
             {
                 return true;
@@ -1550,12 +1565,12 @@ namespace JustPoChess.Client.MVC.Controller
                 {
                     if (Board.boardState[7, 1] == null && Board.boardState[7, 2] == null && Board.boardState[7, 3] == null) // are there pieces between the left white rook and the white king
                     {
-                        List<Position> guardedPositionsForAllPieces = new List<Position>();
+                        IEnumerable<Position> guardedPositionsForAllPieces = new List<Position>();
                         foreach (Piece boardPiece in Board.boardState)
                         {
                             if (boardPiece != null && boardPiece.PieceColor == PieceColor.Black)
                             {
-                                guardedPositionsForAllPieces.Concat(GenerateGuardedPositionsForPiece(boardPiece));
+                                guardedPositionsForAllPieces = guardedPositionsForAllPieces.Concat(GenerateGuardedPositionsForPiece(boardPiece));
                             }
                         }
                         if (!guardedPositionsForAllPieces.Contains(new Position(7, 2)) && !guardedPositionsForAllPieces.Contains(new Position(7, 3))) // are there squares that the white king has to go through that are attacked
@@ -1576,12 +1591,12 @@ namespace JustPoChess.Client.MVC.Controller
                 {
                     if (Board.boardState[7, 5] == null && Board.boardState[7, 6] == null)
                     {
-                        List<Position> guardedPositionsForAllPieces = new List<Position>();
+                        IEnumerable<Position> guardedPositionsForAllPieces = new List<Position>();
                         foreach (Piece boardPiece in Board.boardState)
                         {
                             if (boardPiece != null && boardPiece.PieceColor == PieceColor.Black)
                             {
-                                guardedPositionsForAllPieces.Concat(GenerateGuardedPositionsForPiece(boardPiece));
+                                guardedPositionsForAllPieces = guardedPositionsForAllPieces.Concat(GenerateGuardedPositionsForPiece(boardPiece));
                             }
                         }
                         if (!guardedPositionsForAllPieces.Contains(new Position(7, 5)) && !guardedPositionsForAllPieces.Contains(new Position(7, 6)))
@@ -1602,12 +1617,12 @@ namespace JustPoChess.Client.MVC.Controller
                 {
                     if (Board.boardState[0, 1] == null && Board.boardState[0, 2] == null && Board.boardState[0, 3] == null)
                     {
-                        List<Position> guardedPositionsForAllPieces = new List<Position>();
+                        IEnumerable<Position> guardedPositionsForAllPieces = new List<Position>();
                         foreach (Piece boardPiece in Board.boardState)
                         {
                             if (boardPiece != null && boardPiece.PieceColor == PieceColor.White)
                             {
-                                guardedPositionsForAllPieces.Concat(GenerateGuardedPositionsForPiece(boardPiece));
+                                guardedPositionsForAllPieces = guardedPositionsForAllPieces.Concat(GenerateGuardedPositionsForPiece(boardPiece));
                             }
                         }
                         if (!guardedPositionsForAllPieces.Contains(new Position(0, 2)) && !guardedPositionsForAllPieces.Contains(new Position(0, 3)))
@@ -1628,12 +1643,12 @@ namespace JustPoChess.Client.MVC.Controller
                 {
                     if (Board.boardState[0, 5] == null && Board.boardState[0, 6] == null)
                     {
-                        List<Position> guardedPositionsForAllPieces = new List<Position>();
+                        IEnumerable<Position> guardedPositionsForAllPieces = new List<Position>();
                         foreach (Piece boardPiece in Board.boardState)
                         {
                             if (boardPiece != null && boardPiece.PieceColor == PieceColor.White)
                             {
-                                guardedPositionsForAllPieces.Concat(GenerateGuardedPositionsForPiece(boardPiece));
+                                guardedPositionsForAllPieces = guardedPositionsForAllPieces.Concat(GenerateGuardedPositionsForPiece(boardPiece));
                             }
                         }
                         if (!guardedPositionsForAllPieces.Contains(new Position(0, 5)) && !guardedPositionsForAllPieces.Contains(new Position(0, 6)))
@@ -1646,14 +1661,14 @@ namespace JustPoChess.Client.MVC.Controller
             return false;
         }
 
-        public static List<Move> GeneratePossibleMovesForPlayer(PieceColor pieceColor)
+        public static ICollection<Move> GeneratePossibleMovesForPlayer(PieceColor pieceColor)
         {
-            List<Move> possibleMoves = new List<Move>();
+            ICollection<Move> possibleMoves = new List<Move>();
             foreach (Piece boardPiece in Board.boardState)
             {
                 if (boardPiece != null && boardPiece.PieceColor == pieceColor)
                 {
-                    possibleMoves.Concat(GeneratePossibleMovesForPiece(boardPiece));
+                    possibleMoves = (System.Collections.Generic.ICollection<JustPoChess.Client.MVC.Model.Entities.Board.Move>)possibleMoves.Concat(GeneratePossibleMovesForPieceConsideringDiscoveringCheck(boardPiece));
                 }
             }
             return possibleMoves;

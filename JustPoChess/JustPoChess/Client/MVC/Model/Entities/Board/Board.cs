@@ -28,22 +28,22 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
 
         public static void InitBoard()
         {
-            boardState = new IPiece[,]
-			{
-				{ null, new Rook(PieceColor.White, new Position(0, 1)), null, null, null, null, null, null },
-				{ null, null,  new Pawn(PieceColor.Black, new Position(1, 2)), null, null, null, null, null },
+			boardState = new IPiece[,]
+		   {
+				{ new Rook(PieceColor.Black, new Position(0, 0)), new Knight(PieceColor.Black, new Position(0, 1)), new Bishop(PieceColor.Black, new Position(0, 2)), new Queen(PieceColor.Black, new Position(0, 3)), new King(PieceColor.Black, new Position(0, 4)), new Bishop(PieceColor.Black, new Position(0, 5)), new Knight(PieceColor.Black, new Position(0, 6)), new Rook(PieceColor.Black, new Position(0, 7)) },
+				{ new Pawn(PieceColor.Black, new Position(1, 0)), new Pawn(PieceColor.Black, new Position(1, 1)), new Pawn(PieceColor.Black, new Position(1, 2)), new Pawn(PieceColor.Black, new Position(1, 3)), new Pawn(PieceColor.Black, new Position(1, 4)), new Pawn(PieceColor.Black, new Position(1, 5)), new Pawn(PieceColor.Black, new Position(1, 6)), new Pawn(PieceColor.Black, new Position(1, 7)) },
 				{ null, null, null, null, null, null, null, null },
 				{ null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null },
-                {  new Pawn(PieceColor.White, new Position(6, 0)), null, null, null, null, null, null, null },
-                { null, new Rook(PieceColor.White, new Position(7, 1)), null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null, null },
+				{ new Pawn(PieceColor.White, new Position(6, 0)), new Pawn(PieceColor.White, new Position(6, 1)), new Pawn(PieceColor.White, new Position(6, 2)), new Pawn(PieceColor.White, new Position(6, 3)), new Pawn(PieceColor.White, new Position(6, 4)), new Pawn(PieceColor.White, new Position(6, 5)), new Pawn(PieceColor.White, new Position(6, 6)), new Pawn(PieceColor.White, new Position(6, 7)) },
+				{ new Rook(PieceColor.White, new Position(7, 0)), new Knight(PieceColor.White, new Position(7, 1)), new Bishop(PieceColor.White, new Position(7, 2)), new Queen(PieceColor.White, new Position(7, 3)), new King(PieceColor.White, new Position(7, 4)), new Bishop(PieceColor.White, new Position(7, 5)), new Knight(PieceColor.White, new Position(7, 6)), new Rook(PieceColor.White, new Position(7, 7)) }
 			};
-			Model.currentPlayerToMove = PieceColor.White;
+            Model.currentPlayerToMove = PieceColor.White;
             Model.currentPlayerToMoveTestBoard = PieceColor.White;
 
-			//testing purposes
-			testBoardState = BoardDeepCopy();
+            //testing purposes
+            testBoardState = BoardDeepCopy();
         }
 
         public static void RevertTestBoardState()
@@ -105,6 +105,47 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                     blackRightCastlePossibleTestBoard = false;
                 }
             }
+            if (move.NextPosititon.Row == 7)
+            {
+                if (move.NextPosititon.Col == 0)
+                {
+
+                    whiteLeftCastlePossible = false;
+                    whiteLeftCastlePossibleTestBoard = false;
+                }
+                if (move.NextPosititon.Col == 4)
+                {
+                    whiteLeftCastlePossible = false;
+                    whiteLeftCastlePossibleTestBoard = false;
+                    whiteRightCastlePossible = false;
+                    whiteRightCastlePossibleTestBoard = false;
+                }
+                if (move.NextPosititon.Col == 7)
+                {
+                    whiteRightCastlePossible = false;
+                    whiteRightCastlePossibleTestBoard = false;
+                }
+			}
+            if (move.NextPosititon.Row == 0)
+			{
+				if (move.NextPosititon.Col == 0)
+				{
+					blackLeftCastlePossible = false;
+					blackLeftCastlePossibleTestBoard = false;
+				}
+				if (move.NextPosititon.Col == 4)
+				{
+					blackLeftCastlePossible = false;
+					blackLeftCastlePossibleTestBoard = false;
+					blackRightCastlePossible = false;
+					blackRightCastlePossibleTestBoard = false;
+				}
+				if (move.NextPosititon.Col == 7)
+				{
+					blackRightCastlePossible = false;
+					blackRightCastlePossibleTestBoard = false;
+				}
+			}
             //will need that for en passant pawn move
             Model.lastMove = move;
             Model.lastMoveTestBoard = move;
@@ -161,6 +202,39 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
 					blackRightCastlePossibleTestBoard = false;
 				}
 				if (move.CurrentPosition.Col == 7)
+				{
+					blackRightCastlePossibleTestBoard = false;
+				}
+			}
+			if (move.NextPosititon.Row == 7)
+			{
+				if (move.NextPosititon.Col == 0)
+				{
+
+                    whiteLeftCastlePossibleTestBoard = false;
+				}
+				if (move.NextPosititon.Col == 4)
+				{
+					whiteLeftCastlePossibleTestBoard = false;
+					whiteRightCastlePossibleTestBoard = false;
+				}
+				if (move.NextPosititon.Col == 7)
+				{
+					whiteRightCastlePossibleTestBoard = false;
+				}
+			}
+			if (move.NextPosititon.Row == 0)
+			{
+				if (move.NextPosititon.Col == 0)
+				{
+					blackLeftCastlePossibleTestBoard = false;
+				}
+				if (move.NextPosititon.Col == 4)
+				{
+					blackLeftCastlePossibleTestBoard = false;
+					blackRightCastlePossibleTestBoard = false;
+				}
+				if (move.NextPosititon.Col == 7)
 				{
 					blackRightCastlePossibleTestBoard = false;
 				}

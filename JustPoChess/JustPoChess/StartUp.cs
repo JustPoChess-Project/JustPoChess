@@ -14,11 +14,14 @@ namespace JustPoChess.Client.MVC
             Board.InitBoard();
 			View.View.PrintBoard();
             Console.WriteLine(new string('*', 50));
-            IEnumerable<Move> allPossibleMoves = new List<Move>();
+            IEnumerable<Move> allPossibleMovesForCurrentPlayer = new List<Move>();
             foreach (Piece boardPiece in Model.Model.GetBoardState()) {
-                allPossibleMoves = allPossibleMoves.Concat(Controller.Controller.GeneratePossibleMovesForPiece(boardPiece));
+                if (boardPiece != null && boardPiece.PieceColor == Model.Model.currentPlayerToMove)
+                {
+                    allPossibleMovesForCurrentPlayer = allPossibleMovesForCurrentPlayer.Concat(Controller.Controller.GeneratePossibleMovesForPieceConsideringDiscoveringCheck(boardPiece));
+                }
             }
-            foreach (Move m in allPossibleMoves) 
+            foreach (Move m in allPossibleMovesForCurrentPlayer) 
             {
                 Console.WriteLine(m);
             }

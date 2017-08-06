@@ -6,7 +6,7 @@ using JustPoChess.Client.MVC.View.Sounds;
 
 namespace JustPoChess.Client.MVC.View.Menu
 {
-    public static class Menu
+    public static class LinuxMenu
     {
         public static void InitialScreen()
         {

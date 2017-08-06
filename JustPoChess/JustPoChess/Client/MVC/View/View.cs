@@ -10,12 +10,12 @@ namespace JustPoChess.Client.MVC.View
     {
         public static void InitialScreen()
         {
-            Menu.Menu.InitialScreen();
+            Menu.LinuxMenu.InitialScreen();
         }
 
         public static void InitializeMenu()
         {
-            Menu.Menu.InitializeMenu();
+            Menu.LinuxMenu.InitializeMenu();
         }
 
         public static void StopMusic()
@@ -31,7 +31,7 @@ namespace JustPoChess.Client.MVC.View
                 Console.Write($"{8 - x} ");
                 for (int y = 0; y < 8; y++)
                 {
-                    Console.ResetColor();
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
                     if (Model.Model.GetBoardState()[x, y] == null)
                     {
                         if ((x + y) % 2 != 0)
@@ -53,7 +53,7 @@ namespace JustPoChess.Client.MVC.View
                 {
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("  a b c d  e f g h");
-                    Console.ResetColor();
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
                 }
             }
         }
@@ -79,16 +79,16 @@ namespace JustPoChess.Client.MVC.View
 					}
 					else
 					{
-						Console.ResetColor();
-						Console.Write($"{GetPieceString(Model.Model.GetTestBoardState(), x, y)} ");
+					    Console.ForegroundColor = ConsoleColor.DarkGray;
+                        Console.Write($"{GetPieceString(Model.Model.GetTestBoardState(), x, y)} ");
 					}
 				}
 				Console.WriteLine();
 				if (x == 7)
 				{
 					Console.WriteLine("  a  b  c  d   e  f  g  h");
-					Console.ResetColor();
-				}
+				    Console.ForegroundColor = ConsoleColor.DarkGray;
+                }
 			}
 		}
 
@@ -106,11 +106,11 @@ namespace JustPoChess.Client.MVC.View
 
             for (int x = 0; x < 8; x++)
             {
-                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.Write($"{x + 1} ");
                 for (int y = 0; y < 8; y++)
                 {
-                    Console.ResetColor();
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
                     if (mirroredBoard[x, y] == null)
                     {
                         if ((x + y) % 2 != 0)
@@ -130,9 +130,9 @@ namespace JustPoChess.Client.MVC.View
                 Console.WriteLine();
                 if (x == 7)
                 {
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("  h g f e  d c b a");
-                    Console.ResetColor();
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
                 }
             }
         }

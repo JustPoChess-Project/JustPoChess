@@ -1502,6 +1502,15 @@ namespace JustPoChess.Client.MVC.Controller
                             }
                         }
                     }
+
+                    ICollection<Move> posslbeEnPassantMoves = GeneratePosslbeEnPassantMoves();
+                    foreach (Move move in posslbeEnPassantMoves)
+                    {
+                        if (move.CurrentPosition == piece.PiecePosition)
+                        {
+                            possibleMoves.Add(move);
+                        }
+                    }
                     break;
                 default:
                     throw new ArgumentException("Invalid piece");
@@ -1702,6 +1711,67 @@ namespace JustPoChess.Client.MVC.Controller
                 }
             }
             return true;
+        }
+
+        public static ICollection<Move> GeneratePosslbeEnPassantMoves()
+        {
+            List<Move> possibleEnPassantMoves = new List<Move>();
+            if (Board.Instance.BoardState[Model.Model.lastMove.NextPosititon.Row, Model.Model.lastMove.NextPosititon.Col].PieceType != PieceType.Pawn)
+            { //check if last moved piece was actually a pawn
+                return possibleEnPassantMoves;
+            }
+            PieceColor pieceColor = Board.Instance.BoardState[Model.Model.lastMove.NextPosititon.Row, Model.Model.lastMove.NextPosititon.Col].PieceColor; //check who moved last turn
+            switch (pieceColor)
+            {
+                case PieceColor.White:
+                    if (Model.Model.lastMove.NextPosititon.Row != 4)
+                    { //if it was white's turn and he didn't moved his pawn to the 4th row - return
+                        return possibleEnPassantMoves;
+                    }
+                    break;
+                case PieceColor.Black:
+                    if (Model.Model.lastMove.NextPosititon.Row != 3)
+                    {
+                        return possibleEnPassantMoves;
+                    }
+                    break;
+            }
+            foreach (Piece boardPiece in Board.Instance.BoardState)
+            {
+                if (boardPiece != null && boardPiece.PieceColor != pieceColor && boardPiece.PieceType == PieceType.Pawn) //iterating over all pawns from the current player
+                {
+                    switch (boardPiece.PieceColor)
+                    {
+                        case PieceColor.White:
+                            if (boardPiece.PiecePosition.Row != 3) //in case if it's white's turn - check if his pawn is at row 3
+                            {
+                                return possibleEnPassantMoves;
+                            }
+                            break;
+                        case PieceColor.Black:
+                            if (Model.Model.lastMove.NextPosititon.Row != 4)
+                            {
+                                return possibleEnPassantMoves;
+                            }
+                            break;
+                    }
+                }
+                if (boardPiece.PiecePosition.Col == Board.Instance.BoardState[Model.Model.lastMove.NextPosititon.Row, Model.Model.lastMove.NextPosititon.Col].PiecePosition.Col + 1
+                    || boardPiece.PiecePosition.Col == Board.Instance.BoardState[Model.Model.lastMove.NextPosititon.Row, Model.Model.lastMove.NextPosititon.Col].PiecePosition.Col - 1)
+                { //ensure that the pawn is in an adjusted column
+
+                    switch (boardPiece.PieceColor)
+                    {
+                        case PieceColor.White:
+                            possibleEnPassantMoves.Add(new Move(boardPiece.PiecePosition, new Position(Model.Model.lastMove.NextPosititon.Row - 1, Model.Model.lastMove.NextPosititon.Col))); //in case all checks are successful add the move to the possible moves
+                            break;
+                        case PieceColor.Black:
+                            possibleEnPassantMoves.Add(new Move(boardPiece.PiecePosition, new Position(Model.Model.lastMove.NextPosititon.Row + 1, Model.Model.lastMove.NextPosititon.Col)));
+                            break;
+                    }
+                }
+            }
+            return possibleEnPassantMoves;
         }
     }
 }

@@ -1576,24 +1576,21 @@ namespace JustPoChess.Client.MVC.Controller
 
         public static bool IsWhiteLeftCastlePossible()
         {
-            if (Board.Instance.WhiteLeftCastlePossible) // has white moved the left rook / king
+            if (Board.Instance.WhiteLeftCastlePossible && !IsPlayerInCheck(PieceColor.White)) // has white moved the left 
             {
-                if (!IsPlayerInCheck(PieceColor.White)) // is white in check
+                if (Board.Instance.BoardState[7, 1] == null && Board.Instance.BoardState[7, 2] == null && Board.Instance.BoardState[7, 3] == null) // are there pieces between the left white rook and the white king
                 {
-                    if (Board.Instance.BoardState[7, 1] == null && Board.Instance.BoardState[7, 2] == null && Board.Instance.BoardState[7, 3] == null) // are there pieces between the left white rook and the white king
+                    IEnumerable<Position> guardedPositionsForAllPieces = new List<Position>();
+                    foreach (Piece boardPiece in Board.Instance.BoardState)
                     {
-                        IEnumerable<Position> guardedPositionsForAllPieces = new List<Position>();
-                        foreach (Piece boardPiece in Board.Instance.BoardState)
+                        if (boardPiece != null && boardPiece.PieceColor == PieceColor.Black)
                         {
-                            if (boardPiece != null && boardPiece.PieceColor == PieceColor.Black)
-                            {
-                                guardedPositionsForAllPieces = guardedPositionsForAllPieces.Concat(GenerateGuardedPositionsForPiece(boardPiece));
-                            }
+                            guardedPositionsForAllPieces = guardedPositionsForAllPieces.Concat(GenerateGuardedPositionsForPiece(boardPiece));
                         }
-                        if (!guardedPositionsForAllPieces.Contains(new Position(7, 2)) && !guardedPositionsForAllPieces.Contains(new Position(7, 3))) // are there squares that the white king has to go through that are attacked
-                        {
-                            return true;
-                        }
+                    }
+                    if (!guardedPositionsForAllPieces.Contains(new Position(7, 2)) && !guardedPositionsForAllPieces.Contains(new Position(7, 3))) // are there squares that the white king has to go through that are attacked
+                    {
+                        return true;
                     }
                 }
             }
@@ -1602,24 +1599,21 @@ namespace JustPoChess.Client.MVC.Controller
 
         public static bool IsWhiteRightCastlePossible()
         {
-            if (Board.Instance.WhiteRightCastlePossible)
+            if (Board.Instance.WhiteRightCastlePossible && !IsPlayerInCheck(PieceColor.White))
             {
-                if (!IsPlayerInCheck(PieceColor.White))
+                if (Board.Instance.BoardState[7, 5] == null && Board.Instance.BoardState[7, 6] == null)
                 {
-                    if (Board.Instance.BoardState[7, 5] == null && Board.Instance.BoardState[7, 6] == null)
+                    IEnumerable<Position> guardedPositionsForAllPieces = new List<Position>();
+                    foreach (Piece boardPiece in Board.Instance.BoardState)
                     {
-                        IEnumerable<Position> guardedPositionsForAllPieces = new List<Position>();
-                        foreach (Piece boardPiece in Board.Instance.BoardState)
+                        if (boardPiece != null && boardPiece.PieceColor == PieceColor.Black)
                         {
-                            if (boardPiece != null && boardPiece.PieceColor == PieceColor.Black)
-                            {
-                                guardedPositionsForAllPieces = guardedPositionsForAllPieces.Concat(GenerateGuardedPositionsForPiece(boardPiece));
-                            }
+                            guardedPositionsForAllPieces = guardedPositionsForAllPieces.Concat(GenerateGuardedPositionsForPiece(boardPiece));
                         }
-                        if (!guardedPositionsForAllPieces.Contains(new Position(7, 5)) && !guardedPositionsForAllPieces.Contains(new Position(7, 6)))
-                        {
-                            return true;
-                        }
+                    }
+                    if (!guardedPositionsForAllPieces.Contains(new Position(7, 5)) && !guardedPositionsForAllPieces.Contains(new Position(7, 6)))
+                    {
+                        return true;
                     }
                 }
             }
@@ -1628,24 +1622,21 @@ namespace JustPoChess.Client.MVC.Controller
 
         public static bool IsBlackLeftCastlePossible()
         {
-            if (Board.Instance.BlackLeftCastlePossible)
+            if (Board.Instance.BlackLeftCastlePossible && IsPlayerInCheck(PieceColor.Black))
             {
-                if (!IsPlayerInCheck(PieceColor.Black))
+                if (Board.Instance.BoardState[0, 1] == null && Board.Instance.BoardState[0, 2] == null && Board.Instance.BoardState[0, 3] == null)
                 {
-                    if (Board.Instance.BoardState[0, 1] == null && Board.Instance.BoardState[0, 2] == null && Board.Instance.BoardState[0, 3] == null)
+                    IEnumerable<Position> guardedPositionsForAllPieces = new List<Position>();
+                    foreach (Piece boardPiece in Board.Instance.BoardState)
                     {
-                        IEnumerable<Position> guardedPositionsForAllPieces = new List<Position>();
-                        foreach (Piece boardPiece in Board.Instance.BoardState)
+                        if (boardPiece != null && boardPiece.PieceColor == PieceColor.White)
                         {
-                            if (boardPiece != null && boardPiece.PieceColor == PieceColor.White)
-                            {
-                                guardedPositionsForAllPieces = guardedPositionsForAllPieces.Concat(GenerateGuardedPositionsForPiece(boardPiece));
-                            }
+                            guardedPositionsForAllPieces = guardedPositionsForAllPieces.Concat(GenerateGuardedPositionsForPiece(boardPiece));
                         }
-                        if (!guardedPositionsForAllPieces.Contains(new Position(0, 2)) && !guardedPositionsForAllPieces.Contains(new Position(0, 3)))
-                        {
-                            return true;
-                        }
+                    }
+                    if (!guardedPositionsForAllPieces.Contains(new Position(0, 2)) && !guardedPositionsForAllPieces.Contains(new Position(0, 3)))
+                    {
+                        return true;
                     }
                 }
             }
@@ -1654,32 +1645,27 @@ namespace JustPoChess.Client.MVC.Controller
 
         public static bool IsBlackRightCastlePossible()
         {
-            if (Board.Instance.BlackRightCastlePossible)
+            if (Board.Instance.BlackRightCastlePossible && !IsPlayerInCheck(PieceColor.Black))
             {
-                if (!IsPlayerInCheck(PieceColor.Black))
+                if (Board.Instance.BoardState[0, 5] == null && Board.Instance.BoardState[0, 6] == null)
                 {
-                    if (Board.Instance.BoardState[0, 5] == null && Board.Instance.BoardState[0, 6] == null)
+                    IEnumerable<Position> guardedPositionsForAllPieces = new List<Position>();
+                    foreach (Piece boardPiece in Board.Instance.BoardState)
                     {
-                        IEnumerable<Position> guardedPositionsForAllPieces = new List<Position>();
-                        foreach (Piece boardPiece in Board.Instance.BoardState)
+                        if (boardPiece != null && boardPiece.PieceColor == PieceColor.White)
                         {
-                            if (boardPiece != null && boardPiece.PieceColor == PieceColor.White)
-                            {
-                                guardedPositionsForAllPieces = guardedPositionsForAllPieces.Concat(GenerateGuardedPositionsForPiece(boardPiece));
-                            }
+                            guardedPositionsForAllPieces = guardedPositionsForAllPieces.Concat(GenerateGuardedPositionsForPiece(boardPiece));
                         }
-                        if (!guardedPositionsForAllPieces.Contains(new Position(0, 5)) && !guardedPositionsForAllPieces.Contains(new Position(0, 6)))
-                        {
-                            return true;
-                        }
+                    }
+                    if (!guardedPositionsForAllPieces.Contains(new Position(0, 5)) && !guardedPositionsForAllPieces.Contains(new Position(0, 6)))
+                    {
+                        return true;
                     }
                 }
             }
             return false;
         }
-
-
-
+        
         // GameState Checks
         public static bool CheckForDraw()
         {
@@ -1689,16 +1675,6 @@ namespace JustPoChess.Client.MVC.Controller
             }
             return false;
         }
-
-        public static bool CheckForCheckmate()
-        {
-            if (GeneratePossibleMovesForPlayer(Model.Model.currentPlayerToMove).Count == 0 && IsPlayerInCheck(Model.Model.currentPlayerToMove))
-            {
-                return true;
-            }
-            return false;
-        }
-
         private static bool CheckIfKingVsKing()
         {
             foreach (Piece boardPiece in Board.Instance.BoardState)
@@ -1710,5 +1686,14 @@ namespace JustPoChess.Client.MVC.Controller
             }
             return true;
         }
+        public static bool CheckForCheckmate()
+        {
+            if (GeneratePossibleMovesForPlayer(Model.Model.currentPlayerToMove).Count == 0 && IsPlayerInCheck(Model.Model.currentPlayerToMove))
+            {
+                return true;
+            }
+            return false;
+        }
+                
     }
 }

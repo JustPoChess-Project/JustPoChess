@@ -18,7 +18,7 @@ namespace JustPoChess.Client.MVC.View.Art
         public static readonly string JustPoChessText = $"{new string(' ', Console.LargestWindowWidth / 2 - 12)}------Just PoChess-----";
         public static readonly string JustPoChessMenu = $"{new string(' ', Console.LargestWindowWidth / 2 - 12)}----------Menu---------";
         public static readonly string JustPoChessPlay = $"{new string(' ', Console.LargestWindowWidth / 2 - 12)}----------Play---------";
-        public static readonly string JustPoChessSpectate = $"{new string(' ', Console.LargestWindowWidth / 2 - 12)}-------Spectate--------";
+        public static readonly string JustPoChessSpectate = $"{new string(' ', Console.LargestWindowWidth / 2 - 12)}--------Spectate-------";
         public static readonly string JustPoChessStartServer = $"{new string(' ', Console.LargestWindowWidth / 2 - 12)}------Start Server-----";
 
         public static readonly string PlayText = $"{new string(' ', Console.LargestWindowWidth / 2 - 12)}PLAY";

@@ -198,6 +198,16 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                     {
                         this.BlackRightCastlePossible = true;
                     }
+                    else
+                    {
+                        this.BlackLeftCastlePossible = false;
+                        this.BlackRightCastlePossible = false;
+                    }
+                }
+                else
+                {
+                    this.BlackLeftCastlePossible = false;
+                    this.BlackRightCastlePossible = false;
                 }
             }
             else
@@ -212,6 +222,16 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                     {
                         this.WhiteRightCastlePossible = true;
                     }
+                    else
+                    {
+                        this.WhiteLeftCastlePossible = false;
+                        this.WhiteRightCastlePossible = false;
+                    }
+                }
+                else
+                {
+                    this.WhiteLeftCastlePossible = false;
+                    this.WhiteRightCastlePossible = false;
                 }
             }
 

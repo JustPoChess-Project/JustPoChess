@@ -50,18 +50,18 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
             }
             set
             {
-                if (value == null)
-                {
-                    throw new ArgumentNullException();
-                }
-                if (this.boardState.GetLength(0) < BoardSize || this.boardState.GetLength(0) > BoardSize )
-                {
-                    throw new ArgumentException("Ivalid Move");
-                }
-                if (this.boardState.GetLength(1) < BoardSize || this.boardState.GetLength(1) > BoardSize )
-                {
-                    throw new ArgumentException("Ivalid Move");
-                }
+//                if (value == null)
+//                {
+//                    throw new ArgumentNullException();
+//                }
+//                if (this.boardState.GetLength(0) < BoardSize || this.boardState.GetLength(0) > BoardSize )
+//                {
+//                    throw new ArgumentException("Invalid Move");
+//                }
+//                if (this.boardState.GetLength(1) < BoardSize || this.boardState.GetLength(1) > BoardSize )
+//                {
+//                    throw new ArgumentException("Invalid Move");
+//                }
                 this.boardState = value;
             }
         }
@@ -74,18 +74,18 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
             }
             set
             {
-                if (value == null)
-                {
-                    throw new ArgumentNullException();
-                }
-                if (this.testBoardState.GetLength(0) < BoardSize || this.testBoardState.GetLength(0) > BoardSize )
-                {
-                    throw new ArgumentException("Ivalid Move");
-                }
-                if (this.testBoardState.GetLength(1) < BoardSize || this.testBoardState.GetLength(1) > BoardSize )
-                {
-                    throw new ArgumentException("Ivalid Move");
-                }
+//                if (value == null)
+//                {
+//                    throw new ArgumentNullException();
+//                }
+//                if (this.testBoardState.GetLength(0) < BoardSize || this.testBoardState.GetLength(0) > BoardSize )
+//                {
+//                    throw new ArgumentException("Invalid Move");
+//                }
+//                if (this.testBoardState.GetLength(1) < BoardSize || this.testBoardState.GetLength(1) > BoardSize )
+//                {
+//                    throw new ArgumentException("Invalid Move");
+//                }
                 this.testBoardState = value;
             }
         }

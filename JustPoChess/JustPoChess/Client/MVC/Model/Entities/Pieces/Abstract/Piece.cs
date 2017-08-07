@@ -19,10 +19,6 @@ namespace JustPoChess.Client.MVC.Model.Entities.Pieces.Abstract
             }
             set
             {
-                if (this.piecePosition == null)
-                {
-                    throw new ArgumentException($"Invalid {nameof(Piece)}");
-                }
                 this.piecePosition = value;
             }
         }

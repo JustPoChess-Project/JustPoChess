@@ -13,20 +13,38 @@ namespace JustPoChess.Client.MVC.Model.Entities.Pieces.Abstract
 
         public Position PiecePosition
         {
-            get { return this.piecePosition; }
-            set { this.piecePosition = value; }
+            get
+            {
+                return this.piecePosition;
+            }
+            set
+            {
+                this.piecePosition = value;
+            }
         }
 
         public PieceColor PieceColor
         {
-            get { return this.pieceColor; }
-            protected set { this.pieceColor = value; }
+            get
+            {
+                return this.pieceColor;
+            }
+            protected set
+            {
+                this.pieceColor = value;
+            }
         }
 
         public PieceType PieceType
         {
-            get { return this.pieceType; }
-            protected set { this.pieceType = value; }
+            get
+            {
+                return this.pieceType;
+            }
+            protected set
+            {
+                this.pieceType = value;
+            }
         }
 
         public abstract void Draw();

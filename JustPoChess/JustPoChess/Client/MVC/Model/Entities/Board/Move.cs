@@ -1,4 +1,5 @@
-﻿using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecePosition;
+﻿using System;
+using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecePosition;
 
 namespace JustPoChess.Client.MVC.Model.Entities.Board
 {
@@ -17,10 +18,14 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
         {
             get
             {
-                return currentPosition;
+                return this.currentPosition;
             }
             set
             {
+                if (this.currentPosition == null)
+                {
+                    throw new ArgumentException("TODO");
+                }
                 this.currentPosition = value;
             }
         }
@@ -29,10 +34,14 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
 		{
 			get
 			{
-				return nextPosititon;
+				return this.nextPosititon;
 			}
 			set
 			{
+			    if (this.nextPosititon == null)
+			    {
+			        throw new ArgumentException("TODO");
+			    }
 				this.nextPosititon = value;
 			}
 		}

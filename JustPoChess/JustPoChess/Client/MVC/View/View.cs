@@ -10,12 +10,12 @@ namespace JustPoChess.Client.MVC.View
     {
         public static void InitialScreen()
         {
-            Menu.LinuxMenu.InitialScreen();
+            Menu.Menu.InitialScreen();
         }
 
         public static void InitializeMenu()
         {
-            Menu.LinuxMenu.InitializeMenu();
+            Menu.Menu.InitializeMenu();
         }
 
         public static void StopMusic()
@@ -54,7 +54,7 @@ namespace JustPoChess.Client.MVC.View
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.Write($"   ________________{Environment.NewLine}");
-                    Console.Write($"   a b c d  e f g h{Environment.NewLine}");
+                    Console.Write($"   a b c d e f g h{Environment.NewLine}");
                     Console.ForegroundColor = ConsoleColor.DarkGray;
                 }
             }
@@ -134,7 +134,7 @@ namespace JustPoChess.Client.MVC.View
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.Write($"   ________________{Environment.NewLine}");
-                    Console.Write($"   h g f e  d c b a{Environment.NewLine}");
+                    Console.Write($"   h g f e d c b a{Environment.NewLine}");
                     Console.ForegroundColor = ConsoleColor.DarkGray;
                 }
             }

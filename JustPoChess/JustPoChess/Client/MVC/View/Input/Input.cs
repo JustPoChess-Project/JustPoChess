@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using JustPoChess.Client.MVC.Model.Entities.Board;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecePosition;
+using JustPoChess.Client.MVC.View.Messages;
 using System.Linq;
 
 namespace JustPoChess.Client.MVC.View.Input
@@ -10,7 +11,7 @@ namespace JustPoChess.Client.MVC.View.Input
     public static class Input
     {
         private const string validMovePattern = @"[a-hA-H][1-8]-[a-hA-H][1-8]";
-        private const string invalidInput = "Invalid input. Input is in format <first position>-<second position>, draw or resign";
+        
 
         public static string GetUserInput() {
             return Console.ReadLine();
@@ -34,7 +35,7 @@ namespace JustPoChess.Client.MVC.View.Input
                     {
                         return true;
                     }
-                    throw new ArgumentException(invalidInput);
+                    throw new ArgumentException(ErrorMessages.InvalidUserInput);
             }
         }
 

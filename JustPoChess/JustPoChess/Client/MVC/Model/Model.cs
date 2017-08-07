@@ -21,18 +21,18 @@ namespace JustPoChess.Client.MVC.Model
 
         public static void InitBoard()
         {
-            Board.InitBoard();
+            Board.Instance.InitBoard();
         }
 
         public static IPiece[,] GetBoardState()
         {
-            return Board.boardState;
+            return Board.Instance.BoardState;
         }
 
         //testing purposes
         public static IPiece[,] GetTestBoardState()
         {
-            return Board.testBoardState;
+            return Board.Instance.TestBoardState;
         }
     }
 }

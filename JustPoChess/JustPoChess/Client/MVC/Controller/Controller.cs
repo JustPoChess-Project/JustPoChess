@@ -45,7 +45,7 @@ namespace JustPoChess.Client.MVC.Controller
 
         public bool IsMovePossible(Move move)
         {
-            ICollection<Move> possibleMoves = this.GeneratePossibleMovesForPlayer(Board.Instance.BoardState[move.CurrentPosition.Row, move.CurrentPosition.Col].PieceColor);
+            IEnumerable<Move> possibleMoves = this.GeneratePossibleMovesForPlayer(Board.Instance.BoardState[move.CurrentPosition.Row, move.CurrentPosition.Col].PieceColor);
             if (possibleMoves.Contains(move))
             {
                 return true;
@@ -1536,14 +1536,14 @@ namespace JustPoChess.Client.MVC.Controller
             return possibleMoves;
         }
 
-        public ICollection<Move> GeneratePossibleMovesForPlayer(PieceColor pieceColor)
+        public IEnumerable<Move> GeneratePossibleMovesForPlayer(PieceColor pieceColor)
         {
-            ICollection<Move> possibleMoves = new List<Move>();
+            IEnumerable<Move> possibleMoves = new List<Move>();
             foreach (Piece boardPiece in Board.Instance.BoardState)
             {
                 if (boardPiece != null && boardPiece.PieceColor == pieceColor)
                 {
-                    possibleMoves = (System.Collections.Generic.ICollection<JustPoChess.Client.MVC.Model.Entities.Board.Move>)possibleMoves.Concat(this.GeneratePossibleMovesForPieceConsideringDiscoveringCheck(boardPiece));
+                    possibleMoves = possibleMoves.Concat(this.GeneratePossibleMovesForPieceConsideringDiscoveringCheck(boardPiece));
                 }
             }
             return possibleMoves;
@@ -1684,7 +1684,7 @@ namespace JustPoChess.Client.MVC.Controller
         // GameState Checks
         public bool CheckForDraw()
         {
-            if ((GeneratePossibleMovesForPlayer(model.CurrentPlayerToMove).Count == 0 && !IsPlayerInCheck(model.CurrentPlayerToMove)) || CheckIfKingVsKing())
+            if ((GeneratePossibleMovesForPlayer(model.CurrentPlayerToMove).Count() == 0 && !IsPlayerInCheck(model.CurrentPlayerToMove)) || CheckIfKingVsKing())
             {
                 return true;
             }
@@ -1770,7 +1770,7 @@ namespace JustPoChess.Client.MVC.Controller
 
         public bool CheckForCheckmate()
         {
-            if (this.GeneratePossibleMovesForPlayer(model.CurrentPlayerToMove).Count == 0 && IsPlayerInCheck(model.CurrentPlayerToMove))
+            if (this.GeneratePossibleMovesForPlayer(model.CurrentPlayerToMove).Count() == 0 && IsPlayerInCheck(model.CurrentPlayerToMove))
             {
                 return true;
             }

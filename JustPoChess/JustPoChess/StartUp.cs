@@ -7,14 +7,26 @@ using JustPoChess.Client.MVC.Model.Entities.Board;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.Abstract;
 using JustPoChess.Client.MVC.OSChecker;
 using JustPoChess.Client.MVC.View;
-
+using JustPoChess.Client.MVC.View.Input;
+using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecePosition;
 
 namespace JustPoChess
 {
     public class StartUp
     {
         public static void Main()
-        {   
+        {
+            Board.Instance.InitBoard();
+            while (true)
+            {
+                View.PrintBoard();
+                string userInput = Input.GetUserInput();
+                Move move = null;
+                //if (Input.ValidateUserInput(userInput)) {
+                    move = Input.ParseMove(userInput);
+                //}
+                Model.Instance.Board.PerformMove(move);
+            }
             // Board.Instance.InitBoard();
             // View.PrintBoard();
             // Console.WriteLine(new string('*', 50));

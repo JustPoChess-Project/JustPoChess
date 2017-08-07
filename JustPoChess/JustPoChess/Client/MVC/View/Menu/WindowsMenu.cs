@@ -307,9 +307,11 @@ namespace JustPoChess.Client.MVC.View.Menu
                             switch (menuOptions)
                             {
                                 case 1:
+                                    InitializePlaySubMenuLocalSubMenu();
                                     break;
 
                                 case 2:
+                                    InitializePlaySubMenuRemoteSubMenu();
                                     break;
 
                                 case 3:
@@ -375,6 +377,286 @@ namespace JustPoChess.Client.MVC.View.Menu
 
                             Console.WriteLine(MenuArt.LocalText);
                             Console.WriteLine(MenuArt.RemoteText);
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine(MenuArt.BackText);
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            break;
+                    }
+
+                    Thread.Sleep(50);
+                    InputUtilities.ClearKeyBuffer();
+                }
+            }
+        }
+
+        private void InitializePlaySubMenuLocalSubMenu()
+        {
+            Console.Clear();
+            //OST.PlayMenuOST();
+            InputUtilities.ClearKeyBuffer();
+
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine(MenuArt.JustPoChessLogoUpper);
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(MenuArt.JustPoChessPlayLocal);
+
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine(MenuArt.JustPoChessLogoDown);
+
+            Console.WriteLine();
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(MenuArt.AsHuman);
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine(MenuArt.AsAi);
+            Console.WriteLine(MenuArt.BackText);
+
+            var menuOptions = 1;
+
+            while (true)
+            {
+                if (Console.KeyAvailable)
+                {
+                    var userInput = Console.ReadKey();
+                    switch (userInput.Key)
+                    {
+                        case ConsoleKey.UpArrow:
+                            //SoundEffects.PlayTraverseSound();
+                            if (menuOptions == 1)
+                            {
+                                menuOptions = 3;
+                            }
+                            else
+                            {
+                                menuOptions--;
+                            }
+                            break;
+
+                        case ConsoleKey.DownArrow:
+                            //SoundEffects.PlayTraverseSound();
+                            if (menuOptions == 3)
+                            {
+                                menuOptions = 1;
+                            }
+                            else
+                            {
+                                menuOptions++;
+                            }
+                            break;
+
+                        case ConsoleKey.Enter:
+                            switch (menuOptions)
+                            {
+                                case 1:
+                                    break;
+
+                                case 2:
+                                    break;
+
+                                case 3:
+                                    InitializePlaySubMenu();
+                                    break;
+                            }
+                            break;
+                    }
+
+                    Console.Clear();
+
+                    switch (menuOptions)
+                    {
+                        case 1:
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.JustPoChessLogoUpper);
+
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine(MenuArt.JustPoChessPlayLocal);
+
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.JustPoChessLogoDown);
+
+                            Console.WriteLine();
+
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine(MenuArt.AsHuman);
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.AsAi);
+                            Console.WriteLine(MenuArt.BackText);
+                            break;
+
+                        case 2:
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.JustPoChessLogoUpper);
+
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine(MenuArt.JustPoChessPlayLocal);
+
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.JustPoChessLogoDown);
+
+                            Console.WriteLine();
+
+                            Console.WriteLine(MenuArt.AsHuman);
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine(MenuArt.AsAi);
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.BackText);
+                            break;
+
+                        case 3:
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.JustPoChessLogoUpper);
+
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine(MenuArt.JustPoChessPlayLocal);
+
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.JustPoChessLogoDown);
+
+                            Console.WriteLine();
+
+                            Console.WriteLine(MenuArt.AsHuman);
+                            Console.WriteLine(MenuArt.AsAi);
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine(MenuArt.BackText);
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            break;
+                    }
+
+                    Thread.Sleep(50);
+                    InputUtilities.ClearKeyBuffer();
+                }
+            }
+        }
+
+        private void InitializePlaySubMenuRemoteSubMenu()
+        {
+            Console.Clear();
+            //OST.PlayMenuOST();
+            InputUtilities.ClearKeyBuffer();
+
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine(MenuArt.JustPoChessLogoUpper);
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(MenuArt.JustPoChessPlayRemote);
+
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine(MenuArt.JustPoChessLogoDown);
+
+            Console.WriteLine();
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(MenuArt.AsHuman);
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine(MenuArt.AsAi);
+            Console.WriteLine(MenuArt.BackText);
+
+            var menuOptions = 1;
+
+            while (true)
+            {
+                if (Console.KeyAvailable)
+                {
+                    var userInput = Console.ReadKey();
+                    switch (userInput.Key)
+                    {
+                        case ConsoleKey.UpArrow:
+                            //SoundEffects.PlayTraverseSound();
+                            if (menuOptions == 1)
+                            {
+                                menuOptions = 3;
+                            }
+                            else
+                            {
+                                menuOptions--;
+                            }
+                            break;
+
+                        case ConsoleKey.DownArrow:
+                            //SoundEffects.PlayTraverseSound();
+                            if (menuOptions == 3)
+                            {
+                                menuOptions = 1;
+                            }
+                            else
+                            {
+                                menuOptions++;
+                            }
+                            break;
+
+                        case ConsoleKey.Enter:
+                            switch (menuOptions)
+                            {
+                                case 1:
+                                    break;
+
+                                case 2:
+                                    break;
+
+                                case 3:
+                                    InitializePlaySubMenu();
+                                    break;
+                            }
+                            break;
+                    }
+
+                    Console.Clear();
+
+                    switch (menuOptions)
+                    {
+                        case 1:
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.JustPoChessLogoUpper);
+
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine(MenuArt.JustPoChessPlayRemote);
+
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.JustPoChessLogoDown);
+
+                            Console.WriteLine();
+
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine(MenuArt.AsHuman);
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.AsAi);
+                            Console.WriteLine(MenuArt.BackText);
+                            break;
+
+                        case 2:
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.JustPoChessLogoUpper);
+
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine(MenuArt.JustPoChessPlayRemote);
+
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.JustPoChessLogoDown);
+
+                            Console.WriteLine();
+
+                            Console.WriteLine(MenuArt.AsHuman);
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine(MenuArt.AsAi);
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.BackText);
+                            break;
+
+                        case 3:
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.JustPoChessLogoUpper);
+
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine(MenuArt.JustPoChessPlayRemote);
+
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine(MenuArt.JustPoChessLogoDown);
+
+                            Console.WriteLine();
+
+                            Console.WriteLine(MenuArt.AsHuman);
+                            Console.WriteLine(MenuArt.AsAi);
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine(MenuArt.BackText);
                             Console.ForegroundColor = ConsoleColor.DarkGray;

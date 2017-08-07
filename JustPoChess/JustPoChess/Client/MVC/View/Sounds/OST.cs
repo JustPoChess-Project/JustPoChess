@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows.Media;
 
 namespace JustPoChess.Client.MVC.View.Sounds

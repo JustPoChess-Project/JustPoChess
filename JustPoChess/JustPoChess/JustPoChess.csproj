@@ -54,8 +54,7 @@
     <Compile Include="Client\MVC\View\Art\MenuArt.cs" />
     <Compile Include="Client\MVC\View\Input\InputUtilities.cs" />
     <Compile Include="Client\MVC\View\Messages\Messages.cs" />
-    <Compile Include="Client\MVC\View\Sounds\SoundEffects.cs" />
-    <Compile Include="Client\MVC\View\Sounds\OST.cs" />
+    <Compile Include="Client\MVC\View\Sounds\Sound.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Client\MVC\Model\Contracts\IPiece.cs" />

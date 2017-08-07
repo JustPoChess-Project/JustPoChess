@@ -20,7 +20,7 @@ namespace JustPoChess
             {
                 Console.OutputEncoding = System.Text.Encoding.UTF8;
             }
-            Board.InitBoard();
+            Board.Instance.InitBoard();
             View.PrintBoard();
             Console.WriteLine(new string('*', 50));
             IEnumerable<Move> allPossibleMovesForCurrentPlayer = new List<Move>();

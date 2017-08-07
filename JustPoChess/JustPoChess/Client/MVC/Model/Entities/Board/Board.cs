@@ -7,26 +7,43 @@ using System.Linq;
 
 namespace JustPoChess.Client.MVC.Model.Entities.Board
 {
-    public static class Board
+    public class Board
     {
         private const int dimensions = 8;
 
         private const int BoardSize = dimensions;
-        public static IPiece[,] boardState;
-        public static bool whiteLeftCastlePossible = true;
-        public static bool whiteRightCastlePossible = true;
-        public static bool blackLeftCastlePossible = true;
-        public static bool blackRightCastlePossible = true;
+        public IPiece[,] boardState;
+        public bool whiteLeftCastlePossible = true;
+        public bool whiteRightCastlePossible = true;
+        public bool blackLeftCastlePossible = true;
+        public bool blackRightCastlePossible = true;
 
-        public static bool whiteLeftCastlePossibleTestBoard = true;
-        public static bool whiteRightCastlePossibleTestBoard = true;
-        public static bool blackLeftCastlePossibleTestBoard = true;
-        public static bool blackRightCastlePossibleTestBoard = true;
+        public bool whiteLeftCastlePossibleTestBoard = true;
+        public bool whiteRightCastlePossibleTestBoard = true;
+        public bool blackLeftCastlePossibleTestBoard = true;
+        public bool blackRightCastlePossibleTestBoard = true;
 
+        private static Board instance;
+
+        private Board()
+        {
+        }
+
+        public static Board Instance
+        {
+            get 
+            {
+                if (instance == null)
+                {
+                    instance = new Board();
+                }
+                return instance;
+            }
+        }
         //testing purposes
-        public static IPiece[,] testBoardState;
+        public IPiece[,] testBoardState;
 
-        public static void InitBoard()
+        public void InitBoard()
         {
             boardState = new IPiece[,]
            {
@@ -46,7 +63,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
             testBoardState = BoardDeepCopy();
         }
 
-        public static void RevertTestBoardState()
+        public void RevertTestBoardState()
         {
             testBoardState = BoardDeepCopy();
             Model.currentPlayerToMoveTestBoard = Model.currentPlayerToMove;
@@ -57,7 +74,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
             blackRightCastlePossibleTestBoard = blackRightCastlePossible;
         }
 
-        public static void PerformMove(Move move)
+        public void PerformMove(Move move)
         {
             IPiece piece = boardState[move.CurrentPosition.Row, move.CurrentPosition.Col];
             boardState[move.CurrentPosition.Row, move.CurrentPosition.Col] = null;
@@ -165,7 +182,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
         }
 
         //testing purposes
-        public static void PerformMoveOnTestBoard(Move move)
+        public void PerformMoveOnTestBoard(Move move)
         {
             IPiece piece = testBoardState[move.CurrentPosition.Row, move.CurrentPosition.Col];
             IPiece newPiece = Piece.NewPiece(piece);
@@ -251,7 +268,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
         }
 
         //testing purposes
-        public static IPiece[,] BoardDeepCopy()
+        public IPiece[,] BoardDeepCopy()
         {
             IPiece[,] boardCopy = new IPiece[8, 8];
             for (int row = 0; row < 8; row++)

@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿﻿﻿using System;
 using System.Linq;
 using System.Threading;
 using System.Collections.Generic;
@@ -1702,11 +1702,11 @@ namespace JustPoChess.Client.MVC.Controller
             }
             return true;
         }
-        
+
         public static ICollection<Move> GeneratePosslbeEnPassantMoves()
         {
             List<Move> possibleEnPassantMoves = new List<Move>();
-            if (Board.Instance.BoardState[model.LastMove.NextPosititon.Row, model.LastMove.NextPosititon.Col].PieceType != PieceType.Pawn)
+            if (model.LastMove == null || Board.Instance.BoardState[model.LastMove.NextPosititon.Row, model.LastMove.NextPosititon.Col].PieceType != PieceType.Pawn)
             { //check if last moved piece was actually a pawn
                 return possibleEnPassantMoves;
             }

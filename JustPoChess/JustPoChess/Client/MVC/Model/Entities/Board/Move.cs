@@ -24,7 +24,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
             {
                 if (this.currentPosition == null)
                 {
-                    throw new ArgumentException("TODO");
+                    throw new ArgumentException("Invalid Move");
                 }
                 this.currentPosition = value;
             }
@@ -40,7 +40,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
 			{
 			    if (this.nextPosititon == null)
 			    {
-			        throw new ArgumentException("TODO");
+			        throw new ArgumentException("Invalid Move");
 			    }
 				this.nextPosititon = value;
 			}

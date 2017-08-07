@@ -16,8 +16,8 @@ namespace JustPoChess.Client.MVC.Model
         private readonly Player player2;
 
         private GameState gameState;
-        private PieceColor currentPlayerToMove;
-        private PieceColor currentPlayerToMoveTestBoard;
+        private PieceColor currentPlayerToMove = PieceColor.White;
+        private PieceColor currentPlayerToMoveTestBoard = PieceColor.White;
 
         //will need that for en passant pawn move
         private Move lastMove;

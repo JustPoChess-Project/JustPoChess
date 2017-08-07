@@ -27,6 +27,7 @@ namespace JustPoChess
                     move = Input.ParseMove(userInput);
                 }
                 Model.Instance.Board.PerformMove(move);
+                Console.WriteLine(Model.Instance.CurrentPlayerToMove);
             }
             // Board.Instance.InitBoard();
             // View.PrintBoard();

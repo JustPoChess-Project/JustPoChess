@@ -281,7 +281,7 @@ namespace JustPoChess.Client.MVC.View.Menu
                             break;
                     }
 
-                    Thread.Sleep(10);
+                    Thread.Sleep(50);
                     InputUtilities.ClearKeyBuffer();
                 }
             }

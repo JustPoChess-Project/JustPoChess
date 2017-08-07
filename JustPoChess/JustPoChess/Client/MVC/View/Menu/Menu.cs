@@ -61,8 +61,12 @@ namespace JustPoChess.Client.MVC.View.Menu
 
         public static void InitializeMenu()
         {
+<<<<<<< HEAD
+=======
             //OST.PlayMenuOST();
+>>>>>>> 0d586ea4bdb025de943bbeceb9cb8a3947b9ef0b
             Console.Clear();
+            OST.PlayMenuOST();
             InputUtilities.ClearKeyBuffer();
 
             Console.ForegroundColor = ConsoleColor.DarkGray;
@@ -147,6 +151,7 @@ namespace JustPoChess.Client.MVC.View.Menu
                     }
 
                     Console.Clear();
+
                     switch (menuOptions)
                     {
                         case 1:
@@ -281,7 +286,7 @@ namespace JustPoChess.Client.MVC.View.Menu
                             break;
                     }
 
-                    Thread.Sleep(10);
+                    Thread.Sleep(50);
                     InputUtilities.ClearKeyBuffer();
                 }
             }

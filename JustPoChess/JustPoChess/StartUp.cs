@@ -9,6 +9,7 @@ using JustPoChess.Client.MVC.OSChecker;
 using JustPoChess.Client.MVC.View;
 using JustPoChess.Client.MVC.View.Input;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecePosition;
+using JustPoChess.Client.MVC.View.Sounds;
 
 namespace JustPoChess
 {
@@ -22,9 +23,9 @@ namespace JustPoChess
                 View.PrintBoard();
                 string userInput = Input.GetUserInput();
                 Move move = null;
-                //if (Input.ValidateUserInput(userInput)) {
+                if (Input.ValidateUserInput(userInput)) {
                     move = Input.ParseMove(userInput);
-                //}
+                }
                 Model.Instance.Board.PerformMove(move);
             }
             // Board.Instance.InitBoard();

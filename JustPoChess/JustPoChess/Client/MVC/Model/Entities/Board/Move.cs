@@ -51,5 +51,16 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
         {
             return string.Format("[Move: CurrentPosition={0}, NextPosititon={1}]", CurrentPosition, NextPosititon);
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null) {
+                return false;
+            }
+            return (obj as Move).CurrentPosition.Row == this.CurrentPosition.Row
+                        && (obj as Move).CurrentPosition.Col == this.CurrentPosition.Col
+                        && (obj as Move).NextPosititon.Row == this.NextPosititon.Row
+                        && (obj as Move).NextPosititon.Col == this.NextPosititon.Col;
+        }
     }
 }

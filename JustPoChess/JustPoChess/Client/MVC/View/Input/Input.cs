@@ -7,13 +7,14 @@ using System.Linq;
 
 namespace JustPoChess.Client.MVC.View.Input
 {
-    
+
     public static class Input
     {
         private const string validMovePattern = @"[a-hA-H][1-8]-[a-hA-H][1-8]";
-        
 
-        public static string GetUserInput() {
+
+        public static string GetUserInput()
+        {
             return Console.ReadLine();
         }
 
@@ -39,7 +40,8 @@ namespace JustPoChess.Client.MVC.View.Input
             }
         }
 
-        public static Move ParseMove(string inputString) {
+        public static Move ParseMove(string inputString)
+        {
             if (inputString == "o-o" || inputString == "O-O")
             {
                 switch (View.Model.CurrentPlayerToMove)
@@ -49,18 +51,18 @@ namespace JustPoChess.Client.MVC.View.Input
                     case Model.Entities.Pieces.PiecesEnums.PieceColor.Black:
                         return new Move(new Position(0, 4), new Position(0, 6));
                 }
-			}
-			if (inputString == "o-o-o" || inputString == "O-O-O")
-			{
-				switch (View.Model.CurrentPlayerToMove)
-				{
-					case Model.Entities.Pieces.PiecesEnums.PieceColor.White:
-						return new Move(new Position(7, 4), new Position(7, 2));
-					case Model.Entities.Pieces.PiecesEnums.PieceColor.Black:
-						return new Move(new Position(0, 4), new Position(0, 2));
-				}
-			}
-			string[] positionsStringArray = inputString.ToLower().Split('-');
+            }
+            if (inputString == "o-o-o" || inputString == "O-O-O")
+            {
+                switch (View.Model.CurrentPlayerToMove)
+                {
+                    case Model.Entities.Pieces.PiecesEnums.PieceColor.White:
+                        return new Move(new Position(7, 4), new Position(7, 2));
+                    case Model.Entities.Pieces.PiecesEnums.PieceColor.Black:
+                        return new Move(new Position(0, 4), new Position(0, 2));
+                }
+            }
+            string[] positionsStringArray = inputString.ToLower().Split('-');
             Position currentPosition = new Position(7 - (positionsStringArray[0].ElementAt(1) - 49), positionsStringArray[0].ElementAt(0) - 'a');
             Position nextPosititon = new Position(7 - (positionsStringArray[1].ElementAt(1) - 49), positionsStringArray[1].ElementAt(0) - 'a');
             return new Move(currentPosition, nextPosititon);
@@ -68,7 +70,10 @@ namespace JustPoChess.Client.MVC.View.Input
 
         public static bool ValidateUserInput(string inputString)
         {
-            return ValidateUserInputSyntax(inputString) && Controller.Controller.Instance.IsMovePossible(ParseMove(inputString));
+            return
+                ValidateUserInputSyntax(inputString)
+                && Controller.Controller.Instance.IsMovePossible(ParseMove(inputString))
+                 && Model.Model.Instance.CurrentPlayerToMove == Board.Instance.BoardState[ParseMove(inputString).CurrentPosition.Row, ParseMove(inputString).CurrentPosition.Col].PieceColor;
         }
     }
 }

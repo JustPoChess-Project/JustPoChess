@@ -46,9 +46,10 @@ namespace JustPoChess.Client.MVC.Controller
         public bool IsMovePossible(Move move)
         {
             IEnumerable<Move> possibleMoves = this.GeneratePossibleMovesForPlayer(Board.Instance.BoardState[move.CurrentPosition.Row, move.CurrentPosition.Col].PieceColor);
-            if (possibleMoves.Contains(move))
-            {
-                return true;
+            foreach (Move possibleMove in possibleMoves) {
+                if (possibleMove.Equals(move)) {
+                    return true;
+                }
             }
             return false;
         }

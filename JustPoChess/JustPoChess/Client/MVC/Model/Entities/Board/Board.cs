@@ -9,7 +9,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
 {
     public class Board
     {
-        private const int BoardSize = 8;
+        public const int BoardSize = 8;
         
         private static Board instance;
         
@@ -20,11 +20,6 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
         private bool whiteRightCastlePossible = true;
         private bool blackLeftCastlePossible = true;
         private bool blackRightCastlePossible = true;
-
-        private bool whiteLeftCastlePossibleTestBoard = true;
-        private bool whiteRightCastlePossibleTestBoard = true;
-        private bool blackLeftCastlePossibleTestBoard = true;
-        private bool blackRightCastlePossibleTestBoard = true;
 
         private Board()
         {
@@ -116,54 +111,6 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
             }
         }
 
-        public bool WhiteLeftCastlePossibleTestBoard
-        {
-            get
-            {
-                return this.whiteLeftCastlePossibleTestBoard;
-            }
-            set
-            {
-                this.whiteLeftCastlePossibleTestBoard = value;
-            }
-        }
-
-        public bool WhiteRightCastlePossibleTestBoard
-        {
-            get
-            {
-                return this.whiteRightCastlePossibleTestBoard;
-            }
-            set
-            {
-                this.whiteRightCastlePossibleTestBoard = value;
-            }
-        }
-
-        public bool BlackLeftCastlePossibleTestBoard
-        {
-            get
-            {
-                return this.blackLeftCastlePossibleTestBoard;
-            }
-            set
-            {
-                this.blackLeftCastlePossibleTestBoard = value;
-            }
-        }
-
-        public bool BlackRightCastlePossibleTestBoard
-        {
-            get
-            {
-                return this.blackRightCastlePossibleTestBoard;
-            }
-            set
-            {
-                this.blackRightCastlePossibleTestBoard = value;
-            }
-        }
-
         public void InitBoard()
         {
             this.BoardState = new IPiece[,]
@@ -178,7 +125,6 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                 { new Rook(PieceColor.White, new Position(7, 0)), new Knight(PieceColor.White, new Position(7, 1)), new Bishop(PieceColor.White, new Position(7, 2)), new Queen(PieceColor.White, new Position(7, 3)), new King(PieceColor.White, new Position(7, 4)), new Bishop(PieceColor.White, new Position(7, 5)), new Knight(PieceColor.White, new Position(7, 6)), new Rook(PieceColor.White, new Position(7, 7)) }
             };
             Model.Instance.CurrentPlayerToMove = PieceColor.White;
-            Model.Instance.CurrentPlayerToMove = PieceColor.White;
 
             this.testBoardState = this.BoardDeepCopy();
         }
@@ -186,12 +132,6 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
         public void RevertTestBoardState()
         {
             this.testBoardState = this.BoardDeepCopy();
-            Model.Instance.CurrentPlayerToMoveTestBoard = Model.Instance.CurrentPlayerToMove;
-            Model.Instance.LastMoveTestBoard = Model.Instance.LastMove;
-            this.WhiteLeftCastlePossibleTestBoard = this.WhiteLeftCastlePossible;
-            this.WhiteRightCastlePossibleTestBoard = this.WhiteRightCastlePossible;
-            this.BlackLeftCastlePossibleTestBoard = this.BlackLeftCastlePossible;
-            this.BlackRightCastlePossibleTestBoard = this.BlackRightCastlePossible;
         }
 
         public void PerformMove(Move move)
@@ -226,19 +166,15 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                 if (move.CurrentPosition.Col == 0)
                 {
                     this.WhiteLeftCastlePossible = false;
-                    this.WhiteLeftCastlePossibleTestBoard = false;
                 }
                 if (move.CurrentPosition.Col == 4)
                 {
                     this.WhiteLeftCastlePossible = false;
-                    this.WhiteLeftCastlePossibleTestBoard = false;
                     this.WhiteRightCastlePossible = false;
-                    this.WhiteRightCastlePossibleTestBoard = false;
                 }
                 if (move.CurrentPosition.Col == 7)
                 {
                     this.WhiteRightCastlePossible = false;
-                    this.WhiteRightCastlePossibleTestBoard = false;
                 }
             }
             if (move.CurrentPosition.Row == 0)
@@ -246,19 +182,15 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                 if (move.CurrentPosition.Col == 0)
                 {
                     this.BlackLeftCastlePossible = false;
-                    this.BlackLeftCastlePossibleTestBoard = false;
                 }
                 if (move.CurrentPosition.Col == 4)
                 {
                     this.BlackLeftCastlePossible = false;
-                    this.BlackLeftCastlePossibleTestBoard = false;
                     this.BlackRightCastlePossible = false;
-                    this.BlackRightCastlePossibleTestBoard = false;
                 }
                 if (move.CurrentPosition.Col == 7)
                 {
                     this.BlackRightCastlePossible = false;
-                    this.BlackRightCastlePossibleTestBoard = false;
                 }
             }
             if (move.NextPosititon.Row == 7)
@@ -267,19 +199,15 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                 {
 
                     this.WhiteLeftCastlePossible = false;
-                    this.WhiteLeftCastlePossibleTestBoard = false;
                 }
                 if (move.NextPosititon.Col == 4)
                 {
                     this.WhiteLeftCastlePossible = false;
-                    this.WhiteLeftCastlePossibleTestBoard = false;
                     this.WhiteRightCastlePossible = false;
-                    this.WhiteRightCastlePossibleTestBoard = false;
                 }
                 if (move.NextPosititon.Col == 7)
                 {
                     this.WhiteRightCastlePossible = false;
-                    this.WhiteRightCastlePossibleTestBoard = false;
                 }
             }
             if (move.NextPosititon.Row == 0)
@@ -287,34 +215,27 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                 if (move.NextPosititon.Col == 0)
                 {
                     this.BlackLeftCastlePossible = false;
-                    this.BlackLeftCastlePossibleTestBoard = false;
                 }
                 if (move.NextPosititon.Col == 4)
                 {
                     this.BlackLeftCastlePossible = false;
-                    this.BlackLeftCastlePossibleTestBoard = false;
                     this.BlackRightCastlePossible = false;
-                    this.BlackRightCastlePossibleTestBoard = false;
                 }
                 if (move.NextPosititon.Col == 7)
                 {
                     this.BlackRightCastlePossible = false;
-                    this.BlackRightCastlePossibleTestBoard = false;
                 }
             }
             //will need that for en passant pawn move
             Model.Instance.LastMove = move;
-            Model.Instance.LastMoveTestBoard = move;
 
             if (Model.Instance.CurrentPlayerToMove == PieceColor.White)
             {
                 Model.Instance.CurrentPlayerToMove = PieceColor.Black;
-                Model.Instance.CurrentPlayerToMoveTestBoard = PieceColor.Black;
             }
             else
             {
                 Model.Instance.CurrentPlayerToMove = PieceColor.White;
-                Model.Instance.CurrentPlayerToMoveTestBoard = PieceColor.White;
             }
             this.TestBoardState = this.BoardDeepCopy();
         }
@@ -327,89 +248,14 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
             this.TestBoardState[move.NextPosititon.Row, move.NextPosititon.Col] = newPiece;
             piece.PiecePosition = new Position(move.NextPosititon.Row, move.NextPosititon.Col);
             newPiece.PiecePosition = new Position(move.NextPosititon.Row, move.NextPosititon.Col);
-
-            if (move.CurrentPosition.Row == 7)
-            {
-                if (move.CurrentPosition.Col == 0)
-                {
-                    this.WhiteLeftCastlePossibleTestBoard = false;
-                }
-                if (move.CurrentPosition.Col == 4)
-                {
-                    this.WhiteLeftCastlePossibleTestBoard = false;
-                    this.WhiteRightCastlePossibleTestBoard = false;
-                }
-                if (move.CurrentPosition.Col == 7)
-                {
-                    this.WhiteRightCastlePossibleTestBoard = false;
-                }
-            }
-            if (move.CurrentPosition.Row == 0)
-            {
-                if (move.CurrentPosition.Col == 0)
-                {
-                    this.BlackLeftCastlePossibleTestBoard = false;
-                }
-                if (move.CurrentPosition.Col == 4)
-                {
-                    this.BlackLeftCastlePossibleTestBoard = false;
-                    this.BlackRightCastlePossibleTestBoard = false;
-                }
-                if (move.CurrentPosition.Col == 7)
-                {
-                    this.BlackRightCastlePossibleTestBoard = false;
-                }
-            }
-            if (move.NextPosititon.Row == 7)
-            {
-                if (move.NextPosititon.Col == 0)
-                {
-
-                    this.WhiteLeftCastlePossibleTestBoard = false;
-                }
-                if (move.NextPosititon.Col == 4)
-                {
-                    this.WhiteLeftCastlePossibleTestBoard = false;
-                    this.WhiteRightCastlePossibleTestBoard = false;
-                }
-                if (move.NextPosititon.Col == 7)
-                {
-                    this.WhiteRightCastlePossibleTestBoard = false;
-                }
-            }
-            if (move.NextPosititon.Row == 0)
-            {
-                if (move.NextPosititon.Col == 0)
-                {
-                    this.BlackLeftCastlePossibleTestBoard = false;
-                }
-                if (move.NextPosititon.Col == 4)
-                {
-                    this.BlackLeftCastlePossibleTestBoard = false;
-                    this.BlackRightCastlePossibleTestBoard = false;
-                }
-                if (move.NextPosititon.Col == 7)
-                {
-                    this.BlackRightCastlePossibleTestBoard = false;
-                }
-            }
-            Model.Instance.LastMoveTestBoard = move;
-            if (Model.Instance.CurrentPlayerToMoveTestBoard == PieceColor.White)
-            {
-                Model.Instance.CurrentPlayerToMoveTestBoard = PieceColor.Black;
-            }
-            if (Model.Instance.CurrentPlayerToMoveTestBoard == PieceColor.Black)
-            {
-                Model.Instance.CurrentPlayerToMoveTestBoard = PieceColor.White;
-            }
         }
 
         public IPiece[,] BoardDeepCopy()
         {
-            IPiece[,] boardCopy = new IPiece[8, 8];
-            for (int row = 0; row < 8; row++)
+            IPiece[,] boardCopy = new IPiece[BoardSize, BoardSize];
+            for (int row = 0; row < BoardSize; row++)
             {
-                for (int col = 0; col < 8; col++)
+                for (int col = 0; col < BoardSize; col++)
                 {
                     if (this.BoardState[row, col] == null)
                     {

@@ -1,5 +1,6 @@
 ﻿using System;
 using JustPoChess.Client.MVC.Model.Contracts;
+using JustPoChess.Client.MVC.Model.Entities.Board;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecesEnums;
 using JustPoChess.Client.MVC.OSChecker;
 using JustPoChess.Client.MVC.View.Art;
@@ -68,11 +69,11 @@ namespace JustPoChess.Client.MVC.View
 
         public static void PrintBoard()
         {
-            for (int x = 0; x < 8; x++)
+            for (int x = 0; x < Board.BoardSize; x++)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write($"{8 - x}| ");
-                for (int y = 0; y < 8; y++)
+                Console.Write($"{Board.BoardSize - x}| ");
+                for (int y = 0; y < Board.BoardSize; y++)
                 {
                     Console.ForegroundColor = ConsoleColor.DarkGray;
                     if (Model.Board.BoardState[x, y] == null)
@@ -105,21 +106,21 @@ namespace JustPoChess.Client.MVC.View
 
         public static void MirrorPrintBoard()
         {
-            var mirroredBoard = new IPiece[8, 8];
+            var mirroredBoard = new IPiece[Board.BoardSize, Board.BoardSize];
 
-            for (int x = 0; x < 8; x++)
+            for (int x = 0; x < Board.BoardSize; x++)
             {
-                for (int y = 0; y < 8; y++)
+                for (int y = 0; y < Board.BoardSize; y++)
                 {
-                    mirroredBoard[x, y] = Model.Board.BoardState[7 - x, 7 - y];
+                    mirroredBoard[x, y] = Model.Board.BoardState[Board.BoardSize - x - 1, Board.BoardSize - y - 1];
                 }
             }
 
-            for (int x = 0; x < 8; x++)
+            for (int x = 0; x < Board.BoardSize; x++)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write($"{x + 1}| ");
-                for (int y = 0; y < 8; y++)
+                for (int y = 0; y < Board.BoardSize; y++)
                 {
                     Console.ForegroundColor = ConsoleColor.DarkGray;
                     if (mirroredBoard[x, y] == null)

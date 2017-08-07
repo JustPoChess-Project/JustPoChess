@@ -17,11 +17,9 @@ namespace JustPoChess.Client.MVC.Model
 
         private GameState gameState;
         private PieceColor currentPlayerToMove = PieceColor.White;
-        private PieceColor currentPlayerToMoveTestBoard = PieceColor.White;
 
         //will need that for en passant pawn move
         private Move lastMove;
-        private Move lastMoveTestBoard;
 
         private Model()
         {
@@ -55,22 +53,10 @@ namespace JustPoChess.Client.MVC.Model
             set { this.currentPlayerToMove = value; }
         }
 
-        public PieceColor CurrentPlayerToMoveTestBoard
-        {
-            get { return this.currentPlayerToMoveTestBoard; }
-            set { this.currentPlayerToMoveTestBoard = value; }
-        }
-
         public Move LastMove
         {
             get { return this.lastMove; }
             set { this.lastMove = value; }
-        }
-
-        public Move LastMoveTestBoard
-        {
-            get { return this.lastMoveTestBoard; }
-            set { this.lastMoveTestBoard = value; }
         }
 
         public Board Board

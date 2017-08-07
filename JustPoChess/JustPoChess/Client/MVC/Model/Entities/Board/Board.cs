@@ -12,15 +12,23 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
         private const int dimensions = 8;
 
         private const int BoardSize = dimensions;
+        
         public IPiece[,] boardState;
+
         public bool whiteLeftCastlePossible = true;
+
         public bool whiteRightCastlePossible = true;
+
         public bool blackLeftCastlePossible = true;
+
         public bool blackRightCastlePossible = true;
 
         public bool whiteLeftCastlePossibleTestBoard = true;
+
         public bool whiteRightCastlePossibleTestBoard = true;
+
         public bool blackLeftCastlePossibleTestBoard = true;
+
         public bool blackRightCastlePossibleTestBoard = true;
 
         private static Board instance;
@@ -40,8 +48,75 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                 return instance;
             }
         }
+
+        public IPiece[,] BoardState
+        {
+            get { return boardState; }
+            set { boardState = value; }
+        }
+
+        public bool WhiteLeftCastlePossible
+        {
+            get { return whiteLeftCastlePossible; }
+            set { whiteLeftCastlePossible = value; }
+        }
+
+        public bool WhiteRightCastlePossible
+        {
+            get { return whiteRightCastlePossible; }
+            set { whiteRightCastlePossible = value; }
+        }
+
+        public bool BlackLeftCastlePossible
+        {
+            get { return blackLeftCastlePossible; }
+            set { blackLeftCastlePossible = value; }
+        }
+
+        public bool BlackRightCastlePossible
+        {
+            get { return blackRightCastlePossible; }
+            set { blackRightCastlePossible = value; }
+        }
+
+        public bool WhiteLeftCastlePossibleTestBoard
+        {
+            get { return whiteLeftCastlePossibleTestBoard; }
+            set { whiteLeftCastlePossibleTestBoard = value; }
+        }
+
+        public bool WhiteRightCastlePossibleTestBoard
+        {
+            get { return whiteRightCastlePossibleTestBoard; }
+            set { whiteRightCastlePossibleTestBoard = value; }
+        }
+
+        public bool BlackLeftCastlePossibleTestBoard
+        {
+            get { return blackLeftCastlePossibleTestBoard; }
+            set { blackLeftCastlePossibleTestBoard = value; }
+        }
+
+        public bool BlackRightCastlePossibleTestBoard
+        {
+            get { return blackRightCastlePossibleTestBoard; }
+            set { blackRightCastlePossibleTestBoard = value; }
+        }
+
+        public static Board Instance1
+        {
+            get { return instance; }
+            set { instance = value; }
+        }
+
+        public IPiece[,] TestBoardState
+        {
+            get { return testBoardState; }
+            set { testBoardState = value; }
+        }
+
         //testing purposes
-        public IPiece[,] testBoardState;
+        
 
         public void InitBoard()
         {

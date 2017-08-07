@@ -50,18 +50,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
             }
             set
             {
-//                if (value == null)
-//                {
-//                    throw new ArgumentNullException();
-//                }
-//                if (this.boardState.GetLength(0) < BoardSize || this.boardState.GetLength(0) > BoardSize )
-//                {
-//                    throw new ArgumentException("Invalid Move");
-//                }
-//                if (this.boardState.GetLength(1) < BoardSize || this.boardState.GetLength(1) > BoardSize )
-//                {
-//                    throw new ArgumentException("Invalid Move");
-//                }
+                //Validation
                 this.boardState = value;
             }
         }
@@ -74,18 +63,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
             }
             set
             {
-//                if (value == null)
-//                {
-//                    throw new ArgumentNullException();
-//                }
-//                if (this.testBoardState.GetLength(0) < BoardSize || this.testBoardState.GetLength(0) > BoardSize )
-//                {
-//                    throw new ArgumentException("Invalid Move");
-//                }
-//                if (this.testBoardState.GetLength(1) < BoardSize || this.testBoardState.GetLength(1) > BoardSize )
-//                {
-//                    throw new ArgumentException("Invalid Move");
-//                }
+                //Validation
                 this.testBoardState = value;
             }
         }
@@ -199,8 +177,8 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                 { new Pawn(PieceColor.White, new Position(6, 0)), new Pawn(PieceColor.White, new Position(6, 1)), new Pawn(PieceColor.White, new Position(6, 2)), new Pawn(PieceColor.White, new Position(6, 3)), new Pawn(PieceColor.White, new Position(6, 4)), new Pawn(PieceColor.White, new Position(6, 5)), new Pawn(PieceColor.White, new Position(6, 6)), new Pawn(PieceColor.White, new Position(6, 7)) },
                 { new Rook(PieceColor.White, new Position(7, 0)), new Knight(PieceColor.White, new Position(7, 1)), new Bishop(PieceColor.White, new Position(7, 2)), new Queen(PieceColor.White, new Position(7, 3)), new King(PieceColor.White, new Position(7, 4)), new Bishop(PieceColor.White, new Position(7, 5)), new Knight(PieceColor.White, new Position(7, 6)), new Rook(PieceColor.White, new Position(7, 7)) }
             };
-            Model.currentPlayerToMove = PieceColor.White;
-            Model.currentPlayerToMoveTestBoard = PieceColor.White;
+            Model.Instance.CurrentPlayerToMove = PieceColor.White;
+            Model.Instance.CurrentPlayerToMove = PieceColor.White;
 
             this.testBoardState = this.BoardDeepCopy();
         }
@@ -208,8 +186,8 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
         public void RevertTestBoardState()
         {
             this.testBoardState = this.BoardDeepCopy();
-            Model.currentPlayerToMoveTestBoard = Model.currentPlayerToMove;
-            Model.lastMoveTestBoard = Model.lastMove;
+            Model.Instance.CurrentPlayerToMoveTestBoard = Model.Instance.CurrentPlayerToMove;
+            Model.Instance.LastMoveTestBoard = Model.Instance.LastMove;
             this.WhiteLeftCastlePossibleTestBoard = this.WhiteLeftCastlePossible;
             this.WhiteRightCastlePossibleTestBoard = this.WhiteRightCastlePossible;
             this.BlackLeftCastlePossibleTestBoard = this.BlackLeftCastlePossible;
@@ -305,18 +283,18 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                 }
             }
             //will need that for en passant pawn move
-            Model.lastMove = move;
-            Model.lastMoveTestBoard = move;
+            Model.Instance.LastMove = move;
+            Model.Instance.LastMoveTestBoard = move;
 
-            if (Model.currentPlayerToMove == PieceColor.White)
+            if (Model.Instance.CurrentPlayerToMove == PieceColor.White)
             {
-                Model.currentPlayerToMove = PieceColor.Black;
-                Model.currentPlayerToMoveTestBoard = PieceColor.Black;
+                Model.Instance.CurrentPlayerToMove = PieceColor.Black;
+                Model.Instance.CurrentPlayerToMoveTestBoard = PieceColor.Black;
             }
-            if (Model.currentPlayerToMove == PieceColor.Black)
+            if (Model.Instance.CurrentPlayerToMove == PieceColor.Black)
             {
-                Model.currentPlayerToMove = PieceColor.White;
-                Model.currentPlayerToMoveTestBoard = PieceColor.White;
+                Model.Instance.CurrentPlayerToMove = PieceColor.White;
+                Model.Instance.CurrentPlayerToMoveTestBoard = PieceColor.White;
             }
             this.TestBoardState = this.BoardDeepCopy();
         }
@@ -395,14 +373,14 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                     this.BlackRightCastlePossibleTestBoard = false;
                 }
             }
-            Model.lastMoveTestBoard = move;
-            if (Model.currentPlayerToMoveTestBoard == PieceColor.White)
+            Model.Instance.LastMoveTestBoard = move;
+            if (Model.Instance.CurrentPlayerToMoveTestBoard == PieceColor.White)
             {
-                Model.currentPlayerToMoveTestBoard = PieceColor.Black;
+                Model.Instance.CurrentPlayerToMoveTestBoard = PieceColor.Black;
             }
-            if (Model.currentPlayerToMoveTestBoard == PieceColor.Black)
+            if (Model.Instance.CurrentPlayerToMoveTestBoard == PieceColor.Black)
             {
-                Model.currentPlayerToMoveTestBoard = PieceColor.White;
+                Model.Instance.CurrentPlayerToMoveTestBoard = PieceColor.White;
             }
         }
 

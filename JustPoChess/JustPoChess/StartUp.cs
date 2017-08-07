@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using JustPoChess.Client.MVC.Model.Entities.Board;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.Abstract;
 using JustPoChess.Client.MVC.OSChecker;
+using JustPoChess.Client.MVC.View;
 
 
 namespace JustPoChess.Client.MVC
@@ -17,16 +18,16 @@ namespace JustPoChess.Client.MVC
                 Console.OutputEncoding = System.Text.Encoding.UTF8;
             }
             Board.Instance.InitBoard();
-            //View.PrintBoard();
+            View.View.PrintBoard();
             Console.WriteLine(new string('*', 50));
             IEnumerable<Move> allPossibleMovesForCurrentPlayer = new List<Move>();
-//            foreach (Piece boardPiece in Model.GetBoardState())
-//            {
-//                if (boardPiece != null && boardPiece.PieceColor == Model.currentPlayerToMove)
-//                {
-//                    allPossibleMovesForCurrentPlayer = allPossibleMovesForCurrentPlayer.Concat(Controller.GeneratePossibleMovesForPieceConsideringDiscoveringCheck(boardPiece));
-//                }
-//            }
+            foreach (Piece boardPiece in Model.Model.GetBoardState())
+            {
+                if (boardPiece != null && boardPiece.PieceColor == Model.Model.currentPlayerToMove)
+                {
+                    allPossibleMovesForCurrentPlayer = allPossibleMovesForCurrentPlayer.Concat(Controller.Controller.GeneratePossibleMovesForPieceConsideringDiscoveringCheck(boardPiece));
+                }
+            }
             foreach (Move m in allPossibleMovesForCurrentPlayer)
             {
                 Console.WriteLine(m);

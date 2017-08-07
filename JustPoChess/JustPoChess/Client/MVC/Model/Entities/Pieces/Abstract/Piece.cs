@@ -13,20 +13,50 @@ namespace JustPoChess.Client.MVC.Model.Entities.Pieces.Abstract
 
         public Position PiecePosition
         {
-            get { return this.piecePosition; }
-            set { this.piecePosition = value; }
+            get
+            {
+                return this.piecePosition;
+            }
+            set
+            {
+                if (this.piecePosition == null)
+                {
+                    throw new ArgumentException($"Invalid {nameof(Piece)}");
+                }
+                this.piecePosition = value;
+            }
         }
 
         public PieceColor PieceColor
         {
-            get { return this.pieceColor; }
-            protected set { this.pieceColor = value; }
+            get
+            {
+                return this.pieceColor;
+            }
+            protected set
+            {
+                if (this.pieceColor != PieceColor.Black || this.pieceColor != PieceColor.White)
+                {
+                    throw new ArgumentException("Invalid Color");
+                }
+                this.pieceColor = value;
+            }
         }
 
         public PieceType PieceType
         {
-            get { return this.pieceType; }
-            protected set { this.pieceType = value; }
+            get
+            {
+                return this.pieceType;
+            }
+            protected set
+            {
+                if (this.pieceType != PieceType.Rook || this.pieceType != PieceType.Queen || this.pieceType != PieceType.Pawn || this.pieceType != PieceType.Knight || this.pieceType != PieceType.King || this.pieceType != PieceType.Bishop)
+                {
+                    
+                }
+                this.pieceType = value;
+            }
         }
 
         public abstract void Draw();

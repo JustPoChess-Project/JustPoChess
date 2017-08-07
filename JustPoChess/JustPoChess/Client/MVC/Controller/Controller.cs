@@ -1,4 +1,4 @@
-﻿﻿﻿using System;
+﻿using System;
 using System.Linq;
 using System.Threading;
 using System.Collections.Generic;
@@ -18,7 +18,7 @@ namespace JustPoChess.Client.MVC.Controller
         private Controller()
         {
         }
-        
+
         public static Controller Instance
         {
             get
@@ -31,7 +31,7 @@ namespace JustPoChess.Client.MVC.Controller
             }
         }
         private static readonly Model.Model model = Model.Model.Instance;
-        
+
         public static void Start()
         {
             Console.WriteLine(Messages.FontWarrning);
@@ -1680,7 +1680,7 @@ namespace JustPoChess.Client.MVC.Controller
             }
             return false;
         }
-        
+
         // GameState Checks
         public bool CheckForDraw()
         {
@@ -1690,7 +1690,7 @@ namespace JustPoChess.Client.MVC.Controller
             }
             return false;
         }
-        
+
         private static bool CheckIfKingVsKing()
         {
             foreach (Piece boardPiece in Board.Instance.BoardState)
@@ -1728,6 +1728,10 @@ namespace JustPoChess.Client.MVC.Controller
             }
             foreach (Piece boardPiece in Board.Instance.BoardState)
             {
+                if (boardPiece == null)
+                {
+                    continue;
+                }
                 if (boardPiece != null && boardPiece.PieceColor != pieceColor && boardPiece.PieceType == PieceType.Pawn) //iterating over all pawns from the current player
                 {
                     switch (boardPiece.PieceColor)

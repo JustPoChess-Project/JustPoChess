@@ -10,9 +10,9 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
     public class Board
     {
         public const int BoardSize = 8;
-        
+
         private static Board instance;
-        
+
         private IPiece[,] boardState;
         private IPiece[,] testBoardState;
 
@@ -27,7 +27,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
 
         public static Board Instance
         {
-            get 
+            get
             {
                 if (instance == null)
                 {
@@ -130,25 +130,28 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
             this.testBoardState = this.BoardDeepCopy();
         }
 
-        public void SetBoardState(IPiece [,] state, PieceColor color)
+        public void SetBoardState(IPiece[,] state, PieceColor color)
         {
             Model.Instance.CurrentPlayerToMove = color;
 
             if (color == PieceColor.Black)
             {
-                if (state[0, 4] is King )
+                if (state[0, 4] is King)
                 {
                     if (state[0, 0] is Rook)
                     {
                         this.BlackLeftCastlePossible = true;
                     }
-                    else if(state[0,7] is Rook)
+                    else
+                    {
+                        this.BlackLeftCastlePossible = false;
+                    }
+                    if (state[0, 7] is Rook)
                     {
                         this.BlackRightCastlePossible = true;
                     }
                     else
                     {
-                        this.BlackLeftCastlePossible = false;
                         this.BlackRightCastlePossible = false;
                     }
                 }
@@ -166,13 +169,16 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                     {
                         this.WhiteLeftCastlePossible = true;
                     }
-                    else if (state[7, 7] is Rook)
+                    else
+                    {
+                        this.WhiteLeftCastlePossible = false;
+                    }
+                    if (state[7, 7] is Rook)
                     {
                         this.WhiteRightCastlePossible = true;
                     }
                     else
                     {
-                        this.WhiteLeftCastlePossible = false;
                         this.WhiteRightCastlePossible = false;
                     }
                 }
@@ -182,7 +188,6 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                     this.WhiteRightCastlePossible = false;
                 }
             }
-
             this.BoardState = state;
         }
 

@@ -124,7 +124,7 @@ namespace JustPoChess.Client.MVC.View.Menu
                             switch (menuOptions)
                             {
                                 case 1:
-                                    Controller.Controller.StartHotSeat();
+                                    //Controller.Controller.StartHotSeat();
                                     break;
 
                                 case 2:

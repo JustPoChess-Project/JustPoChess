@@ -9,7 +9,7 @@ namespace JustPoChess.Client.MVC.Model
     {
         private static Model instance;
         
-        private static Board board = Board.Instance;
+        private Board board = Board.Instance;
         
         //to-do: fix all namespaces once and for all
         private readonly Player player1;
@@ -73,10 +73,10 @@ namespace JustPoChess.Client.MVC.Model
             set { this.lastMoveTestBoard = value; }
         }
 
-        public static Board Board
+        public Board Board
         {
-            get { return board; }
-            set { board = value; }
+            get { return this.board; }
+            set { this.board = value; }
         }
     }
 }

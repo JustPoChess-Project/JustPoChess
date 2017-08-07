@@ -1,31 +1,34 @@
-﻿﻿using System;
+﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using JustPoChess.Client.MVC.Controller;
+using JustPoChess.Client.MVC.Model;
 using JustPoChess.Client.MVC.Model.Entities.Board;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.Abstract;
 using JustPoChess.Client.MVC.OSChecker;
 using JustPoChess.Client.MVC.View;
 
 
-namespace JustPoChess.Client.MVC
+namespace JustPoChess
 {
     public class StartUp
     {
         public static void Main()
-        {
+        {   
+            
             if (!CheckOS.IsLinux)
             {
                 Console.OutputEncoding = System.Text.Encoding.UTF8;
             }
             Board.Instance.InitBoard();
-            View.View.PrintBoard();
+            View.PrintBoard();
             Console.WriteLine(new string('*', 50));
             IEnumerable<Move> allPossibleMovesForCurrentPlayer = new List<Move>();
-            foreach (Piece boardPiece in Model.Model.GetBoardState())
+            foreach (Piece boardPiece in Model.Instance.Board.BoardState)
             {
-                if (boardPiece != null && boardPiece.PieceColor == Model.Model.currentPlayerToMove)
+                if (boardPiece != null && boardPiece.PieceColor == Model.Instance.CurrentPlayerToMove)
                 {
-                    allPossibleMovesForCurrentPlayer = allPossibleMovesForCurrentPlayer.Concat(Controller.Controller.GeneratePossibleMovesForPieceConsideringDiscoveringCheck(boardPiece));
+                    allPossibleMovesForCurrentPlayer = allPossibleMovesForCurrentPlayer.Concat(Controller.Instance.GeneratePossibleMovesForPieceConsideringDiscoveringCheck(boardPiece));
                 }
             }
             foreach (Move m in allPossibleMovesForCurrentPlayer)
@@ -41,7 +44,7 @@ namespace JustPoChess.Client.MVC
 
             try
             {
-                Controller.Controller.Start();
+                Controller.Start();
             }
             catch (Exception e)
             {

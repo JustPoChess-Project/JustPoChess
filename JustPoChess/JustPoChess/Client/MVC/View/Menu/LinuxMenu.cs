@@ -2,7 +2,7 @@
 using System.Threading;
 using JustPoChess.Client.MVC.View.Art;
 using JustPoChess.Client.MVC.View.Input;
-using JustPoChess.Client.MVC.View.Sounds;
+//using JustPoChess.Client.MVC.View.Sounds;
 
 namespace JustPoChess.Client.MVC.View.Menu
 {
@@ -11,7 +11,7 @@ namespace JustPoChess.Client.MVC.View.Menu
         public static void InitialScreen()
         {
             Console.Clear();
-            OST.PlayInitialScreenOST();
+            //OST.PlayInitialScreenOST();
             Thread.Sleep(300);
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine(MenuArt.JustPoChessLogoUpper);
@@ -40,8 +40,8 @@ namespace JustPoChess.Client.MVC.View.Menu
 
             } while (!Console.KeyAvailable);
 
-            SoundEffects.PlaySelectionSound();
-            OST.Stop();
+            //SoundEffects.PlaySelectionSound();
+            //OST.Stop();
 
             Console.ForegroundColor = ConsoleColor.Red;
             for (int i = 0; i < 18; i++)
@@ -61,7 +61,7 @@ namespace JustPoChess.Client.MVC.View.Menu
 
         public static void InitializeMenu()
         {
-            OST.PlayMenuOST();
+            //OST.PlayMenuOST();
             Console.Clear();
             InputUtilities.ClearKeyBuffer();
 
@@ -95,7 +95,7 @@ namespace JustPoChess.Client.MVC.View.Menu
                     switch (userInput.Key)
                     {
                         case ConsoleKey.UpArrow:
-                            SoundEffects.PlayTraverseSound();
+                            //SoundEffects.PlayTraverseSound();
                             if (menuOptions == 1)
                             {
                                 menuOptions = 6;
@@ -107,7 +107,7 @@ namespace JustPoChess.Client.MVC.View.Menu
                             break;
 
                         case ConsoleKey.DownArrow:
-                            SoundEffects.PlayTraverseSound();
+                            //SoundEffects.PlayTraverseSound();
                             if (menuOptions == 6)
                             {
                                 menuOptions = 1;
@@ -119,8 +119,8 @@ namespace JustPoChess.Client.MVC.View.Menu
                             break;
 
                         case ConsoleKey.Enter:
-                            SoundEffects.PlaySelectionSound();
-                            OST.Stop();
+                            //SoundEffects.PlaySelectionSound();
+                            //OST.Stop();
                             switch (menuOptions)
                             {
                                 case 1:

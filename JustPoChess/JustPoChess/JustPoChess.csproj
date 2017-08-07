@@ -53,6 +53,7 @@
     <Compile Include="Client\MVC\View\Art\GameArt.cs" />
     <Compile Include="Client\MVC\View\Art\MenuArt.cs" />
     <Compile Include="Client\MVC\View\Input\InputUtilities.cs" />
+    <Compile Include="Client\MVC\View\Menu\LinuxMenu.cs" />
     <Compile Include="Client\MVC\View\Messages\Messages.cs" />
     <Compile Include="Client\MVC\View\Sounds\Sound.cs" />
     <Compile Include="StartUp.cs" />

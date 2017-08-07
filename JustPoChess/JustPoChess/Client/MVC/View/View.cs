@@ -1,14 +1,17 @@
 ﻿using System;
 using JustPoChess.Client.MVC.Model.Contracts;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecesEnums;
+using JustPoChess.Client.MVC.OSChecker;
 using JustPoChess.Client.MVC.View.Art;
 using JustPoChess.Client.MVC.View.Menu;
+using JustPoChess.Client.MVC.View.Sounds;
 
 namespace JustPoChess.Client.MVC.View
 {
     public class View
     {
-        private static WindowsMenu menu = WindowsMenu.Instance;
+        private static WindowsMenu windowsMenu = WindowsMenu.Instance;
+        private static LinuxMenu linuxMenu = LinuxMenu.Instance;
         private static View instance;
         
         private static Model.Model model = MVC.Model.Model.Instance;
@@ -36,17 +39,31 @@ namespace JustPoChess.Client.MVC.View
 
         public static void InitialScreen()
         {
-            menu.InitialScreen();
+            if (CheckOS.IsLinux)
+            {
+                linuxMenu.InitialScreen();
+            }
+            else
+            {
+                windowsMenu.InitialScreen();
+            }
         }
 
         public static void InitializeMenu()
         {
-            menu.InitializeMenu();
+            if (CheckOS.IsLinux)
+            {
+                linuxMenu.InitializeMenu();
+            }
+            else
+            {
+                windowsMenu.InitializeMenu();
+            }
         }
 
         public static void StopMusic()
         {
-            //Sounds.OST.Stop();
+            Sound.Stop();
         }
 
         public static void PrintBoard()

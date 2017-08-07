@@ -1,26 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using JustPoChess.Client.MVC.View.Art;
 using JustPoChess.Client.MVC.View.Input;
 using JustPoChess.Client.MVC.View.Sounds;
 
-//using JustPoChess.Client.MVC.View.Sounds;
-
 namespace JustPoChess.Client.MVC.View.Menu
 {
-    public class WindowsMenu
+    public class LinuxMenu
     {
-        private static volatile WindowsMenu instance = null;
+        private static volatile LinuxMenu instance = null;
 
-        private WindowsMenu() { }
+        private LinuxMenu() { }
 
-        public static WindowsMenu Instance
+        public static LinuxMenu Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new WindowsMenu();
+                    instance = new LinuxMenu();
                 }
 
                 return instance;
@@ -41,40 +43,21 @@ namespace JustPoChess.Client.MVC.View.Menu
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine(MenuArt.JustPoChessLogoDown);
 
-            Console.ForegroundColor = ConsoleColor.DarkMagenta;
-            Console.SetCursorPosition(0, 11);
-            Console.WriteLine(MenuArt.CopyrightLogo);
+            Console.WriteLine();
+            Console.WriteLine();
 
             Console.ForegroundColor = ConsoleColor.White;
-            bool visible = true;
-            do
-            {
-                string alert = visible ? $"{MenuArt.Continue}" : "";
-                Console.SetCursorPosition(0, 8);
-                visible = !visible;
-                Console.WriteLine(alert);
-                Thread.Sleep(1000);
-                Console.SetCursorPosition(0, 8);
-                Console.Write(new string(' ', Console.WindowWidth));
+            Console.WriteLine(MenuArt.Continue);
 
-            } while (!Console.KeyAvailable);
+            Console.WriteLine();
+            Console.WriteLine();
 
-            Sound.PlaySelectionSound();
-
-            Console.ForegroundColor = ConsoleColor.Red;
-            for (int i = 0; i < 18; i++)
-            {
-                string alert = visible ? $"{MenuArt.Continue}" : "";
-                Console.SetCursorPosition(0, 8);
-                visible = !visible;
-                Console.WriteLine(alert);
-                Thread.Sleep(100);
-                Console.SetCursorPosition(0, 8);
-                Console.Write(new string(' ', Console.WindowWidth));
-            }
-
-            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine(MenuArt.CopyrightLogo);
             Console.ForegroundColor = ConsoleColor.DarkGray;
+            while (!Console.KeyAvailable) { }
+            Sound.PlaySelectionSound();
+            Thread.Sleep(1800);
         }
 
         public void InitializeMenu()
@@ -963,7 +946,5 @@ namespace JustPoChess.Client.MVC.View.Menu
                 }
             }
         }
-
     }
 }
-

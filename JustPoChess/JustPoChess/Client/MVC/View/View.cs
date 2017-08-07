@@ -1,5 +1,4 @@
 ﻿using System;
-using JustPoChess.Client.MVC.Model;
 using JustPoChess.Client.MVC.Model.Contracts;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecesEnums;
 using JustPoChess.Client.MVC.View.Art;
@@ -9,6 +8,7 @@ namespace JustPoChess.Client.MVC.View
 {
     public class View
     {
+        private static WindowsMenu menu = WindowsMenu.Instance;
         private static View instance;
         
         private static Model.Model model = MVC.Model.Model.Instance;
@@ -36,12 +36,12 @@ namespace JustPoChess.Client.MVC.View
 
         public static void InitialScreen()
         {
-            Menu.Menu.InitialScreen();
+            menu.InitialScreen();
         }
 
         public static void InitializeMenu()
         {
-            Menu.Menu.InitializeMenu();
+            menu.InitializeMenu();
         }
 
         public static void StopMusic()
@@ -85,40 +85,6 @@ namespace JustPoChess.Client.MVC.View
                 }
             }
         }
-
-		//testing purposes
-		public static void PrintTestBoard()
-		{
-			for (int x = 0; x < 8; x++)
-			{
-				Console.Write($"{8 - x} ");
-				for (int y = 0; y < 8; y++)
-				{
-					if (Model.Board.TestBoardState[x, y] == null)
-					{
-						if ((x + y) % 2 != 0)
-						{
-							Console.Write("■ ");
-						}
-						else
-						{
-							Console.Write("■ ");
-						}
-					}
-					else
-					{
-					    Console.ForegroundColor = ConsoleColor.DarkGray;
-                        Console.Write($"{GetPieceString(Model.Board.TestBoardState, x, y)} ");
-					}
-				}
-				Console.WriteLine();
-				if (x == 7)
-				{
-					Console.WriteLine("  a  b  c  d   e  f  g  h");
-				    Console.ForegroundColor = ConsoleColor.DarkGray;
-                }
-			}
-		}
 
         public static void MirrorPrintBoard()
         {

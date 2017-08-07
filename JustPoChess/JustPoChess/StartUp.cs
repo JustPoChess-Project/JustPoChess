@@ -15,29 +15,27 @@ namespace JustPoChess
     {
         public static void Main()
         {   
-            
+            // Board.Instance.InitBoard();
+            // View.PrintBoard();
+            // Console.WriteLine(new string('*', 50));
+            // IEnumerable<Move> allPossibleMovesForCurrentPlayer = new List<Move>();
+            // foreach (Piece boardPiece in Model.Instance.Board.BoardState)
+            // {
+            //     if (boardPiece != null && boardPiece.PieceColor == Model.Instance.CurrentPlayerToMove)
+            //     {
+            //         allPossibleMovesForCurrentPlayer = allPossibleMovesForCurrentPlayer.Concat(Controller.Instance.GeneratePossibleMovesForPieceConsideringDiscoveringCheck(boardPiece));
+            //     }
+            // }
+            // foreach (Move m in allPossibleMovesForCurrentPlayer)
+            // {
+            //     Console.WriteLine(m);
+            // }
+
+            //General Program settings
             if (!CheckOS.IsLinux)
             {
                 Console.OutputEncoding = System.Text.Encoding.UTF8;
             }
-            Board.Instance.InitBoard();
-            View.PrintBoard();
-            Console.WriteLine(new string('*', 50));
-            IEnumerable<Move> allPossibleMovesForCurrentPlayer = new List<Move>();
-            foreach (Piece boardPiece in Model.Instance.Board.BoardState)
-            {
-                if (boardPiece != null && boardPiece.PieceColor == Model.Instance.CurrentPlayerToMove)
-                {
-                    allPossibleMovesForCurrentPlayer = allPossibleMovesForCurrentPlayer.Concat(Controller.Instance.GeneratePossibleMovesForPieceConsideringDiscoveringCheck(boardPiece));
-                }
-            }
-            foreach (Move m in allPossibleMovesForCurrentPlayer)
-            {
-                Console.WriteLine(m);
-            }
-            return;
-            //General Program settings
-            //Mandatory fuck Unix users
             Console.CursorVisible = false;
             Console.SetWindowPosition(0, 0);
             Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);

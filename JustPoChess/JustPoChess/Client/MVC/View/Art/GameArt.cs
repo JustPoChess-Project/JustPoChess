@@ -8,25 +8,19 @@ namespace JustPoChess.Client.MVC.View.Art
 {
     public static class GameArt
     {
-        public static string BlackPawn = "♙";
-        public static string WhitePawn = "♟";
-
-        public static string BlackKnight = "♘";
-        public static string WhiteKnight = "♞";
-
-        public static string BlackQueen = "♕";
-        public static string WhiteQueen = "♛";
-
-        public static string BlackRook = "♖";
-        public static string WhiteRook = "♜";
-
-        public static string BlackKing = "♔";
-        public static string WhiteKing = "♚";
-
-        public static string BlackBishop = "♗";
-        public static string WhiteBishop = "♝";
-
-        public static string BlackSquare = "☐";
-        public static string WhiteSquare = "■";
+        public static readonly string BlackPawn = "♙";
+        public static readonly string WhitePawn = "♟";
+        public static readonly string BlackKnight = "♘";
+        public static readonly string WhiteKnight = "♞";
+        public static readonly string BlackQueen = "♕";
+        public static readonly string WhiteQueen = "♛";
+        public static readonly string BlackRook = "♖";
+        public static readonly string WhiteRook = "♜";
+        public static readonly string BlackKing = "♔";
+        public static readonly string WhiteKing = "♚";
+        public static readonly string BlackBishop = "♗";
+        public static readonly string WhiteBishop = "♝";
+        public static readonly string BlackSquare = "☐";
+        public static readonly string WhiteSquare = "■";
     }
 }

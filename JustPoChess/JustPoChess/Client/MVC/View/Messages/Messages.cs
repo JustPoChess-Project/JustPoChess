@@ -8,7 +8,7 @@ namespace JustPoChess.Client.MVC.View.Messages
 {
     public static class Messages
     {
-        public static string FontWarrning = "Please change console font to MS Gothic with size 72!";
-        public static string FontColorWarrning = "For best experience use dark gray font color!";
+        public const string FontWarrning = "Please change console font to MS Gothic with size 72!";
+        public const string FontColorWarrning = "For best experience use dark gray font color!";
     }
 }

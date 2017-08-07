@@ -53,7 +53,6 @@
     <Compile Include="Client\MVC\View\Art\GameArt.cs" />
     <Compile Include="Client\MVC\View\Art\MenuArt.cs" />
     <Compile Include="Client\MVC\View\Input\InputUtilities.cs" />
-    <Compile Include="Client\MVC\View\Menu\LinuxMenu.cs" />
     <Compile Include="Client\MVC\View\Messages\Messages.cs" />
     <Compile Include="Client\MVC\View\Sounds\SoundEffects.cs" />
     <Compile Include="Client\MVC\View\Sounds\OST.cs" />
@@ -64,7 +63,7 @@
     <Compile Include="Client\MVC\Model\Entities\Pieces\PiecePosition\Position.cs" />
     <Compile Include="Client\MVC\Model\Entities\Pieces\PiecesEnums\PieceColor.cs" />
     <Compile Include="Client\MVC\Model\Entities\Pieces\PiecesEnums\PieceType.cs" />
-    <Compile Include="Client\MVC\View\Menu\Menu.cs" />
+    <Compile Include="Client\MVC\View\Menu\WindowsMenu.cs" />
     <Compile Include="Client\MVC\View\Messages\ErrorMessages.cs" />
     <Compile Include="Client\MVC\Controller\Controller.cs" />
     <Compile Include="Client\MVC\Model\Entities\Pieces\Rook.cs" />

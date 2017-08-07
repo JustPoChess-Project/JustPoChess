@@ -36,6 +36,16 @@ namespace JustPoChess.Client.MVC.Controller
             }
         }
 
+        public static bool IsMovePossible(Move move)
+        {
+            ICollection<Move> possibleMoves = GeneratePossibleMovesForPlayer(Board.Instance.BoardState[move.CurrentPosition.Row, move.CurrentPosition.Col].PieceColor);
+            if (possibleMoves.Contains(move))
+            {
+                return true;
+            }
+            return false;
+        }
+
         public static bool MoveDiscoversCheckToOwnKing(Move move)
         {
             if (move == null)
@@ -108,6 +118,7 @@ namespace JustPoChess.Client.MVC.Controller
             return position.Row >= 0 && position.Row <= 7 && position.Col >= 0 && position.Col <= 7;
         }
 
+        // Possible moves generator
         public static ICollection<Position> GenerateGuardedPositionsForPiece(Piece piece)
         {
             ICollection<Position> guardedPiecesOnSquares = new List<Position>();
@@ -1509,16 +1520,21 @@ namespace JustPoChess.Client.MVC.Controller
             return possibleMoves;
         }
 
-        public static bool IsMovePossible(Move move)
+        public static ICollection<Move> GeneratePossibleMovesForPlayer(PieceColor pieceColor)
         {
-            ICollection<Move> possibleMoves = GeneratePossibleMovesForPlayer(Board.Instance.BoardState[move.CurrentPosition.Row, move.CurrentPosition.Col].PieceColor);
-            if (possibleMoves.Contains(move))
+            ICollection<Move> possibleMoves = new List<Move>();
+            foreach (Piece boardPiece in Board.Instance.BoardState)
             {
-                return true;
+                if (boardPiece != null && boardPiece.PieceColor == pieceColor)
+                {
+                    possibleMoves = (System.Collections.Generic.ICollection<JustPoChess.Client.MVC.Model.Entities.Board.Move>)possibleMoves.Concat(GeneratePossibleMovesForPieceConsideringDiscoveringCheck(boardPiece));
+                }
             }
-            return false;
+            return possibleMoves;
         }
 
+
+        // Player Check
         public static bool IsPlayerInCheck(PieceColor pieceColor)
         {
             foreach (Piece boardPiece in Board.Instance.BoardState)
@@ -1531,6 +1547,7 @@ namespace JustPoChess.Client.MVC.Controller
             return false;
         }
 
+        //Castle Checks
         public static bool IsCurrentPlayerLeftCastlePossible()
         {
             switch (Model.Model.currentPlayerToMove)
@@ -1661,19 +1678,9 @@ namespace JustPoChess.Client.MVC.Controller
             return false;
         }
 
-        public static ICollection<Move> GeneratePossibleMovesForPlayer(PieceColor pieceColor)
-        {
-            ICollection<Move> possibleMoves = new List<Move>();
-            foreach (Piece boardPiece in Board.Instance.BoardState)
-            {
-                if (boardPiece != null && boardPiece.PieceColor == pieceColor)
-                {
-                    possibleMoves = (System.Collections.Generic.ICollection<JustPoChess.Client.MVC.Model.Entities.Board.Move>)possibleMoves.Concat(GeneratePossibleMovesForPieceConsideringDiscoveringCheck(boardPiece));
-                }
-            }
-            return possibleMoves;
-        }
 
+
+        // GameState Checks
         public static bool CheckForDraw()
         {
             if ((GeneratePossibleMovesForPlayer(Model.Model.currentPlayerToMove).Count == 0 && !IsPlayerInCheck(Model.Model.currentPlayerToMove)) || CheckIfKingVsKing())
@@ -1692,7 +1699,7 @@ namespace JustPoChess.Client.MVC.Controller
             return false;
         }
 
-        public static bool CheckIfKingVsKing()
+        private static bool CheckIfKingVsKing()
         {
             foreach (Piece boardPiece in Board.Instance.BoardState)
             {

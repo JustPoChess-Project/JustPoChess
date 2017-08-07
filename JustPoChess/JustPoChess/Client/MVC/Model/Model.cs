@@ -26,13 +26,13 @@ namespace JustPoChess.Client.MVC.Model
 
         public static IPiece[,] GetBoardState()
         {
-            return Board.Instance.boardState;
+            return Board.Instance.BoardState;
         }
 
         //testing purposes
         public static IPiece[,] GetTestBoardState()
         {
-            return Board.Instance.testBoardState;
+            return Board.Instance.TestBoardState;
         }
     }
 }

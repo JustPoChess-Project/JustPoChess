@@ -2,6 +2,6 @@
 {
     public static class ErrorMessages
     {
-        public static readonly string Message = "message";
+        public const string InvalidUserInput = "Invalid input. Input is in format <first position>-<second position>, draw or resign";
     }
 }

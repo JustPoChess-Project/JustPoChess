@@ -35,10 +35,6 @@ namespace JustPoChess.Client.MVC.Model.Entities.Pieces.Abstract
             }
             protected set
             {
-                if (this.pieceColor != PieceColor.Black || this.pieceColor != PieceColor.White)
-                {
-                    throw new ArgumentException("Invalid Color");
-                }
                 this.pieceColor = value;
             }
         }
@@ -51,10 +47,6 @@ namespace JustPoChess.Client.MVC.Model.Entities.Pieces.Abstract
             }
             protected set
             {
-                if (this.pieceType != PieceType.Rook || this.pieceType != PieceType.Queen || this.pieceType != PieceType.Pawn || this.pieceType != PieceType.Knight || this.pieceType != PieceType.King || this.pieceType != PieceType.Bishop)
-                {
-                    
-                }
                 this.pieceType = value;
             }
         }

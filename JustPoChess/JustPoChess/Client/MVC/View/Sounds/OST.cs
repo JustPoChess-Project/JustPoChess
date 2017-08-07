@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-﻿using System;
-using System.Threading;
-using System.Windows.Media;
-=======
-﻿//using System;
+//using System;
 //using System.Windows.Media;
->>>>>>> 0d586ea4bdb025de943bbeceb9cb8a3947b9ef0b
 
 //namespace JustPoChess.Client.MVC.View.Sounds
 //{

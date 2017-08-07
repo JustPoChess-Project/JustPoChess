@@ -4,6 +4,7 @@ using System.Threading;
 using System.Collections.Generic;
 using JustPoChess.Client.MVC.View.Input;
 using JustPoChess.Client.MVC.View.Messages;
+using JustPoChess.Client.MVC.Model;
 using JustPoChess.Client.MVC.Model.Entities.Board;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.Abstract;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecesEnums;
@@ -13,6 +14,8 @@ namespace JustPoChess.Client.MVC.Controller
 {
     public static class Controller
     {
+        private static Model.Model model = Model.Model.Instance;
+        
         public static void Start()
         {
             Console.WriteLine(Messages.FontWarrning);
@@ -26,7 +29,7 @@ namespace JustPoChess.Client.MVC.Controller
 
         public static void StartHotSeat()
         {
-            Model.Model.InitBoard();
+            Model.Model.Board.InitBoard();
             Console.Clear();
             View.View.MirrorPrintBoard();
 

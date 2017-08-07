@@ -1682,10 +1682,9 @@ namespace JustPoChess.Client.MVC.Controller
             return false;
         }
 
-        // GameState Checks
         public bool CheckForDraw()
         {
-            if ((GeneratePossibleMovesForPlayer(model.CurrentPlayerToMove).Count() == 0 && !IsPlayerInCheck(model.CurrentPlayerToMove)) || CheckIfKingVsKing())
+            if ((GeneratePossibleMovesForPlayer(model.CurrentPlayerToMove).Count() == 0 && !IsPlayerInCheck(model.CurrentPlayerToMove)) || CheckIfKingVsKing() || CheckIfKingKnightVsKing() || CheckIfKingBishopVsKing())
             {
                 return true;
             }
@@ -1703,6 +1702,42 @@ namespace JustPoChess.Client.MVC.Controller
             }
             return true;
         }
+
+        private static bool CheckIfKingKnightVsKing()
+        {
+            int knightsCount = 0;
+			foreach (Piece boardPiece in Board.Instance.BoardState)
+			{
+                if (boardPiece.PieceType == PieceType.Knight) 
+                {
+                    knightsCount++;
+                    continue;
+                }
+				if (boardPiece != null && boardPiece.PieceType != PieceType.King)
+				{
+					return false;
+				}
+			}
+            return knightsCount == 1;
+        }
+
+		private static bool CheckIfKingBishopVsKing()
+		{
+			int bishopsCount = 0;
+			foreach (Piece boardPiece in Board.Instance.BoardState)
+			{
+                if (boardPiece.PieceType == PieceType.Bishop)
+				{
+					bishopsCount++;
+					continue;
+				}
+				if (boardPiece != null && boardPiece.PieceType != PieceType.King)
+				{
+					return false;
+				}
+			}
+			return bishopsCount == 1;
+		}
 
         public static ICollection<Move> GeneratePosslbeEnPassantMoves()
         {

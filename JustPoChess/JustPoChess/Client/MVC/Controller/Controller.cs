@@ -1732,7 +1732,7 @@ namespace JustPoChess.Client.MVC.Controller
                 {
                     continue;
                 }
-                if (boardPiece != null && boardPiece.PieceColor != pieceColor && boardPiece.PieceType == PieceType.Pawn) //iterating over all pawns from the current player
+                if (boardPiece.PieceColor != pieceColor && boardPiece.PieceType == PieceType.Pawn) //iterating over all pawns from the current player
                 {
                     switch (boardPiece.PieceColor)
                     {

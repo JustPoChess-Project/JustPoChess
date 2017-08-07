@@ -197,6 +197,20 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
         public void PerformMove(Move move)
         {
             IPiece piece = this.BoardState[move.CurrentPosition.Row, move.CurrentPosition.Col];
+            if (piece.PieceType == PieceType.Pawn && move.CurrentPosition.Col != move.NextPosititon.Col) //pawn that takes a piece
+            {
+                if (BoardState[move.NextPosititon.Row, move.NextPosititon.Col] == null)
+                {
+                    switch (piece.PieceColor) {
+                        case PieceColor.White:
+							boardState[move.NextPosititon.Row + 1, move.NextPosititon.Col] = null;
+							break;
+                        case PieceColor.Black:
+							boardState[move.NextPosititon.Row - 1, move.NextPosititon.Col] = null;
+							break;
+                    }
+                }
+            }
             this.BoardState[move.CurrentPosition.Row, move.CurrentPosition.Col] = null;
             this.BoardState[move.NextPosititon.Row, move.NextPosititon.Col] = piece;
             piece.PiecePosition = new Position(move.NextPosititon.Row, move.NextPosititon.Col);

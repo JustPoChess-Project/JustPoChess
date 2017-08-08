@@ -7,34 +7,15 @@ namespace JustPoChess.Client.MVC.Model.Entities.Player
 {
     public class Player
     {
-        private string name;
         private PieceColor color;
-        private List<IPiece> takenPieces;
 
         public Player()
         {
         }
 
-        public Player(string name, PieceColor color)
+        public Player(PieceColor color)
         {
-            this.Name = name;
             this.Color = color;
-        }
-
-        public string Name
-        {
-            get
-            {
-                return this.name;
-            }
-            set
-            {
-                if (String.IsNullOrWhiteSpace(this.name))
-                {
-                    throw new ArgumentException("Invalid name");
-                }
-                this.name = value;
-            }
         }
 
         public PieceColor Color
@@ -46,18 +27,6 @@ namespace JustPoChess.Client.MVC.Model.Entities.Player
             set
             {
                 this.color = value;
-            }
-        }
-
-        public List<IPiece> TakenPieces
-        {
-            get
-            {
-                return this.takenPieces;
-            }
-            set
-            {
-                this.takenPieces = value;
             }
         }
     }

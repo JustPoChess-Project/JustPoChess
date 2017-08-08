@@ -1,4 +1,5 @@
 ﻿﻿using System;
+using System.Collections.Generic;
 using JustPoChess.Client.MVC.Model.Contracts;
 using JustPoChess.Client.MVC.Model.Entities.Pieces;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.Abstract;
@@ -15,6 +16,9 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
 
         private IPiece[,] boardState;
         private IPiece[,] testBoardState;
+        private Dictionary<Board, int> positionOccurences = new Dictionary<Board, int>();
+
+        private PieceColor currentPlayerToMove = PieceColor.White;
 
         private bool whiteLeftCastlePossible = true;
         private bool whiteRightCastlePossible = true;
@@ -35,6 +39,18 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                 }
                 return instance;
             }
+        }
+
+        public PieceColor CurrentPlayerToMove
+        {
+            get { return this.currentPlayerToMove; }
+            set { this.currentPlayerToMove = value; }
+        }
+
+        public Dictionary<Board, int> PositionOccurences
+        {
+            get { return this.positionOccurences; }
+            set { this.positionOccurences = value; }
         }
 
         public IPiece[,] BoardState
@@ -113,7 +129,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
 
         public void InitBoard()
         {
-            IPiece[,] state = new IPiece[,]
+            IPiece[,] state =
             {
                 { new Rook(PieceColor.Black, new Position(0, 0)), new Knight(PieceColor.Black, new Position(0, 1)), new Bishop(PieceColor.Black, new Position(0, 2)), new Queen(PieceColor.Black, new Position(0, 3)), new King(PieceColor.Black, new Position(0, 4)), new Bishop(PieceColor.Black, new Position(0, 5)), new Knight(PieceColor.Black, new Position(0, 6)), new Rook(PieceColor.Black, new Position(0, 7)) },
                 { new Pawn(PieceColor.Black, new Position(1, 0)), new Pawn(PieceColor.Black, new Position(1, 1)), new Pawn(PieceColor.Black, new Position(1, 2)), new Pawn(PieceColor.Black, new Position(1, 3)), new Pawn(PieceColor.Black, new Position(1, 4)), new Pawn(PieceColor.Black, new Position(1, 5)), new Pawn(PieceColor.Black, new Position(1, 6)), new Pawn(PieceColor.Black, new Position(1, 7)) },
@@ -124,15 +140,16 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                 { new Pawn(PieceColor.White, new Position(6, 0)), new Pawn(PieceColor.White, new Position(6, 1)), new Pawn(PieceColor.White, new Position(6, 2)), new Pawn(PieceColor.White, new Position(6, 3)), new Pawn(PieceColor.White, new Position(6, 4)), new Pawn(PieceColor.White, new Position(6, 5)), new Pawn(PieceColor.White, new Position(6, 6)), new Pawn(PieceColor.White, new Position(6, 7)) },
                 { new Rook(PieceColor.White, new Position(7, 0)), new Knight(PieceColor.White, new Position(7, 1)), new Bishop(PieceColor.White, new Position(7, 2)), new Queen(PieceColor.White, new Position(7, 3)), new King(PieceColor.White, new Position(7, 4)), new Bishop(PieceColor.White, new Position(7, 5)), new Knight(PieceColor.White, new Position(7, 6)), new Rook(PieceColor.White, new Position(7, 7)) }
             };
-            Model.Instance.CurrentPlayerToMove = PieceColor.White;
+            CurrentPlayerToMove = PieceColor.White;
             this.SetBoardState(state, PieceColor.White);
 
             this.testBoardState = this.BoardDeepCopy();
+            this.positionOccurences.Add(this, 1);
         }
 
         public void SetBoardState(IPiece[,] state, PieceColor color)
         {
-            Model.Instance.CurrentPlayerToMove = color;
+            CurrentPlayerToMove = color;
 
             if (color == PieceColor.Black)
             {
@@ -231,23 +248,23 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                                 BoardState[7, 3] = new Rook(PieceColor.White, new Position(7, 3));
                                 break;
                             case 6:
-								BoardState[7, 7] = null;
-								BoardState[7, 5] = new Rook(PieceColor.White, new Position(7, 3));
+                                BoardState[7, 7] = null;
+                                BoardState[7, 5] = new Rook(PieceColor.White, new Position(7, 3));
                                 break;
                         }
                         break;
-					case PieceColor.Black:
-						switch (move.NextPosititon.Col)
-						{
-							case 2:
-								BoardState[1, 0] = null;
+                    case PieceColor.Black:
+                        switch (move.NextPosititon.Col)
+                        {
+                            case 2:
+                                BoardState[1, 0] = null;
                                 BoardState[1, 3] = new Rook(PieceColor.Black, new Position(1, 3));
-								break;
-							case 6:
-								BoardState[1, 7] = null;
-								BoardState[1, 5] = new Rook(PieceColor.Black, new Position(1, 3));
-								break;
-						}
+                                break;
+                            case 6:
+                                BoardState[1, 7] = null;
+                                BoardState[1, 5] = new Rook(PieceColor.Black, new Position(1, 3));
+                                break;
+                        }
                         break;
                 }
             }
@@ -323,72 +340,89 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
             //will need that for en passant pawn move
             Model.Instance.LastMove = move;
 
-            if (Model.Instance.CurrentPlayerToMove == PieceColor.White)
+            if (CurrentPlayerToMove == PieceColor.White)
             {
-                Model.Instance.CurrentPlayerToMove = PieceColor.Black;
+                CurrentPlayerToMove = PieceColor.Black;
             }
             else
             {
-                Model.Instance.CurrentPlayerToMove = PieceColor.White;
+                CurrentPlayerToMove = PieceColor.White;
             }
             this.TestBoardState = this.BoardDeepCopy();
+
+            if (positionOccurences.ContainsKey(this))
+            {
+                int count = 0;
+                positionOccurences.TryGetValue(this, out count);
+                positionOccurences.Remove(this);
+                positionOccurences.Add(this, count++);
+            }
+            else
+            {
+                this.positionOccurences.Add(this, 1);
+            }
         }
 
         public void PerformMoveOnTestBoard(Move move)
-		{
-			if (move == null)
+        {
+            if (move == null)
+            {
+                //yes, it must be just argument and not argument null exception
+                throw new ArgumentException("Move not possible");
+            }
+            IPiece piece = this.TestBoardState[move.CurrentPosition.Row, move.CurrentPosition.Col];
+			if (piece == null)
 			{
 				//yes, it must be just argument and not argument null exception
 				throw new ArgumentException("Move not possible");
 			}
-            IPiece piece = this.TestBoardState[move.CurrentPosition.Row, move.CurrentPosition.Col];
-			if (piece.PieceType == PieceType.Pawn && move.CurrentPosition.Col != move.NextPosititon.Col) //pawn that takes a piece
-			{
-				if (testBoardState[move.NextPosititon.Row, move.NextPosititon.Col] == null)
-				{
-					switch (piece.PieceColor)
-					{
-						case PieceColor.White:
+            if (piece.PieceType == PieceType.Pawn && move.CurrentPosition.Col != move.NextPosititon.Col) //pawn that takes a piece
+            {
+                if (testBoardState[move.NextPosititon.Row, move.NextPosititon.Col] == null)
+                {
+                    switch (piece.PieceColor)
+                    {
+                        case PieceColor.White:
                             testBoardState[move.NextPosititon.Row + 1, move.NextPosititon.Col] = null;
-							break;
-						case PieceColor.Black:
-							testBoardState[move.NextPosititon.Row - 1, move.NextPosititon.Col] = null;
-							break;
-					}
-				}
-			}
+                            break;
+                        case PieceColor.Black:
+                            testBoardState[move.NextPosititon.Row - 1, move.NextPosititon.Col] = null;
+                            break;
+                    }
+                }
+            }
             if (piece.PieceType == PieceType.King && Math.Abs(move.CurrentPosition.Col - move.NextPosititon.Col) > 1) //castling
-			{
-				switch (piece.PieceColor)
-				{
-					case PieceColor.White:
-						switch (move.NextPosititon.Col)
-						{
-							case 2:
-								TestBoardState[7, 0] = null;
-								TestBoardState[7, 3] = new Rook(PieceColor.White, new Position(7, 3));
-								break;
-							case 6:
-								TestBoardState[7, 7] = null;
-								TestBoardState[7, 5] = new Rook(PieceColor.White, new Position(7, 3));
-								break;
-						}
-						break;
-					case PieceColor.Black:
-						switch (move.NextPosititon.Col)
-						{
-							case 2:
-								TestBoardState[1, 0] = null;
-								TestBoardState[1, 3] = new Rook(PieceColor.Black, new Position(1, 3));
-								break;
-							case 6:
-								TestBoardState[1, 7] = null;
-								TestBoardState[1, 5] = new Rook(PieceColor.Black, new Position(1, 3));
-								break;
-						}
-						break;
-				}
-			}
+            {
+                switch (piece.PieceColor)
+                {
+                    case PieceColor.White:
+                        switch (move.NextPosititon.Col)
+                        {
+                            case 2:
+                                TestBoardState[7, 0] = null;
+                                TestBoardState[7, 3] = new Rook(PieceColor.White, new Position(7, 3));
+                                break;
+                            case 6:
+                                TestBoardState[7, 7] = null;
+                                TestBoardState[7, 5] = new Rook(PieceColor.White, new Position(7, 3));
+                                break;
+                        }
+                        break;
+                    case PieceColor.Black:
+                        switch (move.NextPosititon.Col)
+                        {
+                            case 2:
+                                TestBoardState[1, 0] = null;
+                                TestBoardState[1, 3] = new Rook(PieceColor.Black, new Position(1, 3));
+                                break;
+                            case 6:
+                                TestBoardState[1, 7] = null;
+                                TestBoardState[1, 5] = new Rook(PieceColor.Black, new Position(1, 3));
+                                break;
+                        }
+                        break;
+                }
+            }
             IPiece newPiece = Piece.NewPiece(piece);
             this.TestBoardState[move.CurrentPosition.Row, move.CurrentPosition.Col] = null;
             this.TestBoardState[move.NextPosititon.Row, move.NextPosititon.Col] = newPiece;

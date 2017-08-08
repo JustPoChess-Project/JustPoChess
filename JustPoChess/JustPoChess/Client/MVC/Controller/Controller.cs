@@ -91,7 +91,7 @@ namespace JustPoChess.Client.MVC.Controller
                 {
                     foreach (Move move in possibleMoves)
                     {
-                        if (move.NextPosititon == boardPiece.PiecePosition)
+                        if (move.NextPosititon.Equals(boardPiece.PiecePosition))
                         {
                             return true;
                         }
@@ -816,12 +816,17 @@ namespace JustPoChess.Client.MVC.Controller
         {
             ICollection<Move> possibleMoves = new List<Move>();
             possibleMoves = GeneratePossibleMovesForPieceWithoutConsideringDiscoveringCheck(piece);
+            ICollection<Move> impossibleMoves = new List<Move>();
             foreach (Move move in possibleMoves)
             {
                 if (MoveDiscoversCheckToOwnKing(move))
                 {
-                    possibleMoves.Remove(move);
+                    impossibleMoves.Add(move);
                 }
+            }
+            foreach (Move move in impossibleMoves)
+			{
+				possibleMoves.Remove(move);
             }
             if (piece.PieceColor == PieceColor.White)
             {
@@ -1566,7 +1571,7 @@ namespace JustPoChess.Client.MVC.Controller
         //Castle Checks
         public bool IsCurrentPlayerLeftCastlePossible()
         {
-            switch (model.CurrentPlayerToMove)
+            switch (model.Board.CurrentPlayerToMove)
             {
                 case PieceColor.White:
                     return IsWhiteLeftCastlePossible();
@@ -1579,7 +1584,7 @@ namespace JustPoChess.Client.MVC.Controller
 
         public bool IsCurrentPlayerRightCastlePossible()
         {
-            switch (model.CurrentPlayerToMove)
+            switch (model.Board.CurrentPlayerToMove)
             {
                 case PieceColor.White:
                     return IsWhiteRightCastlePossible();
@@ -1678,15 +1683,6 @@ namespace JustPoChess.Client.MVC.Controller
                         return true;
                     }
                 }
-            }
-            return false;
-        }
-
-        public bool CheckForDraw()
-        {
-            if ((GeneratePossibleMovesForPlayer(model.CurrentPlayerToMove).Count() == 0 && !IsPlayerInCheck(model.CurrentPlayerToMove)) || CheckIfKingVsKing() || CheckIfKingKnightVsKing() || CheckIfKingBishopVsKing())
-            {
-                return true;
             }
             return false;
         }
@@ -1806,11 +1802,24 @@ namespace JustPoChess.Client.MVC.Controller
 
         public bool CheckForCheckmate()
         {
-            if (this.GeneratePossibleMovesForPlayer(model.CurrentPlayerToMove).Count() == 0 && IsPlayerInCheck(model.CurrentPlayerToMove))
+            if (this.GeneratePossibleMovesForPlayer(model.Board.CurrentPlayerToMove).Count() == 0 && IsPlayerInCheck(Board.Instance.CurrentPlayerToMove))
             {
                 return true;
             }
             return false;
-        }
+		}
+
+		public bool CheckForDraw()
+		{
+			if ((GeneratePossibleMovesForPlayer(model.Board.CurrentPlayerToMove).Count() == 0 && !IsPlayerInCheck(Board.Instance.CurrentPlayerToMove)) || CheckIfKingVsKing() || CheckIfKingKnightVsKing() || CheckIfKingBishopVsKing())
+			{
+				return true;
+			}
+            if (Board.Instance.PositionOccurences.ContainsValue(3))
+            {
+                return true;
+            }
+			return false;
+		}
     }
 }

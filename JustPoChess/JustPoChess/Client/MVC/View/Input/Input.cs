@@ -44,7 +44,7 @@ namespace JustPoChess.Client.MVC.View.Input
         {
             if (inputString == "o-o" || inputString == "O-O")
             {
-                switch (View.Model.CurrentPlayerToMove)
+                switch (View.Model.Board.CurrentPlayerToMove)
                 {
                     case Model.Entities.Pieces.PiecesEnums.PieceColor.White:
                         return new Move(new Position(7, 4), new Position(7, 6));
@@ -54,7 +54,7 @@ namespace JustPoChess.Client.MVC.View.Input
             }
             if (inputString == "o-o-o" || inputString == "O-O-O")
             {
-                switch (View.Model.CurrentPlayerToMove)
+                switch (View.Model.Board.CurrentPlayerToMove)
                 {
                     case Model.Entities.Pieces.PiecesEnums.PieceColor.White:
                         return new Move(new Position(7, 4), new Position(7, 2));
@@ -73,7 +73,7 @@ namespace JustPoChess.Client.MVC.View.Input
             return
                 ValidateUserInputSyntax(inputString)
                 && Controller.Controller.Instance.IsMovePossible(ParseMove(inputString))
-                 && Model.Model.Instance.CurrentPlayerToMove == Board.Instance.BoardState[ParseMove(inputString).CurrentPosition.Row, ParseMove(inputString).CurrentPosition.Col].PieceColor;
+                 && Model.Model.Instance.Board.CurrentPlayerToMove == Board.Instance.BoardState[ParseMove(inputString).CurrentPosition.Row, ParseMove(inputString).CurrentPosition.Col].PieceColor;
         }
     }
 }

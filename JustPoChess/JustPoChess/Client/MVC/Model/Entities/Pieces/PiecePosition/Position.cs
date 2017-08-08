@@ -53,5 +53,15 @@ namespace JustPoChess.Client.MVC.Model.Entities.Pieces.PiecePosition
         {
             return string.Format("[Position: Row={0}, Col={1}]", this.Row, this.Col);
         }
+
+		public override bool Equals(object obj)
+		{
+			if (obj == null)
+			{
+				return false;
+			}
+            return (obj as Position).Row == this.Row
+						&& (obj as Position).Col == this.Col;
+		}
     }
 }

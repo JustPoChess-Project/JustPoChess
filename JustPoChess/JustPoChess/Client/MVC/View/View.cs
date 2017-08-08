@@ -14,7 +14,7 @@ namespace JustPoChess.Client.MVC.View
         private static WindowsMenu windowsMenu = WindowsMenu.Instance;
         private static LinuxMenu linuxMenu = LinuxMenu.Instance;
         private static View instance;
-        
+
         private static Model.Model model = MVC.Model.Model.Instance;
 
         private View()
@@ -80,11 +80,25 @@ namespace JustPoChess.Client.MVC.View
                     {
                         if ((x + y) % 2 != 0)
                         {
-                            Console.Write(GameArt.BlackSquare + " ");
+                            if (CheckOS.IsLinux)
+                            {
+                                Console.Write(GameArt.BlackSquare + " ");
+                            }
+                            else
+                            {
+                                Console.Write(GameArt.BlackSquare);
+                            }
                         }
                         else
                         {
-                            Console.Write(GameArt.WhiteSquare + " ");
+                            if (CheckOS.IsLinux)
+                            {
+                                Console.Write(GameArt.WhiteSquare + " ");
+                            }
+                            else
+                            {
+                                Console.Write(GameArt.WhiteSquare);
+                            }
                         }
                     }
                     else

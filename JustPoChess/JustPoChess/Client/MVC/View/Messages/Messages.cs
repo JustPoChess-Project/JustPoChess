@@ -10,5 +10,6 @@
         public const string CheckedMessageMessage = "Check!";
         public const string OpponentThinkingMessage = "Opponent thinking...";
         public const string YourTurnMessage = "It's your turn (enter move/offer draw/resign).";
+        public const string DrawOfferMessage = "Your opponent offered a draw. Type accept/decline to accept/decline.";
     }
 }

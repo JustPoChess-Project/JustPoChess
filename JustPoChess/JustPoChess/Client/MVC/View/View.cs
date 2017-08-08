@@ -80,16 +80,16 @@ namespace JustPoChess.Client.MVC.View
                     {
                         if ((x + y) % 2 != 0)
                         {
-                            Console.Write(GameArt.BlackSquare);
+                            Console.Write(GameArt.BlackSquare + " ");
                         }
                         else
                         {
-                            Console.Write(GameArt.WhiteSquare);
+                            Console.Write(GameArt.WhiteSquare + " ");
                         }
                     }
                     else
                     {
-                        Console.Write($"{GetPieceString(Model.Board.BoardState, x, y)}");
+                        Console.Write($"{GetPieceString(Model.Board.BoardState, x, y)} ");
                     }
                 }
                 Console.Write(Environment.NewLine);

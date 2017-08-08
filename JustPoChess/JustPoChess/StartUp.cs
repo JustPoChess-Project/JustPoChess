@@ -27,13 +27,21 @@ namespace JustPoChess
                 View.PrintBoard();
                 string userInput = Input.GetUserInput();
                 Move move = null;
-                if (Input.ValidateUserInput(userInput))
+                try
                 {
-                    move = Input.ParseMove(userInput);
+                    if (Input.ValidateUserInput(userInput))
+                    {
+                        move = Input.ParseMove(userInput);
+                    }
+                    Model.Instance.Board.PerformMove(move);
+                    Console.WriteLine(Controller.IsPlayerInCheck(Board.Instance.CurrentPlayerToMove));
+                    Console.WriteLine(Controller.Instance.CheckForCheckmate());
                 }
-                Model.Instance.Board.PerformMove(move);
-                Console.WriteLine(Controller.IsPlayerInCheck(Board.Instance.CurrentPlayerToMove));
-                Console.WriteLine(Controller.Instance.CheckForCheckmate());
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                
             }
             // Board.Instance.InitBoard();
             // View.PrintBoard();

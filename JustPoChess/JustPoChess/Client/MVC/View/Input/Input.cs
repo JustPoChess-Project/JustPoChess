@@ -38,6 +38,7 @@ namespace JustPoChess.Client.MVC.View.Input
                     }
                     throw new ArgumentException(ErrorMessage.InvalidUserInput);
             }
+
         }
 
         public static Move ParseMove(string inputString)

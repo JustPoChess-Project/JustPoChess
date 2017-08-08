@@ -54,7 +54,8 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
 
         public override bool Equals(object obj)
         {
-            if (obj == null) {
+            if (obj == null)
+            {
                 return false;
             }
             Move move = obj as Move;

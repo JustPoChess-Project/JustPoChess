@@ -33,11 +33,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
         {
             get
             {
-                if (instance == null)
-                {
-                    instance = new Board();
-                }
-                return instance;
+                return instance ?? (instance = new Board());
             }
         }
 
@@ -221,19 +217,18 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                 throw new ArgumentException("Move not possible");
             }
             IPiece piece = this.BoardState[move.CurrentPosition.Row, move.CurrentPosition.Col];
-            if (piece.PieceType == PieceType.Pawn && move.CurrentPosition.Col != move.NextPosititon.Col) //pawn that takes a piece
+            if (piece.PieceType == PieceType.Pawn
+                && move.CurrentPosition.Col != move.NextPosititon.Col
+                && BoardState[move.NextPosititon.Row, move.NextPosititon.Col] == null) //pawn that takes a piece
             {
-                if (BoardState[move.NextPosititon.Row, move.NextPosititon.Col] == null)
+                switch (piece.PieceColor)
                 {
-                    switch (piece.PieceColor)
-                    {
-                        case PieceColor.White:
-                            boardState[move.NextPosititon.Row + 1, move.NextPosititon.Col] = null;
-                            break;
-                        case PieceColor.Black:
-                            boardState[move.NextPosititon.Row - 1, move.NextPosititon.Col] = null;
-                            break;
-                    }
+                    case PieceColor.White:
+                        boardState[move.NextPosititon.Row + 1, move.NextPosititon.Col] = null;
+                        break;
+                    case PieceColor.Black:
+                        boardState[move.NextPosititon.Row - 1, move.NextPosititon.Col] = null;
+                        break;
                 }
             }
             if (piece.PieceType == PieceType.King && Math.Abs(move.CurrentPosition.Col - move.NextPosititon.Col) > 1) //castling

@@ -2,10 +2,13 @@
 {
     public static class Messages
     {
-        public const string FontWarrning = "Please change console font to MS Gothic with size 72!";
-        public const string FontColorWarrning = "For best experience use dark gray font color!";
-        public const string CheckMateMessage = "Checkmate";
-        public const string PawnPromotionMessage = "Choose between Queen, Bishop, Knight or Rook.";
+        public const string CheckmateMessage = "Checkmate! Game over!";
+        public const string YouWon = "You won!";
+        public const string YouLost = "You lost!";
+        public const string Draw = "The game ended in a draw!";
+        public const string PawnPromotionMessage = "Pawn Promotion! Type the piece type you want to promote to (Queen, Rook, Knight, Bishop).";
         public const string CheckedMessage = "Check!";
+        public const string OpponentThinking = "Opponent thinking...";
+        public const string YourTurn = "It's your turn (enter move/offer draw/resign).";
     }
 }

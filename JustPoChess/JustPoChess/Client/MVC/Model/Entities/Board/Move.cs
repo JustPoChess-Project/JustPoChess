@@ -49,7 +49,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
         //testing purposes
         public override string ToString()
         {
-            return string.Format("[Move: CurrentPosition={0}, NextPosititon={1}]", CurrentPosition, NextPosititon);
+            return $"[Move: CurrentPosition={CurrentPosition}, NextPosititon={NextPosititon}]";
         }
 
         public override bool Equals(object obj)

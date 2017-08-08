@@ -20,10 +20,15 @@ namespace JustPoChess
             Board.Instance.InitBoard();
             while (true)
             {
+                if (!CheckOS.IsLinux)
+                {
+                    Console.OutputEncoding = System.Text.Encoding.UTF8;
+                }
                 View.PrintBoard();
                 string userInput = Input.GetUserInput();
                 Move move = null;
-                if (Input.ValidateUserInput(userInput)) {
+                if (Input.ValidateUserInput(userInput))
+                {
                     move = Input.ParseMove(userInput);
                 }
                 Model.Instance.Board.PerformMove(move);
@@ -47,10 +52,7 @@ namespace JustPoChess
             // }
 
             //General Program settings
-            if (!CheckOS.IsLinux)
-            {
-                Console.OutputEncoding = System.Text.Encoding.UTF8;
-            }
+            
             Console.CursorVisible = false;
             Console.SetWindowPosition(0, 0);
             Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);

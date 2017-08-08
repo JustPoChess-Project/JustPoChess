@@ -4,9 +4,6 @@ namespace JustPoChess.Client.MVC.Model.Entities.Pieces.PiecePosition
 {
     public class Position
     {
-        private const int MinPosition = 0;
-        private const int MaxPosition = 7;
-        
         private int row;
         private int col;
 
@@ -51,7 +48,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Pieces.PiecePosition
 		//testing purposes
 		public override string ToString()
         {
-            return string.Format("[Position: Row={0}, Col={1}]", this.Row, this.Col);
+            return $"[Position: Row={this.Row}, Col={this.Col}]";
         }
 
 		public override bool Equals(object obj)
@@ -62,7 +59,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Pieces.PiecePosition
 			}
             Position position = obj as Position;
             return position.Row == this.Row
-						&& position.Col == this.Col;
+				&& position.Col == this.Col;
 		}
     }
 }

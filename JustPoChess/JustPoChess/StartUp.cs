@@ -16,7 +16,7 @@ namespace JustPoChess
     public class StartUp
     {
         public static void Main()
-        {
+		{
             Board.Instance.InitBoard();
             while (true)
             {

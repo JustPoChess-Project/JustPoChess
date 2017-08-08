@@ -60,8 +60,9 @@ namespace JustPoChess.Client.MVC.Model.Entities.Pieces.PiecePosition
 			{
 				return false;
 			}
-            return (obj as Position).Row == this.Row
-						&& (obj as Position).Col == this.Col;
+            Position position = obj as Position;
+            return position.Row == this.Row
+						&& position.Col == this.Col;
 		}
     }
 }

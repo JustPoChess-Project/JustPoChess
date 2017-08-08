@@ -57,10 +57,11 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
             if (obj == null) {
                 return false;
             }
-            return (obj as Move).CurrentPosition.Row == this.CurrentPosition.Row
-                        && (obj as Move).CurrentPosition.Col == this.CurrentPosition.Col
-                        && (obj as Move).NextPosititon.Row == this.NextPosititon.Row
-                        && (obj as Move).NextPosititon.Col == this.NextPosititon.Col;
+            Move move = obj as Move;
+            return move.CurrentPosition.Row == this.CurrentPosition.Row
+                        && move.CurrentPosition.Col == this.CurrentPosition.Col
+                        && move.NextPosititon.Row == this.NextPosititon.Row
+                        && move.NextPosititon.Col == this.NextPosititon.Col;
         }
     }
 }

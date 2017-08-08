@@ -373,9 +373,8 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
             IPiece piece = this.TestBoardState[move.CurrentPosition.Row, move.CurrentPosition.Col];
 			if (piece == null)
 			{
-				//yes, it must be just argument and not argument null exception
-				throw new ArgumentException("Move not possible");
-			}
+                return;
+            }
             if (piece.PieceType == PieceType.Pawn && move.CurrentPosition.Col != move.NextPosititon.Col) //pawn that takes a piece
             {
                 if (testBoardState[move.NextPosititon.Row, move.NextPosititon.Col] == null)

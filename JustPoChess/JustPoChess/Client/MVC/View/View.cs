@@ -102,8 +102,15 @@ namespace JustPoChess.Client.MVC.View
                         }
                     }
                     else
-                    {
-                        Console.Write($"{GetPieceString(Model.Board.BoardState, x, y)} ");
+					{
+						if (CheckOS.IsLinux)
+						{
+							Console.Write($"{GetPieceString(Model.Board.BoardState, x, y)} ");
+						}
+						else
+						{
+							Console.Write($"{GetPieceString(Model.Board.BoardState, x, y)}");
+						}
                     }
                 }
                 Console.Write(Environment.NewLine);

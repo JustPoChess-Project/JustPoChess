@@ -4,6 +4,9 @@ namespace JustPoChess.Client.MVC.Model.Entities.Pieces.PiecePosition
 {
     public class Position
     {
+        private const int MinPosition = 0;
+        private const int MaxPosition = 7;
+        
         private int row;
         private int col;
 
@@ -21,7 +24,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Pieces.PiecePosition
             }
             set
             {
-                if (this.row < 0 || this.row > 7)
+                if (this.row < MinPosition || this.row > MaxPosition)
                 {
                     throw new ArgumentException("Invalid Position");
                 }
@@ -37,7 +40,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Pieces.PiecePosition
             }
             set
             {
-                if (this.col < 0 || this.col > 7)
+                if (this.col < MinPosition || this.col > MaxPosition)
                 {
                     throw new ArgumentException("Invalid Position");
                 }
@@ -58,6 +61,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Pieces.PiecePosition
 				return false;
 			}
             Position position = obj as Position;
+		    
             return position.Row == this.Row
 				&& position.Col == this.Col;
 		}

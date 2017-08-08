@@ -36,7 +36,7 @@ namespace JustPoChess.Client.MVC.View.Input
                     {
                         return true;
                     }
-                    throw new ArgumentException(ErrorMessage.InvalidUserInput);
+                    throw new ArgumentException(ErrorMessage.InvalidUserInputMessage);
             }
 
         }

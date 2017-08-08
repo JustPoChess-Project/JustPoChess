@@ -28,7 +28,11 @@ namespace JustPoChess.Client.MVC.Model
         {
             get
             {
-                return instance ?? (instance = new Model());
+                if (instance == null)
+                {
+                    instance = new Model();
+                }
+                return instance;
             }
         }
 

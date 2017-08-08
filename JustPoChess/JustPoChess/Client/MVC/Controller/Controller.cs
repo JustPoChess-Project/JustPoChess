@@ -4,7 +4,6 @@ using System.Threading;
 using System.Collections.Generic;
 using JustPoChess.Client.MVC.View.Input;
 using JustPoChess.Client.MVC.View.Messages;
-using JustPoChess.Client.MVC.Model;
 using JustPoChess.Client.MVC.Model.Entities.Board;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.Abstract;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecesEnums;
@@ -16,7 +15,7 @@ namespace JustPoChess.Client.MVC.Controller
     {
         private static Controller instance;
 
-        protected Controller()
+        private Controller()
         {
         }
 
@@ -24,11 +23,14 @@ namespace JustPoChess.Client.MVC.Controller
         {
             get
             {
-                return instance ?? (instance = new Controller());
+                if (instance == null)
+                {
+                    instance = new Controller();
+                }
+                return instance;
             }
         }
-
-        protected static readonly Model.Model model = Model.Model.Instance;
+        private static readonly Model.Model model = Model.Model.Instance;
 
         public static void Start()
         {
@@ -44,8 +46,12 @@ namespace JustPoChess.Client.MVC.Controller
         public bool IsMovePossible(Move move)
         {
             IEnumerable<Move> possibleMoves = this.GeneratePossibleMovesForPlayer(Board.Instance.BoardState[move.CurrentPosition.Row, move.CurrentPosition.Col].PieceColor);
-
-            return possibleMoves.Contains(move);
+            foreach (Move possibleMove in possibleMoves) {
+                if (possibleMove.Equals(move)) {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public static bool MoveDiscoversCheckToOwnKing(Move move)
@@ -115,7 +121,7 @@ namespace JustPoChess.Client.MVC.Controller
             return false;
         }
 
-        public static bool IsOnBoard(Position position)
+        public static bool ValidatePosition(Position position)
         {
             return position.Row >= 0 && position.Row <= 7 && position.Col >= 0 && position.Col <= 7;
         }
@@ -132,7 +138,7 @@ namespace JustPoChess.Client.MVC.Controller
             {
                 case PieceType.King:
                     Position positionOneKing = new Position(piece.PiecePosition.Row - 1, piece.PiecePosition.Col - 1);
-                    if (IsOnBoard(positionOneKing))
+                    if (ValidatePosition(positionOneKing))
                     {
                         if (Board.Instance.BoardState[positionOneKing.Row, positionOneKing.Col] != null)
                         {
@@ -147,7 +153,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionTwoKing = new Position(piece.PiecePosition.Row - 1, piece.PiecePosition.Col);
-                    if (IsOnBoard(positionTwoKing))
+                    if (ValidatePosition(positionTwoKing))
                     {
                         if (Board.Instance.BoardState[positionTwoKing.Row, positionTwoKing.Col] != null)
                         {
@@ -162,7 +168,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionThreeKing = new Position(piece.PiecePosition.Row - 1, piece.PiecePosition.Col + 1);
-                    if (IsOnBoard(positionThreeKing))
+                    if (ValidatePosition(positionThreeKing))
                     {
                         if (Board.Instance.BoardState[positionThreeKing.Row, positionThreeKing.Col] != null)
                         {
@@ -177,7 +183,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionFourKing = new Position(piece.PiecePosition.Row, piece.PiecePosition.Col - 1);
-                    if (IsOnBoard(positionFourKing))
+                    if (ValidatePosition(positionFourKing))
                     {
                         if (Board.Instance.BoardState[positionFourKing.Row, positionFourKing.Col] != null)
                         {
@@ -192,7 +198,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionFiveKing = new Position(piece.PiecePosition.Row, piece.PiecePosition.Col + 1);
-                    if (IsOnBoard(positionFiveKing))
+                    if (ValidatePosition(positionFiveKing))
                     {
                         if (Board.Instance.BoardState[positionFiveKing.Row, positionFiveKing.Col] != null)
                         {
@@ -207,7 +213,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionSixKing = new Position(piece.PiecePosition.Row + 1, piece.PiecePosition.Col - 1);
-                    if (IsOnBoard(positionSixKing))
+                    if (ValidatePosition(positionSixKing))
                     {
                         if (Board.Instance.BoardState[positionSixKing.Row, positionSixKing.Col] != null)
                         {
@@ -222,7 +228,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionSevenKing = new Position(piece.PiecePosition.Row + 1, piece.PiecePosition.Col);
-                    if (IsOnBoard(positionSevenKing))
+                    if (ValidatePosition(positionSevenKing))
                     {
                         if (Board.Instance.BoardState[positionSevenKing.Row, positionSevenKing.Col] != null)
                         {
@@ -237,7 +243,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionEightKing = new Position(piece.PiecePosition.Row + 1, piece.PiecePosition.Col + 1);
-                    if (IsOnBoard(positionEightKing))
+                    if (ValidatePosition(positionEightKing))
                     {
                         if (Board.Instance.BoardState[positionEightKing.Row, positionEightKing.Col] != null)
                         {
@@ -518,7 +524,7 @@ namespace JustPoChess.Client.MVC.Controller
                     break;
                 case PieceType.Knight:
                     Position positionOneKnight = new Position(piece.PiecePosition.Row - 1, piece.PiecePosition.Col - 2);
-                    if (IsOnBoard(positionOneKnight))
+                    if (ValidatePosition(positionOneKnight))
                     {
                         if (Board.Instance.BoardState[positionOneKnight.Row, positionOneKnight.Col] != null)
                         {
@@ -533,7 +539,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionTwoKnight = new Position(piece.PiecePosition.Row - 2, piece.PiecePosition.Col - 1);
-                    if (IsOnBoard(positionTwoKnight))
+                    if (ValidatePosition(positionTwoKnight))
                     {
                         if (Board.Instance.BoardState[positionTwoKnight.Row, positionTwoKnight.Col] != null)
                         {
@@ -548,7 +554,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionThreeKnight = new Position(piece.PiecePosition.Row - 2, piece.PiecePosition.Col + 1);
-                    if (IsOnBoard(positionThreeKnight))
+                    if (ValidatePosition(positionThreeKnight))
                     {
                         if (Board.Instance.BoardState[positionThreeKnight.Row, positionThreeKnight.Col] != null)
                         {
@@ -563,7 +569,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionFourKnight = new Position(piece.PiecePosition.Row - 1, piece.PiecePosition.Col + 2);
-                    if (IsOnBoard(positionFourKnight))
+                    if (ValidatePosition(positionFourKnight))
                     {
                         if (Board.Instance.BoardState[positionFourKnight.Row, positionFourKnight.Col] != null)
                         {
@@ -578,7 +584,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionFiveKnight = new Position(piece.PiecePosition.Row + 1, piece.PiecePosition.Col + 2);
-                    if (IsOnBoard(positionFiveKnight))
+                    if (ValidatePosition(positionFiveKnight))
                     {
                         if (Board.Instance.BoardState[positionFiveKnight.Row, positionFiveKnight.Col] != null)
                         {
@@ -593,7 +599,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionSixKnight = new Position(piece.PiecePosition.Row + 2, piece.PiecePosition.Col + 1);
-                    if (IsOnBoard(positionSixKnight))
+                    if (ValidatePosition(positionSixKnight))
                     {
                         if (Board.Instance.BoardState[positionSixKnight.Row, positionSixKnight.Col] != null)
                         {
@@ -608,7 +614,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionSevenKnight = new Position(piece.PiecePosition.Row + 2, piece.PiecePosition.Col - 1);
-                    if (IsOnBoard(positionSevenKnight))
+                    if (ValidatePosition(positionSevenKnight))
                     {
                         if (Board.Instance.BoardState[positionSevenKnight.Row, positionSevenKnight.Col] != null)
                         {
@@ -623,7 +629,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionEightKnight = new Position(piece.PiecePosition.Row + 1, piece.PiecePosition.Col - 2);
-                    if (IsOnBoard(positionEightKnight))
+                    if (ValidatePosition(positionEightKnight))
                     {
                         if (Board.Instance.BoardState[positionEightKnight.Row, positionEightKnight.Col] != null)
                         {
@@ -737,7 +743,7 @@ namespace JustPoChess.Client.MVC.Controller
                     {
                         Position positionOnePawn = new Position(piece.PiecePosition.Row - 1, piece.PiecePosition.Col + 1);
                         Position positionTwoPawn = new Position(piece.PiecePosition.Row - 1, piece.PiecePosition.Col - 1);
-                        if (IsOnBoard(positionOnePawn))
+                        if (ValidatePosition(positionOnePawn))
                         {
                             if (Board.Instance.BoardState[piece.PiecePosition.Row - 1, piece.PiecePosition.Col + 1] != null)
                             {
@@ -751,7 +757,7 @@ namespace JustPoChess.Client.MVC.Controller
                                 guardedPiecesOnSquares.Add(positionOnePawn);
                             }
                         }
-                        if (IsOnBoard(positionTwoPawn))
+                        if (ValidatePosition(positionTwoPawn))
                         {
                             if (Board.Instance.BoardState[piece.PiecePosition.Row - 1, piece.PiecePosition.Col - 1] != null)
                             {
@@ -770,7 +776,7 @@ namespace JustPoChess.Client.MVC.Controller
                     {
                         Position positionOnePawn = new Position(piece.PiecePosition.Row + 1, piece.PiecePosition.Col + 1);
                         Position positionTwoPawn = new Position(piece.PiecePosition.Row + 1, piece.PiecePosition.Col - 1);
-                        if (IsOnBoard(positionOnePawn))
+                        if (ValidatePosition(positionOnePawn))
                         {
                             if (Board.Instance.BoardState[piece.PiecePosition.Row + 1, piece.PiecePosition.Col + 1] != null)
                             {
@@ -784,7 +790,7 @@ namespace JustPoChess.Client.MVC.Controller
                                 guardedPiecesOnSquares.Add(positionOnePawn);
                             }
                         }
-                        if (IsOnBoard(positionTwoPawn))
+                        if (ValidatePosition(positionTwoPawn))
                         {
                             if (Board.Instance.BoardState[piece.PiecePosition.Row + 1, piece.PiecePosition.Col - 1] != null)
                             {
@@ -824,22 +830,22 @@ namespace JustPoChess.Client.MVC.Controller
             }
             if (piece.PieceColor == PieceColor.White)
             {
-                if (CastleChecks.IsWhiteLeftCastlePossible())
+                if (IsWhiteLeftCastlePossible())
                 {
                     possibleMoves.Add(new Move(piece.PiecePosition, new Position(7, 2)));
                 }
-                if (CastleChecks.IsWhiteRightCastlePossible())
+                if (IsWhiteRightCastlePossible())
                 {
                     possibleMoves.Add(new Move(piece.PiecePosition, new Position(7, 6)));
                 }
             }
             else
             {
-                if (CastleChecks.IsBlackLeftCastlePossible())
+                if (IsBlackLeftCastlePossible())
                 {
                     possibleMoves.Add(new Move(piece.PiecePosition, new Position(0, 2)));
                 }
-                if (CastleChecks.IsBlackRightCastlePossible())
+                if (IsBlackRightCastlePossible())
                 {
                     possibleMoves.Add(new Move(piece.PiecePosition, new Position(0, 6)));
                 }
@@ -867,7 +873,7 @@ namespace JustPoChess.Client.MVC.Controller
                     }
 
                     Position positionOneKing = new Position(piece.PiecePosition.Row - 1, piece.PiecePosition.Col - 1);
-                    if (IsOnBoard(positionOneKing) && !allGuardedPositionsByOpponent.Contains(positionOneKing))
+                    if (ValidatePosition(positionOneKing) && !allGuardedPositionsByOpponent.Contains(positionOneKing))
                     {
                         if (Board.Instance.BoardState[positionOneKing.Row, positionOneKing.Col] != null)
                         {
@@ -882,7 +888,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionTwoKing = new Position(piece.PiecePosition.Row - 1, piece.PiecePosition.Col);
-                    if (IsOnBoard(positionTwoKing) && !allGuardedPositionsByOpponent.Contains(positionTwoKing))
+                    if (ValidatePosition(positionTwoKing) && !allGuardedPositionsByOpponent.Contains(positionTwoKing))
                     {
                         if (Board.Instance.BoardState[positionTwoKing.Row, positionTwoKing.Col] != null)
                         {
@@ -897,7 +903,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionThreeKing = new Position(piece.PiecePosition.Row - 1, piece.PiecePosition.Col + 1);
-                    if (IsOnBoard(positionThreeKing) && !allGuardedPositionsByOpponent.Contains(positionThreeKing))
+                    if (ValidatePosition(positionThreeKing) && !allGuardedPositionsByOpponent.Contains(positionThreeKing))
                     {
                         if (Board.Instance.BoardState[positionThreeKing.Row, positionThreeKing.Col] != null)
                         {
@@ -912,7 +918,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionFourKing = new Position(piece.PiecePosition.Row, piece.PiecePosition.Col - 1);
-                    if (IsOnBoard(positionFourKing) && !allGuardedPositionsByOpponent.Contains(positionFourKing))
+                    if (ValidatePosition(positionFourKing) && !allGuardedPositionsByOpponent.Contains(positionFourKing))
                     {
                         if (Board.Instance.BoardState[positionFourKing.Row, positionFourKing.Col] != null)
                         {
@@ -927,7 +933,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionFiveKing = new Position(piece.PiecePosition.Row, piece.PiecePosition.Col + 1);
-                    if (IsOnBoard(positionFiveKing) && !allGuardedPositionsByOpponent.Contains(positionFiveKing))
+                    if (ValidatePosition(positionFiveKing) && !allGuardedPositionsByOpponent.Contains(positionFiveKing))
                     {
                         if (Board.Instance.BoardState[positionFiveKing.Row, positionFiveKing.Col] != null)
                         {
@@ -942,7 +948,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionSixKing = new Position(piece.PiecePosition.Row + 1, piece.PiecePosition.Col - 1);
-                    if (IsOnBoard(positionSixKing) && !allGuardedPositionsByOpponent.Contains(positionSixKing))
+                    if (ValidatePosition(positionSixKing) && !allGuardedPositionsByOpponent.Contains(positionSixKing))
                     {
                         if (Board.Instance.BoardState[positionSixKing.Row, positionSixKing.Col] != null)
                         {
@@ -957,7 +963,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionSevenKing = new Position(piece.PiecePosition.Row + 1, piece.PiecePosition.Col);
-                    if (IsOnBoard(positionSevenKing) && !allGuardedPositionsByOpponent.Contains(positionSevenKing))
+                    if (ValidatePosition(positionSevenKing) && !allGuardedPositionsByOpponent.Contains(positionSevenKing))
                     {
                         if (Board.Instance.BoardState[positionSevenKing.Row, positionSevenKing.Col] != null)
                         {
@@ -972,7 +978,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionEightKing = new Position(piece.PiecePosition.Row + 1, piece.PiecePosition.Col + 1);
-                    if (IsOnBoard(positionEightKing) && !allGuardedPositionsByOpponent.Contains(positionEightKing))
+                    if (ValidatePosition(positionEightKing) && !allGuardedPositionsByOpponent.Contains(positionEightKing))
                     {
                         if (Board.Instance.BoardState[positionEightKing.Row, positionEightKing.Col] != null)
                         {
@@ -1253,7 +1259,7 @@ namespace JustPoChess.Client.MVC.Controller
                     break;
                 case PieceType.Knight:
                     Position positionOneKnight = new Position(piece.PiecePosition.Row - 1, piece.PiecePosition.Col - 2);
-                    if (IsOnBoard(positionOneKnight))
+                    if (ValidatePosition(positionOneKnight))
                     {
                         if (Board.Instance.BoardState[positionOneKnight.Row, positionOneKnight.Col] != null)
                         {
@@ -1268,7 +1274,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionTwoKnight = new Position(piece.PiecePosition.Row - 2, piece.PiecePosition.Col - 1);
-                    if (IsOnBoard(positionTwoKnight))
+                    if (ValidatePosition(positionTwoKnight))
                     {
                         if (Board.Instance.BoardState[positionTwoKnight.Row, positionTwoKnight.Col] != null)
                         {
@@ -1283,7 +1289,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionThreeKnight = new Position(piece.PiecePosition.Row - 2, piece.PiecePosition.Col + 1);
-                    if (IsOnBoard(positionThreeKnight))
+                    if (ValidatePosition(positionThreeKnight))
                     {
                         if (Board.Instance.BoardState[positionThreeKnight.Row, positionThreeKnight.Col] != null)
                         {
@@ -1298,7 +1304,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionFourKnight = new Position(piece.PiecePosition.Row - 1, piece.PiecePosition.Col + 2);
-                    if (IsOnBoard(positionFourKnight))
+                    if (ValidatePosition(positionFourKnight))
                     {
                         if (Board.Instance.BoardState[positionFourKnight.Row, positionFourKnight.Col] != null)
                         {
@@ -1313,7 +1319,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionFiveKnight = new Position(piece.PiecePosition.Row + 1, piece.PiecePosition.Col + 2);
-                    if (IsOnBoard(positionFiveKnight))
+                    if (ValidatePosition(positionFiveKnight))
                     {
                         if (Board.Instance.BoardState[positionFiveKnight.Row, positionFiveKnight.Col] != null)
                         {
@@ -1328,7 +1334,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionSixKnight = new Position(piece.PiecePosition.Row + 2, piece.PiecePosition.Col + 1);
-                    if (IsOnBoard(positionSixKnight))
+                    if (ValidatePosition(positionSixKnight))
                     {
                         if (Board.Instance.BoardState[positionSixKnight.Row, positionSixKnight.Col] != null)
                         {
@@ -1343,7 +1349,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionSevenKnight = new Position(piece.PiecePosition.Row + 2, piece.PiecePosition.Col - 1);
-                    if (IsOnBoard(positionSevenKnight))
+                    if (ValidatePosition(positionSevenKnight))
                     {
                         if (Board.Instance.BoardState[positionSevenKnight.Row, positionSevenKnight.Col] != null)
                         {
@@ -1358,7 +1364,7 @@ namespace JustPoChess.Client.MVC.Controller
                         }
                     }
                     Position positionEightKnight = new Position(piece.PiecePosition.Row + 1, piece.PiecePosition.Col - 2);
-                    if (IsOnBoard(positionEightKnight))
+                    if (ValidatePosition(positionEightKnight))
                     {
                         if (Board.Instance.BoardState[positionEightKnight.Row, positionEightKnight.Col] != null)
                         {
@@ -1472,16 +1478,16 @@ namespace JustPoChess.Client.MVC.Controller
                     {
                         Position positionOnePawn = new Position(piece.PiecePosition.Row - 1, piece.PiecePosition.Col + 1);
                         Position positionTwoPawn = new Position(piece.PiecePosition.Row - 1, piece.PiecePosition.Col - 1);
-                        if (IsOnBoard(positionOnePawn) && Board.Instance.BoardState[piece.PiecePosition.Row - 1, piece.PiecePosition.Col + 1] != null && Board.Instance.BoardState[piece.PiecePosition.Row - 1, piece.PiecePosition.Col + 1].PieceColor == PieceColor.Black)
+                        if (ValidatePosition(positionOnePawn) && Board.Instance.BoardState[piece.PiecePosition.Row - 1, piece.PiecePosition.Col + 1] != null && Board.Instance.BoardState[piece.PiecePosition.Row - 1, piece.PiecePosition.Col + 1].PieceColor == PieceColor.Black)
                         {
                             possibleMoves.Add(new Move(piece.PiecePosition, positionOnePawn));
                         }
-                        if (IsOnBoard(positionTwoPawn) && Board.Instance.BoardState[piece.PiecePosition.Row - 1, piece.PiecePosition.Col - 1] != null && Board.Instance.BoardState[piece.PiecePosition.Row - 1, piece.PiecePosition.Col - 1].PieceColor == PieceColor.Black)
+                        if (ValidatePosition(positionTwoPawn) && Board.Instance.BoardState[piece.PiecePosition.Row - 1, piece.PiecePosition.Col - 1] != null && Board.Instance.BoardState[piece.PiecePosition.Row - 1, piece.PiecePosition.Col - 1].PieceColor == PieceColor.Black)
                         {
                             possibleMoves.Add(new Move(piece.PiecePosition, positionTwoPawn));
                         }
                         Position positionThreePawn = new Position(piece.PiecePosition.Row - 1, piece.PiecePosition.Col);
-                        if (IsOnBoard(positionThreePawn) && Board.Instance.BoardState[piece.PiecePosition.Row - 1, piece.PiecePosition.Col] == null)
+                        if (ValidatePosition(positionThreePawn) && Board.Instance.BoardState[piece.PiecePosition.Row - 1, piece.PiecePosition.Col] == null)
                         {
                             possibleMoves.Add(new Move(piece.PiecePosition, positionThreePawn));
                         }
@@ -1498,16 +1504,16 @@ namespace JustPoChess.Client.MVC.Controller
                     {
                         Position positionOnePawn = new Position(piece.PiecePosition.Row + 1, piece.PiecePosition.Col + 1);
                         Position positionTwoPawn = new Position(piece.PiecePosition.Row + 1, piece.PiecePosition.Col - 1);
-                        if (IsOnBoard(positionOnePawn) && Board.Instance.BoardState[piece.PiecePosition.Row + 1, piece.PiecePosition.Col + 1] != null && Board.Instance.BoardState[piece.PiecePosition.Row + 1, piece.PiecePosition.Col + 1].PieceColor == PieceColor.White)
+                        if (ValidatePosition(positionOnePawn) && Board.Instance.BoardState[piece.PiecePosition.Row + 1, piece.PiecePosition.Col + 1] != null && Board.Instance.BoardState[piece.PiecePosition.Row + 1, piece.PiecePosition.Col + 1].PieceColor == PieceColor.White)
                         {
                             possibleMoves.Add(new Move(piece.PiecePosition, positionOnePawn));
                         }
-                        if (IsOnBoard(positionTwoPawn) && Board.Instance.BoardState[piece.PiecePosition.Row + 1, piece.PiecePosition.Col - 1] != null && Board.Instance.BoardState[piece.PiecePosition.Row + 1, piece.PiecePosition.Col - 1].PieceColor == PieceColor.White)
+                        if (ValidatePosition(positionTwoPawn) && Board.Instance.BoardState[piece.PiecePosition.Row + 1, piece.PiecePosition.Col - 1] != null && Board.Instance.BoardState[piece.PiecePosition.Row + 1, piece.PiecePosition.Col - 1].PieceColor == PieceColor.White)
                         {
                             possibleMoves.Add(new Move(piece.PiecePosition, positionTwoPawn));
                         }
                         Position positionThreePawn = new Position(piece.PiecePosition.Row + 1, piece.PiecePosition.Col);
-                        if (IsOnBoard(positionThreePawn) && Board.Instance.BoardState[piece.PiecePosition.Row + 1, piece.PiecePosition.Col] == null)
+                        if (ValidatePosition(positionThreePawn) && Board.Instance.BoardState[piece.PiecePosition.Row + 1, piece.PiecePosition.Col] == null)
                         {
                             possibleMoves.Add(new Move(piece.PiecePosition, positionThreePawn));
                         }
@@ -1548,6 +1554,186 @@ namespace JustPoChess.Client.MVC.Controller
             }
             return possibleMoves;
         }
+
+        // Player Check
+        public static bool IsPlayerInCheck(PieceColor pieceColor)
+        {
+            foreach (Piece boardPiece in Board.Instance.BoardState)
+            {
+                if (boardPiece != null && boardPiece.PieceColor != pieceColor && PieceGivesCheckToOpponentsKing(boardPiece))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        //Castle Checks
+        public bool IsCurrentPlayerLeftCastlePossible()
+        {
+            switch (model.Board.CurrentPlayerToMove)
+            {
+                case PieceColor.White:
+                    return IsWhiteLeftCastlePossible();
+                case PieceColor.Black:
+                    return IsBlackLeftCastlePossible();
+                default:
+                    throw new ArgumentException("Invalid current player");
+            }
+        }
+
+        public bool IsCurrentPlayerRightCastlePossible()
+        {
+            switch (model.Board.CurrentPlayerToMove)
+            {
+                case PieceColor.White:
+                    return IsWhiteRightCastlePossible();
+                case PieceColor.Black:
+                    return IsBlackRightCastlePossible();
+                default:
+                    throw new ArgumentException("Invalid current player");
+            }
+        }
+
+        public static bool IsWhiteLeftCastlePossible()
+        {
+            if (Board.Instance.WhiteLeftCastlePossible && !IsPlayerInCheck(PieceColor.White)) // has white moved the left 
+            {
+                if (Board.Instance.BoardState[7, 1] == null && Board.Instance.BoardState[7, 2] == null && Board.Instance.BoardState[7, 3] == null) // are there pieces between the left white rook and the white king
+                {
+                    IEnumerable<Position> guardedPositionsForAllPieces = new List<Position>();
+                    foreach (Piece boardPiece in Board.Instance.BoardState)
+                    {
+                        if (boardPiece != null && boardPiece.PieceColor == PieceColor.Black)
+                        {
+                            guardedPositionsForAllPieces = guardedPositionsForAllPieces.Concat(GenerateGuardedPositionsForPiece(boardPiece));
+                        }
+                    }
+                    if (!guardedPositionsForAllPieces.Contains(new Position(7, 2)) && !guardedPositionsForAllPieces.Contains(new Position(7, 3))) // are there squares that the white king has to go through that are attacked
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public static bool IsWhiteRightCastlePossible()
+        {
+            if (Board.Instance.WhiteRightCastlePossible && !IsPlayerInCheck(PieceColor.White))
+            {
+                if (Board.Instance.BoardState[7, 5] == null && Board.Instance.BoardState[7, 6] == null)
+                {
+                    IEnumerable<Position> guardedPositionsForAllPieces = new List<Position>();
+                    foreach (Piece boardPiece in Board.Instance.BoardState)
+                    {
+                        if (boardPiece != null && boardPiece.PieceColor == PieceColor.Black)
+                        {
+                            guardedPositionsForAllPieces = guardedPositionsForAllPieces.Concat(GenerateGuardedPositionsForPiece(boardPiece));
+                        }
+                    }
+                    if (!guardedPositionsForAllPieces.Contains(new Position(7, 5)) && !guardedPositionsForAllPieces.Contains(new Position(7, 6)))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public static bool IsBlackLeftCastlePossible()
+        {
+            if (Board.Instance.BlackLeftCastlePossible && IsPlayerInCheck(PieceColor.Black))
+            {
+                if (Board.Instance.BoardState[0, 1] == null && Board.Instance.BoardState[0, 2] == null && Board.Instance.BoardState[0, 3] == null)
+                {
+                    IEnumerable<Position> guardedPositionsForAllPieces = new List<Position>();
+                    foreach (Piece boardPiece in Board.Instance.BoardState)
+                    {
+                        if (boardPiece != null && boardPiece.PieceColor == PieceColor.White)
+                        {
+                            guardedPositionsForAllPieces = guardedPositionsForAllPieces.Concat(GenerateGuardedPositionsForPiece(boardPiece));
+                        }
+                    }
+                    if (!guardedPositionsForAllPieces.Contains(new Position(0, 2)) && !guardedPositionsForAllPieces.Contains(new Position(0, 3)))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public static bool IsBlackRightCastlePossible()
+        {
+            if (Board.Instance.BlackRightCastlePossible && !IsPlayerInCheck(PieceColor.Black))
+            {
+                if (Board.Instance.BoardState[0, 5] == null && Board.Instance.BoardState[0, 6] == null)
+                {
+                    IEnumerable<Position> guardedPositionsForAllPieces = new List<Position>();
+                    foreach (Piece boardPiece in Board.Instance.BoardState)
+                    {
+                        if (boardPiece != null && boardPiece.PieceColor == PieceColor.White)
+                        {
+                            guardedPositionsForAllPieces = guardedPositionsForAllPieces.Concat(GenerateGuardedPositionsForPiece(boardPiece));
+                        }
+                    }
+                    if (!guardedPositionsForAllPieces.Contains(new Position(0, 5)) && !guardedPositionsForAllPieces.Contains(new Position(0, 6)))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private static bool CheckIfKingVsKing()
+        {
+            foreach (Piece boardPiece in Board.Instance.BoardState)
+            {
+                if (boardPiece != null && boardPiece.PieceType != PieceType.King)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private static bool CheckIfKingKnightVsKing()
+        {
+            int knightsCount = 0;
+			foreach (Piece boardPiece in Board.Instance.BoardState)
+			{
+                if (boardPiece.PieceType == PieceType.Knight) 
+                {
+                    knightsCount++;
+                    continue;
+                }
+				if (boardPiece != null && boardPiece.PieceType != PieceType.King)
+				{
+					return false;
+				}
+			}
+            return knightsCount == 1;
+        }
+
+		private static bool CheckIfKingBishopVsKing()
+		{
+			int bishopsCount = 0;
+			foreach (Piece boardPiece in Board.Instance.BoardState)
+			{
+                if (boardPiece.PieceType == PieceType.Bishop)
+				{
+					bishopsCount++;
+					continue;
+				}
+				if (boardPiece != null && boardPiece.PieceType != PieceType.King)
+				{
+					return false;
+				}
+			}
+			return bishopsCount == 1;
+		}
 
         public static ICollection<Move> GeneratePosslbeEnPassantMoves()
         {
@@ -1614,7 +1800,26 @@ namespace JustPoChess.Client.MVC.Controller
             return possibleEnPassantMoves;
         }
 
-        
+        public bool CheckForCheckmate()
+        {
+            if (this.GeneratePossibleMovesForPlayer(model.Board.CurrentPlayerToMove).Count() == 0 && IsPlayerInCheck(Board.Instance.CurrentPlayerToMove))
+            {
+                return true;
+            }
+            return false;
+		}
 
+		public bool CheckForDraw()
+		{
+			if ((GeneratePossibleMovesForPlayer(model.Board.CurrentPlayerToMove).Count() == 0 && !IsPlayerInCheck(Board.Instance.CurrentPlayerToMove)) || CheckIfKingVsKing() || CheckIfKingKnightVsKing() || CheckIfKingBishopVsKing())
+			{
+				return true;
+			}
+            if (Board.Instance.PositionOccurences.ContainsValue(3))
+            {
+                return true;
+            }
+			return false;
+		}
     }
 }

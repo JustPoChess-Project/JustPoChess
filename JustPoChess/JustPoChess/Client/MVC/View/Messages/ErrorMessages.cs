@@ -4,5 +4,6 @@
     {
         public const string InvalidUserInputMessage = "Invalid input. Input is in format <currentPosition>-<nextPosition>, draw or resign";
 		public const string NotYourTurnMessage = "It's not your turn.";
+        public const string NoPieceAtTheCurrentPosition = "There is no piece at the current position.";
     }
 }

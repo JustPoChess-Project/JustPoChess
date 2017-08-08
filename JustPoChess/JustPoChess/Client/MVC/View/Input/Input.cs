@@ -64,8 +64,14 @@ namespace JustPoChess.Client.MVC.View.Input
                 }
             }
             string[] positionsStringArray = inputString.ToLower().Split('-');
+            
             Position currentPosition = new Position(7 - (positionsStringArray[0].ElementAt(1) - 49), positionsStringArray[0].ElementAt(0) - 'a');
+            if (Model.Model.Instance.Board.BoardState[currentPosition.Row, currentPosition.Col] == null)
+            {
+                throw new ArgumentException(ErrorMessage.NoPieceAtTheCurrentPosition);
+            }
             Position nextPosititon = new Position(7 - (positionsStringArray[1].ElementAt(1) - 49), positionsStringArray[1].ElementAt(0) - 'a');
+            
             return new Move(currentPosition, nextPosititon);
         }
 

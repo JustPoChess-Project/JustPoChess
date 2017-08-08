@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Linq;
 using System.Threading;
 using System.Collections.Generic;
@@ -30,9 +30,6 @@ namespace JustPoChess.Client.MVC.Controller
 
         public static void Start()
         {
-            Console.WriteLine(Messages.FontWarrning);
-            Console.WriteLine(Messages.FontColorWarrning);
-            Thread.Sleep(5000);
             InputUtilities.ClearKeyBuffer();
 
             View.View.InitialScreen();

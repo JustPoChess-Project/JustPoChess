@@ -219,6 +219,38 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                     }
                 }
             }
+            if (piece.PieceType == PieceType.King && Math.Abs(move.CurrentPosition.Col - move.NextPosititon.Col) > 1) //castling
+            {
+                switch (piece.PieceColor)
+                {
+                    case PieceColor.White:
+                        switch (move.NextPosititon.Col)
+                        {
+                            case 2:
+                                BoardState[7, 0] = null;
+                                BoardState[7, 3] = new Rook(PieceColor.White, new Position(7, 3));
+                                break;
+                            case 6:
+								BoardState[7, 7] = null;
+								BoardState[7, 5] = new Rook(PieceColor.White, new Position(7, 3));
+                                break;
+                        }
+                        break;
+					case PieceColor.Black:
+						switch (move.NextPosititon.Col)
+						{
+							case 2:
+								BoardState[1, 0] = null;
+                                BoardState[1, 3] = new Rook(PieceColor.Black, new Position(1, 3));
+								break;
+							case 6:
+								BoardState[1, 7] = null;
+								BoardState[1, 5] = new Rook(PieceColor.Black, new Position(1, 3));
+								break;
+						}
+                        break;
+                }
+            }
             this.BoardState[move.CurrentPosition.Row, move.CurrentPosition.Col] = null;
             this.BoardState[move.NextPosititon.Row, move.NextPosititon.Col] = piece;
             piece.PiecePosition = new Position(move.NextPosititon.Row, move.NextPosititon.Col);
@@ -303,8 +335,60 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
         }
 
         public void PerformMoveOnTestBoard(Move move)
-        {
+		{
+			if (move == null)
+			{
+				//yes, it must be just argument and not argument null exception
+				throw new ArgumentException("Move not possible");
+			}
             IPiece piece = this.TestBoardState[move.CurrentPosition.Row, move.CurrentPosition.Col];
+			if (piece.PieceType == PieceType.Pawn && move.CurrentPosition.Col != move.NextPosititon.Col) //pawn that takes a piece
+			{
+				if (testBoardState[move.NextPosititon.Row, move.NextPosititon.Col] == null)
+				{
+					switch (piece.PieceColor)
+					{
+						case PieceColor.White:
+                            testBoardState[move.NextPosititon.Row + 1, move.NextPosititon.Col] = null;
+							break;
+						case PieceColor.Black:
+							testBoardState[move.NextPosititon.Row - 1, move.NextPosititon.Col] = null;
+							break;
+					}
+				}
+			}
+            if (piece.PieceType == PieceType.King && Math.Abs(move.CurrentPosition.Col - move.NextPosititon.Col) > 1) //castling
+			{
+				switch (piece.PieceColor)
+				{
+					case PieceColor.White:
+						switch (move.NextPosititon.Col)
+						{
+							case 2:
+								TestBoardState[7, 0] = null;
+								TestBoardState[7, 3] = new Rook(PieceColor.White, new Position(7, 3));
+								break;
+							case 6:
+								TestBoardState[7, 7] = null;
+								TestBoardState[7, 5] = new Rook(PieceColor.White, new Position(7, 3));
+								break;
+						}
+						break;
+					case PieceColor.Black:
+						switch (move.NextPosititon.Col)
+						{
+							case 2:
+								TestBoardState[1, 0] = null;
+								TestBoardState[1, 3] = new Rook(PieceColor.Black, new Position(1, 3));
+								break;
+							case 6:
+								TestBoardState[1, 7] = null;
+								TestBoardState[1, 5] = new Rook(PieceColor.Black, new Position(1, 3));
+								break;
+						}
+						break;
+				}
+			}
             IPiece newPiece = Piece.NewPiece(piece);
             this.TestBoardState[move.CurrentPosition.Row, move.CurrentPosition.Col] = null;
             this.TestBoardState[move.NextPosititon.Row, move.NextPosititon.Col] = newPiece;

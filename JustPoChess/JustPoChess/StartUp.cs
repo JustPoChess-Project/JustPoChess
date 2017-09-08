@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 using JustPoChess.Client.MVC.Controller;
 using JustPoChess.Client.MVC.Model;
 using JustPoChess.Client.MVC.Model.Entities.Board;
+using JustPoChess.Client.MVC.Model.Entities.Pieces.Abstract;
+using JustPoChess.Client.MVC.OSChecker;
 using JustPoChess.Client.MVC.View;
 using JustPoChess.Client.MVC.View.Input;
-using System.Configuration;
+using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecePosition;
+using JustPoChess.Client.MVC.View.Sounds;
 
 namespace JustPoChess
 {
@@ -15,7 +20,7 @@ namespace JustPoChess
             Board.Instance.InitBoard();
             while (true)
             {
-                if (!bool.Parse(ConfigurationManager.AppSettings["IsUnix"]))
+                if (!CheckOS.IsLinux)
                 {
                     Console.OutputEncoding = System.Text.Encoding.UTF8;
                 }

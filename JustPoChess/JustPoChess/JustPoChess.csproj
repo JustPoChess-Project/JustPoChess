@@ -35,7 +35,6 @@
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client\MVC\Model\Entities\Pieces\Abstract\Piece.cs" />
+    <Compile Include="Client\MVC\OSChecker\CheckOS.cs" />
     <Compile Include="Client\MVC\View\Art\GameArt.cs" />
     <Compile Include="Client\MVC\View\Art\MenuArt.cs" />
     <Compile Include="Client\MVC\View\Input\InputUtilities.cs" />

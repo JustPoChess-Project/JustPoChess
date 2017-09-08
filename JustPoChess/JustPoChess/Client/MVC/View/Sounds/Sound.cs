@@ -1,6 +1,6 @@
 using System;
+using System.Configuration;
 using System.Media;
-using JustPoChess.Client.MVC.OSChecker;
 
 namespace JustPoChess.Client.MVC.View.Sounds
 {
@@ -10,7 +10,7 @@ namespace JustPoChess.Client.MVC.View.Sounds
 
         public static void PlayInitialScreenOST()
         {
-            if (CheckOS.IsLinux)
+            if (bool.Parse(ConfigurationManager.AppSettings["IsUnix"]))
             {
                 Player.SoundLocation = @"../../Sounds/OST/InitialScreenOST.wav";
             }
@@ -24,7 +24,7 @@ namespace JustPoChess.Client.MVC.View.Sounds
 
         public static void PlayMenuOST()
         {
-            if (CheckOS.IsLinux)
+            if (bool.Parse(ConfigurationManager.AppSettings["IsUnix"]))
             {
                 Player.SoundLocation = @"../../Sounds/OST/MenuOST.wav";
             }
@@ -38,7 +38,7 @@ namespace JustPoChess.Client.MVC.View.Sounds
 
         public static void PlaySelectionSound()
         {
-            if (CheckOS.IsLinux)
+            if (bool.Parse(ConfigurationManager.AppSettings["IsUnix"]))
             {
                 Player.SoundLocation = @"../../Sounds/SoundEffects/selection.wav";
             }
@@ -52,7 +52,7 @@ namespace JustPoChess.Client.MVC.View.Sounds
 
         public static void PlayTraverseSound()
         {
-            if (CheckOS.IsLinux)
+            if (bool.Parse(ConfigurationManager.AppSettings["IsUnix"]))
             {
                 Player.SoundLocation = @"../../Sounds/SoundEffects/traverse.wav";
             }

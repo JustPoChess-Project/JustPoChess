@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Configuration;
 using JustPoChess.Client.MVC.Model.Contracts;
 using JustPoChess.Client.MVC.Model.Entities.Board;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecesEnums;
-using JustPoChess.Client.MVC.OSChecker;
 using JustPoChess.Client.MVC.View.Art;
 using JustPoChess.Client.MVC.View.Menu;
 using JustPoChess.Client.MVC.View.Sounds;
@@ -40,7 +40,7 @@ namespace JustPoChess.Client.MVC.View
 
         public static void InitialScreen()
         {
-            if (CheckOS.IsLinux)
+            if (bool.Parse(ConfigurationManager.AppSettings["IsUnix"]))
             {
                 linuxMenu.InitialScreen();
             }
@@ -52,7 +52,7 @@ namespace JustPoChess.Client.MVC.View
 
         public static void InitializeMenu()
         {
-            if (CheckOS.IsLinux)
+            if (bool.Parse(ConfigurationManager.AppSettings["IsUnix"]))
             {
                 linuxMenu.InitializeMenu();
             }
@@ -80,7 +80,7 @@ namespace JustPoChess.Client.MVC.View
                     {
                         if ((x + y) % 2 != 0)
                         {
-                            if (CheckOS.IsLinux)
+                            if (bool.Parse(ConfigurationManager.AppSettings["IsUnix"]))
                             {
                                 Console.Write(GameArt.BlackSquare + " ");
                             }
@@ -91,7 +91,7 @@ namespace JustPoChess.Client.MVC.View
                         }
                         else
                         {
-                            if (CheckOS.IsLinux)
+                            if (bool.Parse(ConfigurationManager.AppSettings["IsUnix"]))
                             {
                                 Console.Write(GameArt.WhiteSquare + " ");
                             }
@@ -103,7 +103,7 @@ namespace JustPoChess.Client.MVC.View
                     }
                     else
 					{
-						if (CheckOS.IsLinux)
+						if (bool.Parse(ConfigurationManager.AppSettings["IsUnix"]))
 						{
 							Console.Write($"{GetPieceString(Model.Board.BoardState, x, y)} ");
 						}

@@ -15,13 +15,12 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
         private IPiece[,] boardState;
         private IPiece[,] testBoardState;
         private IDictionary<IBoard, int> positionOccurences;
-        private readonly IModel model;
 
         private PieceColor currentPlayerToMove = PieceColor.White;
 
-        public Board(IModel model)
+        public Board()
         {
-            this.model = model;
+            
         }
 
         public PieceColor CurrentPlayerToMove
@@ -34,11 +33,6 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
         {
             get { return this.positionOccurences; }
             set { this.positionOccurences = value; }
-        }
-
-        public IModel Model
-        {
-            get { return this.model; }
         }
 
         public IPiece[,] BoardState
@@ -75,6 +69,11 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
 
         public bool BlackRightCastlePossible { get; set; } = true;
 
+        public void RevertTestBoardState()
+        {
+            this.testBoardState = this.BoardDeepCopy();
+        }
+        
         public void InitBoard()
         {
             IPiece[,] state =
@@ -88,16 +87,16 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                 { new Pawn(PieceColor.White, new Position(6, 0)), new Pawn(PieceColor.White, new Position(6, 1)), new Pawn(PieceColor.White, new Position(6, 2)), new Pawn(PieceColor.White, new Position(6, 3)), new Pawn(PieceColor.White, new Position(6, 4)), new Pawn(PieceColor.White, new Position(6, 5)), new Pawn(PieceColor.White, new Position(6, 6)), new Pawn(PieceColor.White, new Position(6, 7)) },
                 { new Rook(PieceColor.White, new Position(7, 0)), new Knight(PieceColor.White, new Position(7, 1)), new Bishop(PieceColor.White, new Position(7, 2)), new Queen(PieceColor.White, new Position(7, 3)), new King(PieceColor.White, new Position(7, 4)), new Bishop(PieceColor.White, new Position(7, 5)), new Knight(PieceColor.White, new Position(7, 6)), new Rook(PieceColor.White, new Position(7, 7)) }
             };
-            CurrentPlayerToMove = PieceColor.White;
+            this.CurrentPlayerToMove = PieceColor.White;
             this.SetBoardState(state, PieceColor.White);
 
-            this.testBoardState = this.BoardDeepCopy();
-            this.positionOccurences.Add(this, 1);
+            this.TestBoardState = this.BoardDeepCopy();
+            this.PositionOccurences.Add(this, 1);
         }
-
+        
         public void SetBoardState(IPiece[,] state, PieceColor color)
         {
-            CurrentPlayerToMove = color;
+            this.CurrentPlayerToMove = color;
 
             if (color == PieceColor.Black)
             {
@@ -156,12 +155,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
             this.BoardState = state;
         }
 
-        public void RevertTestBoardState()
-        {
-            this.testBoardState = this.BoardDeepCopy();
-        }
-
-        public void PerformMove(IMove move)
+        public void PerformMove(IModel model, IMove move)
         {
             if (move == null)
             {
@@ -285,7 +279,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                 }
             }
             //will need that for en passant pawn move
-            this.model.LastMove = move;
+            model.LastMove = move;
 
             if (CurrentPlayerToMove == PieceColor.White)
             {

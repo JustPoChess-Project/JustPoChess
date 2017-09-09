@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{257AB713-3F81-4028-8C54-A7DF38DC0AB4}</ProjectGuid>
+    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JustPoChess.Remaster</RootNamespace>
+    <AssemblyName>JustPoChess.Remaster</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Client\MVC\Model\Contracts\IBoard.cs" />
+    <Compile Include="Client\MVC\Model\Contracts\IModel.cs" />
+    <Compile Include="Client\MVC\Model\Contracts\IMove.cs" />
+    <Compile Include="Client\MVC\Model\Contracts\IPiece.cs" />
+    <Compile Include="Client\MVC\Model\Contracts\IPlayer.cs" />
+    <Compile Include="Client\MVC\Model\Contracts\IPosition.cs" />
+    <Compile Include="Client\MVC\Model\Entities\Board.cs" />
+    <Compile Include="Client\MVC\Model\Entities\Move.cs" />
+    <Compile Include="Client\MVC\Model\Entities\Player.cs" />
+    <Compile Include="Client\MVC\Model\Entities\Position.cs" />
+    <Compile Include="Client\MVC\Model\Enums\GameState.cs" />
+    <Compile Include="Client\MVC\Model\Enums\PieceColor.cs" />
+    <Compile Include="Client\MVC\Model\Model.cs" />
+    <Compile Include="Client\MVC\Model\Pieces\Bishop.cs" />
+    <Compile Include="Client\MVC\Model\Pieces\King.cs" />
+    <Compile Include="Client\MVC\Model\Pieces\Knight.cs" />
+    <Compile Include="Client\MVC\Model\Pieces\Pawn.cs" />
+    <Compile Include="Client\MVC\Model\Pieces\Piece.cs" />
+    <Compile Include="Client\MVC\Model\Pieces\Queen.cs" />
+    <Compile Include="Client\MVC\Model\Pieces\Rook.cs" />
+    <Compile Include="Client\Ninject\Module.cs" />
+    <Compile Include="StartUp.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Client\MVC\Controller" />
+    <Folder Include="Client\MVC\View" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

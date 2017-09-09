@@ -16,7 +16,11 @@ namespace JustPoChess.Client.MVC.Model.Contracts
         bool BlackLeftCastlePossible { get; set; }
         bool BlackRightCastlePossible { get; set; }
         
-        //why?
-        
+        void InitBoard();
+        void SetBoardState(IPiece[,] state, PieceColor color);
+        void PerformMove(IModel model, IMove move);
+        void PerformMoveOnTestBoard(IMove move);
+        IPiece[,] BoardDeepCopy();
+        void RevertTestBoardState();
     }
 }

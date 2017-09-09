@@ -5,14 +5,21 @@ using JustPoChess.Client.MVC.Model.Entities.Board;
 using JustPoChess.Client.MVC.View;
 using JustPoChess.Client.MVC.View.Input;
 using System.Configuration;
+using System.Reflection;
+using JustPoChess.Client.MVC.Model.Contracts;
+using Ninject;
+using Module = JustPoChess.Client.Ninject.Module;
 
 namespace JustPoChess
 {
     public class StartUp
     {
         public static void Main()
-		{
-            Board.Instance.InitBoard();
+        {
+            IKernel kernel = new StandardKernel(new Module());
+            IBoard board = kernel.Get<IBoard>();
+            board.InitBoard();
+            //Board.Instance.InitBoard();
             while (true)
             {
                 if (!bool.Parse(ConfigurationManager.AppSettings["IsUnix"]))
@@ -29,7 +36,7 @@ namespace JustPoChess
                         move = Input.ParseMove(userInput);
                     }
                     Model.Instance.Board.PerformMove(move);
-                    Console.WriteLine(Controller.IsPlayerInCheck(Board.Instance.CurrentPlayerToMove));
+                    Console.WriteLine(Controller.IsPlayerInCheck(board.CurrentPlayerToMove));
                     Console.WriteLine(Controller.Instance.CheckForCheckmate());
                 }
                 catch (Exception e)

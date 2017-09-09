@@ -52,15 +52,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client\MVC\Controller\Contracts\IController.cs" />
     <Compile Include="Client\MVC\Model\Contracts\IBoard.cs" />
-    <Compile Include="Client\MVC\Model\Contracts\IModel.cs" />
     <Compile Include="Client\MVC\Model\Contracts\IMove.cs" />
     <Compile Include="Client\MVC\Model\Contracts\IPosition.cs" />
     <Compile Include="Client\MVC\Model\Entities\Pieces\Abstract\Piece.cs" />
     <Compile Include="Client\MVC\View\Art\GameArt.cs" />
     <Compile Include="Client\MVC\View\Art\MenuArt.cs" />
-    <Compile Include="Client\MVC\View\Contracts\IView.cs" />
     <Compile Include="Client\MVC\View\Input\InputUtilities.cs" />
     <Compile Include="Client\MVC\View\Menu\LinuxMenu.cs" />
     <Compile Include="Client\MVC\View\Messages\Messages.cs" />

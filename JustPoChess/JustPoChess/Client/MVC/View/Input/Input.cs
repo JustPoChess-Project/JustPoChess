@@ -4,21 +4,38 @@ using JustPoChess.Client.MVC.Model.Entities.Board;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecePosition;
 using JustPoChess.Client.MVC.View.Messages;
 using System.Linq;
+using JustPoChess.Client.MVC.Controller.Contracts;
+using JustPoChess.Client.MVC.Model.Contracts;
 
 namespace JustPoChess.Client.MVC.View.Input
 {
 
-    public static class Input
+    public class Input
     {
         private const string validMovePattern = @"[a-hA-H][1-8]-[a-hA-H][1-8]";
 
+        private readonly IModel model;
+        private readonly IController controller;
 
-        public static string GetUserInput()
+        public Input(IModel model, IController controller)
+        {
+            this.model = model;
+            this.controller = controller;
+        }
+
+        public IModel Model
+        {
+            get { return this.model; }
+        }
+
+        public string GetUserInput()
         {
             return Console.ReadLine();
         }
+        
+        
 
-        public static bool ValidateUserInputSyntax(string inputString)
+        public bool ValidateUserInputSyntax(string inputString)
         {
             switch (inputString.ToLower())
             {
@@ -41,11 +58,11 @@ namespace JustPoChess.Client.MVC.View.Input
 
         }
 
-        public static Move ParseMove(string inputString)
+        public IMove ParseMove(string inputString)
         {
             if (inputString == "o-o" || inputString == "O-O")
             {
-                switch (View.Model.Board.CurrentPlayerToMove)
+                switch (model.Board.CurrentPlayerToMove)
                 {
                     case Model.Entities.Pieces.PiecesEnums.PieceColor.White:
                         return new Move(new Position(7, 4), new Position(7, 6));
@@ -55,7 +72,7 @@ namespace JustPoChess.Client.MVC.View.Input
             }
             if (inputString == "o-o-o" || inputString == "O-O-O")
             {
-                switch (View.Model.Board.CurrentPlayerToMove)
+                switch (model.Board.CurrentPlayerToMove)
                 {
                     case Model.Entities.Pieces.PiecesEnums.PieceColor.White:
                         return new Move(new Position(7, 4), new Position(7, 2));
@@ -64,9 +81,9 @@ namespace JustPoChess.Client.MVC.View.Input
                 }
             }
             string[] positionsStringArray = inputString.ToLower().Split('-');
-            
+            //TODO
             Position currentPosition = new Position(7 - (positionsStringArray[0].ElementAt(1) - 49), positionsStringArray[0].ElementAt(0) - 'a');
-            if (Model.Model.Instance.Board.BoardState[currentPosition.Row, currentPosition.Col] == null)
+            if (model.Board.BoardState[currentPosition.Row, currentPosition.Col] == null)
             {
                 throw new ArgumentException(ErrorMessage.NoPieceAtTheCurrentPosition);
             }
@@ -75,12 +92,12 @@ namespace JustPoChess.Client.MVC.View.Input
             return new Move(currentPosition, nextPosititon);
         }
 
-        public static bool ValidateUserInput(string inputString)
+        public bool ValidateUserInput(string inputString)
         {
             return
                 ValidateUserInputSyntax(inputString)
-                && Controller.Controller.Instance.IsMovePossible(ParseMove(inputString))
-                 && Model.Model.Instance.Board.CurrentPlayerToMove == Board.Instance.BoardState[ParseMove(inputString).CurrentPosition.Row, ParseMove(inputString).CurrentPosition.Col].PieceColor;
+                && controller.IsMovePossible(ParseMove(inputString))
+                 && model.Board.CurrentPlayerToMove == model.Board.BoardState[ParseMove(inputString).CurrentPosition.Row, ParseMove(inputString).CurrentPosition.Col].PieceColor;
         }
     }
 }

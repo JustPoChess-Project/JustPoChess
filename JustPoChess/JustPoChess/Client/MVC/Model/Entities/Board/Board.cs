@@ -8,33 +8,22 @@ using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecesEnums;
 
 namespace JustPoChess.Client.MVC.Model.Entities.Board
 {
-    public class Board
+    public class Board:IBoard
     {
         public const int BoardSize = 8;
 
-        private static Board instance;
-
         private IPiece[,] boardState;
         private IPiece[,] testBoardState;
-        private Dictionary<Board, int> positionOccurences = new Dictionary<Board, int>();
+      //  private Dictionary<IBoard, int> positionOccurences = new Dictionary<IBoard, int>();
+        private readonly IDictionary<IBoard, int> positionOccurences;
+        private readonly IModel model;
 
         private PieceColor currentPlayerToMove = PieceColor.White;
 
-        private bool whiteLeftCastlePossible = true;
-        private bool whiteRightCastlePossible = true;
-        private bool blackLeftCastlePossible = true;
-        private bool blackRightCastlePossible = true;
-
-        private Board()
+        public Board(IModel model, IDictionary<IBoard, int> positionOccurences)
         {
-        }
-
-        public static Board Instance
-        {
-            get
-            {
-                return instance ?? (instance = new Board());
-            }
+            this.positionOccurences = positionOccurences;
+            this.model = model;
         }
 
         public PieceColor CurrentPlayerToMove
@@ -43,10 +32,14 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
             set { this.currentPlayerToMove = value; }
         }
 
-        public Dictionary<Board, int> PositionOccurences
+        public IDictionary<IBoard, int> PositionOccurences
         {
             get { return this.positionOccurences; }
-            set { this.positionOccurences = value; }
+        }
+
+        public IModel Model
+        {
+            get { return this.model; }
         }
 
         public IPiece[,] BoardState
@@ -75,53 +68,13 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
             }
         }
 
-        public bool WhiteLeftCastlePossible
-        {
-            get
-            {
-                return this.whiteLeftCastlePossible;
-            }
-            set
-            {
-                this.whiteLeftCastlePossible = value;
-            }
-        }
+        public bool WhiteLeftCastlePossible { get; set; } = true;
 
-        public bool WhiteRightCastlePossible
-        {
-            get
-            {
-                return this.whiteRightCastlePossible;
-            }
-            set
-            {
-                this.whiteRightCastlePossible = value;
-            }
-        }
+        public bool WhiteRightCastlePossible { get; set; } = true;
 
-        public bool BlackLeftCastlePossible
-        {
-            get
-            {
-                return this.blackLeftCastlePossible;
-            }
-            set
-            {
-                this.blackLeftCastlePossible = value;
-            }
-        }
+        public bool BlackLeftCastlePossible { get; set; } = true;
 
-        public bool BlackRightCastlePossible
-        {
-            get
-            {
-                return this.blackRightCastlePossible;
-            }
-            set
-            {
-                this.blackRightCastlePossible = value;
-            }
-        }
+        public bool BlackRightCastlePossible { get; set; } = true;
 
         public void InitBoard()
         {
@@ -209,7 +162,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
             this.testBoardState = this.BoardDeepCopy();
         }
 
-        public void PerformMove(Move move)
+        public void PerformMove(IMove move)
         {
             if (move == null)
             {
@@ -218,25 +171,25 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
             }
             IPiece piece = this.BoardState[move.CurrentPosition.Row, move.CurrentPosition.Col];
             if (piece.PieceType == PieceType.Pawn
-                && move.CurrentPosition.Col != move.NextPosititon.Col
-                && BoardState[move.NextPosititon.Row, move.NextPosititon.Col] == null) //pawn that takes a piece
+                && move.CurrentPosition.Col != move.NextPosition.Col
+                && BoardState[move.NextPosition.Row, move.NextPosition.Col] == null) //pawn that takes a piece
             {
                 switch (piece.PieceColor)
                 {
                     case PieceColor.White:
-                        boardState[move.NextPosititon.Row + 1, move.NextPosititon.Col] = null;
+                        boardState[move.NextPosition.Row + 1, move.NextPosition.Col] = null;
                         break;
                     case PieceColor.Black:
-                        boardState[move.NextPosititon.Row - 1, move.NextPosititon.Col] = null;
+                        boardState[move.NextPosition.Row - 1, move.NextPosition.Col] = null;
                         break;
                 }
             }
-            if (piece.PieceType == PieceType.King && Math.Abs(move.CurrentPosition.Col - move.NextPosititon.Col) > 1) //castling
+            if (piece.PieceType == PieceType.King && Math.Abs(move.CurrentPosition.Col - move.NextPosition.Col) > 1) //castling
             {
                 switch (piece.PieceColor)
                 {
                     case PieceColor.White:
-                        switch (move.NextPosititon.Col)
+                        switch (move.NextPosition.Col)
                         {
                             case 2:
                                 BoardState[7, 0] = null;
@@ -249,7 +202,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                         }
                         break;
                     case PieceColor.Black:
-                        switch (move.NextPosititon.Col)
+                        switch (move.NextPosition.Col)
                         {
                             case 2:
                                 BoardState[1, 0] = null;
@@ -264,8 +217,8 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                 }
             }
             this.BoardState[move.CurrentPosition.Row, move.CurrentPosition.Col] = null;
-            this.BoardState[move.NextPosititon.Row, move.NextPosititon.Col] = piece;
-            piece.PiecePosition = new Position(move.NextPosititon.Row, move.NextPosititon.Col);
+            this.BoardState[move.NextPosition.Row, move.NextPosition.Col] = piece;
+            piece.PiecePosition = new Position(move.NextPosition.Row, move.NextPosition.Col);
 
             if (move.CurrentPosition.Row == 7)
             {
@@ -299,41 +252,41 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                     this.BlackRightCastlePossible = false;
                 }
             }
-            if (move.NextPosititon.Row == 7)
+            if (move.NextPosition.Row == 7)
             {
-                if (move.NextPosititon.Col == 0)
+                if (move.NextPosition.Col == 0)
                 {
 
                     this.WhiteLeftCastlePossible = false;
                 }
-                if (move.NextPosititon.Col == 4)
+                if (move.NextPosition.Col == 4)
                 {
                     this.WhiteLeftCastlePossible = false;
                     this.WhiteRightCastlePossible = false;
                 }
-                if (move.NextPosititon.Col == 7)
+                if (move.NextPosition.Col == 7)
                 {
                     this.WhiteRightCastlePossible = false;
                 }
             }
-            if (move.NextPosititon.Row == 0)
+            if (move.NextPosition.Row == 0)
             {
-                if (move.NextPosititon.Col == 0)
+                if (move.NextPosition.Col == 0)
                 {
                     this.BlackLeftCastlePossible = false;
                 }
-                if (move.NextPosititon.Col == 4)
+                if (move.NextPosition.Col == 4)
                 {
                     this.BlackLeftCastlePossible = false;
                     this.BlackRightCastlePossible = false;
                 }
-                if (move.NextPosititon.Col == 7)
+                if (move.NextPosition.Col == 7)
                 {
                     this.BlackRightCastlePossible = false;
                 }
             }
             //will need that for en passant pawn move
-            Model.Instance.LastMove = move;
+            this.model.LastMove = move;
 
             if (CurrentPlayerToMove == PieceColor.White)
             {
@@ -358,7 +311,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
             }
         }
 
-        public void PerformMoveOnTestBoard(Move move)
+        public void PerformMoveOnTestBoard(IMove move)
         {
             if (move == null)
             {
@@ -370,27 +323,27 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
 			{
                 return;
             }
-            if (piece.PieceType == PieceType.Pawn && move.CurrentPosition.Col != move.NextPosititon.Col) //pawn that takes a piece
+            if (piece.PieceType == PieceType.Pawn && move.CurrentPosition.Col != move.NextPosition.Col) //pawn that takes a piece
             {
-                if (testBoardState[move.NextPosititon.Row, move.NextPosititon.Col] == null)
+                if (testBoardState[move.NextPosition.Row, move.NextPosition.Col] == null)
                 {
                     switch (piece.PieceColor)
                     {
                         case PieceColor.White:
-                            testBoardState[move.NextPosititon.Row + 1, move.NextPosititon.Col] = null;
+                            testBoardState[move.NextPosition.Row + 1, move.NextPosition.Col] = null;
                             break;
                         case PieceColor.Black:
-                            testBoardState[move.NextPosititon.Row - 1, move.NextPosititon.Col] = null;
+                            testBoardState[move.NextPosition.Row - 1, move.NextPosition.Col] = null;
                             break;
                     }
                 }
             }
-            if (piece.PieceType == PieceType.King && Math.Abs(move.CurrentPosition.Col - move.NextPosititon.Col) > 1) //castling
+            if (piece.PieceType == PieceType.King && Math.Abs(move.CurrentPosition.Col - move.NextPosition.Col) > 1) //castling
             {
                 switch (piece.PieceColor)
                 {
                     case PieceColor.White:
-                        switch (move.NextPosititon.Col)
+                        switch (move.NextPosition.Col)
                         {
                             case 2:
                                 TestBoardState[7, 0] = null;
@@ -403,7 +356,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
                         }
                         break;
                     case PieceColor.Black:
-                        switch (move.NextPosititon.Col)
+                        switch (move.NextPosition.Col)
                         {
                             case 2:
                                 TestBoardState[1, 0] = null;
@@ -419,9 +372,9 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
             }
             IPiece newPiece = Piece.NewPiece(piece);
             this.TestBoardState[move.CurrentPosition.Row, move.CurrentPosition.Col] = null;
-            this.TestBoardState[move.NextPosititon.Row, move.NextPosititon.Col] = newPiece;
-            piece.PiecePosition = new Position(move.NextPosititon.Row, move.NextPosititon.Col);
-            newPiece.PiecePosition = new Position(move.NextPosititon.Row, move.NextPosititon.Col);
+            this.TestBoardState[move.NextPosition.Row, move.NextPosition.Col] = newPiece;
+            piece.PiecePosition = new Position(move.NextPosition.Row, move.NextPosition.Col);
+            newPiece.PiecePosition = new Position(move.NextPosition.Row, move.NextPosition.Col);
         }
 
         public IPiece[,] BoardDeepCopy()

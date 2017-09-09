@@ -1,8 +1,9 @@
 ﻿using System;
+using JustPoChess.Client.MVC.Model.Contracts;
 
 namespace JustPoChess.Client.MVC.Model.Entities.Pieces.PiecePosition
 {
-    public class Position
+    public class Position : IPosition
     {
         private const int MinPosition = 0;
         private const int MaxPosition = 7;
@@ -12,8 +13,8 @@ namespace JustPoChess.Client.MVC.Model.Entities.Pieces.PiecePosition
 
         public Position(int row, int col)
         {
-            this.row = row;
-            this.col = col;
+            this.Row = row;
+            this.Col = col;
         }
         
         public int Row
@@ -24,7 +25,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Pieces.PiecePosition
             }
             set
             {
-                if (this.row < MinPosition || this.row > MaxPosition)
+                if (value < MinPosition || value > MaxPosition)
                 {
                     throw new ArgumentException("Invalid Position");
                 }
@@ -40,7 +41,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Pieces.PiecePosition
             }
             set
             {
-                if (this.col < MinPosition || this.col > MaxPosition)
+                if (value < MinPosition || value > MaxPosition)
                 {
                     throw new ArgumentException("Invalid Position");
                 }

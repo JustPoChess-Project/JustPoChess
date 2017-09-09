@@ -1,20 +1,21 @@
 ﻿using System;
+using JustPoChess.Client.MVC.Model.Contracts;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecePosition;
 
 namespace JustPoChess.Client.MVC.Model.Entities.Board
 {
-    public class Move
+    public class Move:IMove
     {
-        private Position currentPosition;
-        private Position nextPosititon;
+        private IPosition currentPosition;
+        private IPosition nextPosition;
 
-        public Move(Position currentPosition, Position nextPosititon)
+        public Move(IPosition currentPosition, IPosition nextPosititon)
         {
-            this.currentPosition = currentPosition;
-            this.nextPosititon = nextPosititon;
+            this.CurrentPosition = currentPosition;
+            this.NextPosition = nextPosititon;
         }
 
-        public Position CurrentPosition
+        public IPosition CurrentPosition
         {
             get
             {
@@ -22,7 +23,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
             }
             set
             {
-                if (this.currentPosition == null)
+                if (value == null)
                 {
                     throw new ArgumentException("Invalid Move");
                 }
@@ -30,26 +31,26 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
             }
         }
 
-		public Position NextPosititon
+		public IPosition NextPosition
 		{
 			get
 			{
-				return this.nextPosititon;
+				return this.nextPosition;
 			}
 			set
 			{
-			    if (this.nextPosititon == null)
+			    if (value == null)
 			    {
 			        throw new ArgumentException("Invalid Move");
 			    }
-				this.nextPosititon = value;
+				this.nextPosition = value;
 			}
 		}
 
         //testing purposes
         public override string ToString()
         {
-            return $"[Move: CurrentPosition={CurrentPosition}, NextPosititon={NextPosititon}]";
+            return $"[Move: CurrentPosition={this.CurrentPosition}, NextPosititon={this.NextPosition}]";
         }
 
         public override bool Equals(object obj)
@@ -61,8 +62,8 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
             Move move = obj as Move;
             return move.CurrentPosition.Row == this.CurrentPosition.Row
                         && move.CurrentPosition.Col == this.CurrentPosition.Col
-                        && move.NextPosititon.Row == this.NextPosititon.Row
-                        && move.NextPosititon.Col == this.NextPosititon.Col;
+                        && move.NextPosition.Row == this.NextPosition.Row
+                        && move.NextPosition.Col == this.NextPosition.Col;
         }
     }
 }

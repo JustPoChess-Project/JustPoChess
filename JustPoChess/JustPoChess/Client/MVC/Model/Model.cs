@@ -2,38 +2,25 @@
 using JustPoChess.Client.MVC.Model.Entities.Board;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecesEnums;
 using JustPoChess.Client.MVC.Model.Entities.Player;
+using Ninject;
 
 namespace JustPoChess.Client.MVC.Model
 {
-    public class Model
+    public class Model : IModel
     {
-        private static Model instance;
-        
-        private Board board = Board.Instance;
-        
         //to-do: fix all namespaces once and for all
         private readonly Player player1;
         private readonly Player player2;
 
         private GameState gameState;
 
+        private readonly IBoard board;
+
         //will need that for en passant pawn move
-        private Move lastMove;
 
-        private Model()
+        public Model(IBoard board)
         {
-        }
-
-        public static Model Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new Model();
-                }
-                return instance;
-            }
+            this.board = board;
         }
 
         public Player Player1 => this.player1;
@@ -46,16 +33,11 @@ namespace JustPoChess.Client.MVC.Model
             set { this.gameState = value; }
         }
 
-        public Move LastMove
-        {
-            get { return this.lastMove; }
-            set { this.lastMove = value; }
-        }
+        public IMove LastMove { get; set; }
 
-        public Board Board
+        public IBoard Board
         {
             get { return this.board; }
-            set { this.board = value; }
         }
     }
 }

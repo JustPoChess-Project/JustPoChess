@@ -11,34 +11,22 @@ namespace JustPoChess.Client.MVC.View
 {
     public class View
     {
-        private static WindowsMenu windowsMenu = WindowsMenu.Instance;
-        private static LinuxMenu linuxMenu = LinuxMenu.Instance;
-        private static View instance;
+        private WindowsMenu windowsMenu = WindowsMenu.Instance;
+        private LinuxMenu linuxMenu = LinuxMenu.Instance;
 
-        private static Model.Model model = MVC.Model.Model.Instance;
+        private readonly IModel model;
 
-        private View()
+        public View(IModel model)
         {
+            this.model = model;
         }
 
-        public static View Instance
+        public IModel Model
         {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new View();
-                }
-                return instance;
-            }
-        }
-        public static Model.Model Model
-        {
-            get { return model; }
-            set { model = value; }
+            get { return this.model; }
         }
 
-        public static void InitialScreen()
+        public void InitialScreen()
         {
             if (bool.Parse(ConfigurationManager.AppSettings["IsUnix"]))
             {
@@ -50,7 +38,7 @@ namespace JustPoChess.Client.MVC.View
             }
         }
 
-        public static void InitializeMenu()
+        public void InitializeMenu()
         {
             if (bool.Parse(ConfigurationManager.AppSettings["IsUnix"]))
             {
@@ -62,12 +50,12 @@ namespace JustPoChess.Client.MVC.View
             }
         }
 
-        public static void StopMusic()
+        public void StopMusic()
         {
             Sound.Stop();
         }
 
-        public static void PrintBoard()
+        public void PrintBoard()
         {
             for (int x = 0; x < Board.BoardSize; x++)
             {
@@ -125,7 +113,7 @@ namespace JustPoChess.Client.MVC.View
             }
         }
 
-        public static void MirrorPrintBoard()
+        public void MirrorPrintBoard()
         {
             var mirroredBoard = new IPiece[Board.BoardSize, Board.BoardSize];
 
@@ -171,7 +159,7 @@ namespace JustPoChess.Client.MVC.View
             }
         }
 
-        private static string GetPieceString(IPiece[,] boardState, int x, int y)
+        private string GetPieceString(IPiece[,] boardState, int x, int y)
         {
             switch (boardState[x, y].PieceType)
             {

@@ -14,15 +14,13 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
 
         private IPiece[,] boardState;
         private IPiece[,] testBoardState;
-      //  private Dictionary<IBoard, int> positionOccurences = new Dictionary<IBoard, int>();
-        private readonly IDictionary<IBoard, int> positionOccurences;
+        private IDictionary<IBoard, int> positionOccurences;
         private readonly IModel model;
 
         private PieceColor currentPlayerToMove = PieceColor.White;
 
-        public Board(IModel model, IDictionary<IBoard, int> positionOccurences)
+        public Board(IModel model)
         {
-            this.positionOccurences = positionOccurences;
             this.model = model;
         }
 
@@ -35,6 +33,7 @@ namespace JustPoChess.Client.MVC.Model.Entities.Board
         public IDictionary<IBoard, int> PositionOccurences
         {
             get { return this.positionOccurences; }
+            set { this.positionOccurences = value; }
         }
 
         public IModel Model

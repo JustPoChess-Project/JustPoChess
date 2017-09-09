@@ -6,11 +6,14 @@ using JustPoChess.Client.MVC.View.Messages;
 using System.Linq;
 using JustPoChess.Client.MVC.Controller.Contracts;
 using JustPoChess.Client.MVC.Model.Contracts;
+using JustPoChess.Client.MVC.Model.Entities;
+using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecesEnums;
+using JustPoChess.Client.MVC.View.Contracts;
 
 namespace JustPoChess.Client.MVC.View.Input
 {
 
-    public class Input
+    public class Input:Iinput
     {
         private const string validMovePattern = @"[a-hA-H][1-8]-[a-hA-H][1-8]";
 
@@ -26,6 +29,11 @@ namespace JustPoChess.Client.MVC.View.Input
         public IModel Model
         {
             get { return this.model; }
+        }
+        
+        public IController Controller
+        {
+            get { return this.controller; }
         }
 
         public string GetUserInput()
@@ -62,21 +70,21 @@ namespace JustPoChess.Client.MVC.View.Input
         {
             if (inputString == "o-o" || inputString == "O-O")
             {
-                switch (model.Board.CurrentPlayerToMove)
+                switch (this.Model.Board.CurrentPlayerToMove)
                 {
-                    case Model.Entities.Pieces.PiecesEnums.PieceColor.White:
+                    case PieceColor.White:
                         return new Move(new Position(7, 4), new Position(7, 6));
-                    case Model.Entities.Pieces.PiecesEnums.PieceColor.Black:
+                    case PieceColor.Black:
                         return new Move(new Position(0, 4), new Position(0, 6));
                 }
             }
             if (inputString == "o-o-o" || inputString == "O-O-O")
             {
-                switch (model.Board.CurrentPlayerToMove)
+                switch (this.Model.Board.CurrentPlayerToMove)
                 {
-                    case Model.Entities.Pieces.PiecesEnums.PieceColor.White:
+                    case PieceColor.White:
                         return new Move(new Position(7, 4), new Position(7, 2));
-                    case Model.Entities.Pieces.PiecesEnums.PieceColor.Black:
+                    case PieceColor.Black:
                         return new Move(new Position(0, 4), new Position(0, 2));
                 }
             }

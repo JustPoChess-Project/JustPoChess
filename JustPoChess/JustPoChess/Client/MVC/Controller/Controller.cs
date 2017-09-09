@@ -43,7 +43,7 @@ namespace JustPoChess.Client.MVC.Controller
 
         public bool IsMovePossible(IMove move)
         {
-            IEnumerable<IMove> possibleMoves = this.GeneratePossibleMovesForPlayer(this.model.Board.BoardState[move.CurrentPosition.Row, move.CurrentPosition.Col].PieceColor);
+            IEnumerable<IMove> possibleMoves = this.GeneratePossibleMovesForPlayer(this.Model.Board.BoardState[move.CurrentPosition.Row, move.CurrentPosition.Col].PieceColor);
             return possibleMoves.Contains(move);
         }
 
@@ -54,8 +54,8 @@ namespace JustPoChess.Client.MVC.Controller
                 return false;
             }
             
-            PieceColor pieceColor = model.Board.BoardState[move.CurrentPosition.Row, move.CurrentPosition.Col].PieceColor;
-            model.Board.PerformMoveOnTestBoard(move);
+            PieceColor pieceColor = Model.Board.BoardState[move.CurrentPosition.Row, move.CurrentPosition.Col].PieceColor;
+            Model.Board.PerformMoveOnTestBoard(move);
             foreach (IPiece boardPiece in model.Board.TestBoardState)
             {
                 if (boardPiece != null && boardPiece.PieceColor != pieceColor && PieceGivesCheckToOpponentsKing(boardPiece))

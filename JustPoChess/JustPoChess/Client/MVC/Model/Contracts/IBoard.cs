@@ -10,11 +10,6 @@ namespace JustPoChess.Client.MVC.Model.Contracts
         IDictionary<IBoard, int> PositionOccurences { get; }
         IPiece[,] BoardState { get; set; }
         IPiece[,] TestBoardState { get; set; }
-        void InitBoard();
-        void SetBoardState(IPiece[,] board, PieceColor color);
-        void PerformMove(IMove move);
-        void PerformMoveOnTestBoard(IMove move);
-        IPiece[,] BoardDeepCopy();
         
         bool WhiteLeftCastlePossible { get; set; }
         bool WhiteRightCastlePossible { get; set; }
@@ -22,6 +17,6 @@ namespace JustPoChess.Client.MVC.Model.Contracts
         bool BlackRightCastlePossible { get; set; }
         
         //why?
-        void RevertTestBoardState();
+        
     }
 }

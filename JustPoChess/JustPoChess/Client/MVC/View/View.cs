@@ -4,12 +4,13 @@ using JustPoChess.Client.MVC.Model.Contracts;
 using JustPoChess.Client.MVC.Model.Entities.Board;
 using JustPoChess.Client.MVC.Model.Entities.Pieces.PiecesEnums;
 using JustPoChess.Client.MVC.View.Art;
+using JustPoChess.Client.MVC.View.Contracts;
 using JustPoChess.Client.MVC.View.Menu;
 using JustPoChess.Client.MVC.View.Sounds;
 
 namespace JustPoChess.Client.MVC.View
 {
-    public class View
+    public class View:IView
     {
         private WindowsMenu windowsMenu = WindowsMenu.Instance;
         private LinuxMenu linuxMenu = LinuxMenu.Instance;

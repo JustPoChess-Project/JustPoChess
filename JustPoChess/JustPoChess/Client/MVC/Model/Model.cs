@@ -14,13 +14,12 @@ namespace JustPoChess.Client.MVC.Model
 
         private GameState gameState;
 
-        private readonly IBoard board;
+        private IBoard board;
 
         //will need that for en passant pawn move
 
-        public Model(IBoard board)
+        public Model()
         {
-            this.board = board;
         }
 
         public Player Player1 => this.player1;
@@ -38,6 +37,7 @@ namespace JustPoChess.Client.MVC.Model
         public IBoard Board
         {
             get { return this.board; }
+            set { this.board = value; }
         }
     }
 }

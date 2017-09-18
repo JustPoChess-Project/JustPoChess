@@ -6,5 +6,6 @@ namespace JustPoChess.Remaster.Client.MVC.Model.Contracts
     {
         IPosition PiecePosition { get; set; }
         PieceColor PieceColor { get; }
+        PieceType PieceType { get; }
     }
 }

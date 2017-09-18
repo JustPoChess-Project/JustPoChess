@@ -12,6 +12,7 @@ namespace JustPoChess.Remaster.Client.MVC.Model.Pieces
         }
         
         public IPosition PiecePosition { get; set; }
-        public PieceColor PieceColor { get; }
+        public PieceColor PieceColor { get; set; }
+        public abstract PieceType PieceType { get; }
     }
 }

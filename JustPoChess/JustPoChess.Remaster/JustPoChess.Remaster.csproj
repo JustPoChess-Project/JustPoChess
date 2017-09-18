@@ -44,6 +44,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\MVC\Controller\Contracts\IBoardLogic.cs" />
+    <Compile Include="Client\MVC\Controller\Contracts\IController.cs" />
+    <Compile Include="Client\MVC\Controller\Contracts\IParser.cs" />
+    <Compile Include="Client\MVC\Controller\Contracts\IVerification.cs" />
+    <Compile Include="Client\MVC\Controller\Controller.cs" />
+    <Compile Include="Client\MVC\Controller\Logic\BoardLogic.cs" />
+    <Compile Include="Client\MVC\Controller\Logic\Parser.cs" />
+    <Compile Include="Client\MVC\Controller\Logic\Verification.cs" />
     <Compile Include="Client\MVC\Model\Contracts\IBoard.cs" />
     <Compile Include="Client\MVC\Model\Contracts\IModel.cs" />
     <Compile Include="Client\MVC\Model\Contracts\IMove.cs" />
@@ -56,6 +64,7 @@
     <Compile Include="Client\MVC\Model\Entities\Position.cs" />
     <Compile Include="Client\MVC\Model\Enums\GameState.cs" />
     <Compile Include="Client\MVC\Model\Enums\PieceColor.cs" />
+    <Compile Include="Client\MVC\Model\Enums\PieceType.cs" />
     <Compile Include="Client\MVC\Model\Model.cs" />
     <Compile Include="Client\MVC\Model\Pieces\Bishop.cs" />
     <Compile Include="Client\MVC\Model\Pieces\King.cs" />
@@ -64,13 +73,12 @@
     <Compile Include="Client\MVC\Model\Pieces\Piece.cs" />
     <Compile Include="Client\MVC\Model\Pieces\Queen.cs" />
     <Compile Include="Client\MVC\Model\Pieces\Rook.cs" />
+    <Compile Include="Client\MVC\View\Contracts\IView.cs" />
+    <Compile Include="Client\MVC\View\Contracts\IWriter.cs" />
+    <Compile Include="Client\MVC\View\View.cs" />
     <Compile Include="Client\Ninject\Module.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Client\MVC\Controller" />
-    <Folder Include="Client\MVC\View" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -10,8 +10,13 @@ namespace JustPoChess.Remaster.Client.MVC.Model.Pieces
             :base(pieceColor, position)
         {
         }
-
-        public IPosition PiecePosition { get; set; }
-        public PieceColor PieceColor { get; }
+        public override PieceType PieceType
+        {
+            get
+            {
+                return PieceType.Pawn;
+                
+            }
+        }
     }
 }

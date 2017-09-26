@@ -5,7 +5,7 @@ namespace JustPoChess.Client.MVC.Model.Contracts
 {
     public interface IPiece
     {
-        Position PiecePosition { get; set; }
+        IPosition PiecePosition { get; set; }
         PieceColor PieceColor { get; }
         PieceType PieceType { get;  }
 

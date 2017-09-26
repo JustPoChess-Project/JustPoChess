@@ -6,9 +6,27 @@ namespace JustPoChess.Remaster.Client.MVC.Model.Entities
 {
     public class Board : IBoard
     {
-        public IPiece[,] BoardState { get; set; }
-        public IPiece[,] TestBoardState { get; set; }
-        public IDictionary<IBoard, int> PositionOccurences { get; }
+        private IPiece[,] state;
+
+        public Board()
+        {
+            this.state = new IPiece[8,8];
+        }
+
+        public IPiece[,] State
+        {
+            get
+            {
+                return this.state;
+            }
+            set
+            {
+                this.state = value;
+            }
+        }
+
+        public IPiece[,] TestState { get; set; }
+        //public IDictionary<IBoard, int> PositionOccurences { get; }
         public PieceColor CurrentPlayerToMove { get; set; }
 
         public bool WhiteLeftCastlePossible { get; set; } = true;

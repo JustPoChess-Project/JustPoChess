@@ -73,8 +73,13 @@
     <Compile Include="Client\MVC\Model\Pieces\Piece.cs" />
     <Compile Include="Client\MVC\Model\Pieces\Queen.cs" />
     <Compile Include="Client\MVC\Model\Pieces\Rook.cs" />
+    <Compile Include="Client\MVC\Model\Utils\Dimentions.cs" />
+    <Compile Include="Client\MVC\View\ConsoleClient\ConsoleDrawer.cs" />
+    <Compile Include="Client\MVC\View\ConsoleClient\ConsoleReader.cs" />
+    <Compile Include="Client\MVC\View\ConsoleClient\GameArt.cs" />
+    <Compile Include="Client\MVC\View\Contracts\IReader.cs" />
     <Compile Include="Client\MVC\View\Contracts\IView.cs" />
-    <Compile Include="Client\MVC\View\Contracts\IWriter.cs" />
+    <Compile Include="Client\MVC\View\Contracts\IDrawer.cs" />
     <Compile Include="Client\MVC\View\View.cs" />
     <Compile Include="Client\Ninject\Module.cs" />
     <Compile Include="StartUp.cs" />
